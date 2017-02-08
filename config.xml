@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" id="com.example.helloworld" version="1.0.0">
-  <name>Fizz Quizz Beta2</name>
+  <name>Fizz Quizz B2</name>
   <description/>
   <author/>
   <content src="index.html"/>
@@ -10,7 +10,7 @@
   <allow-intent href="itms-apps:*"/>
 
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="Orientation" value="portrait"/>
+  <preference name="Orientation" value="default"/>
 
   <preference name="loglevel" value="DEBUG"/>
   <preference name="AndroidLaunchMode" value="singleTop"/>
