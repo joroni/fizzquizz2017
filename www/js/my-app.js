@@ -155,12 +155,12 @@ function messageTimer(){
 var startQuiz = new Date();
 startQuiz=new Date(startQuiz.getTime());
 var timeOut = +10;
-$("#defaultCountdown").countdown({
+$("#defaultCountdown.timer").countdown({
   until: timeOut,
   onExpiry: liftOff});
 
 function liftOff() {
-$$("#defaultCountdown").hide();
+$$("#defaultCountdown.timer").hide();
   $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
                                   '<div class="toolbar-inner">'+
                                     '<a href="#welcome" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
@@ -542,7 +542,7 @@ var mydivision = localStorage.getItem("division");
                 .text(myemail);
             $('#userdivision, .profile-division')
                 .text(mydivision);
-        
+
             get_Quiz_History();
 
         });
@@ -784,8 +784,8 @@ function loadPages() {
 
 
 
-  $$('.view').append('<div id="defaultCountdown"></div>');
-messageTimer();
+  $$('.view').append('<div id="defaultCountdown" class="timer"></div>');
+  messageTimer();
 
 
   // END countdown
@@ -1036,7 +1036,7 @@ function validateMyTurn() {
         var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
         var checkLastQuiz = localStorage.getItem("checkLQuiz").replace(/-/g,'');
         var resultCheck = checkLastQuiz - dateFrStringVerify;
-      //  console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
+        console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
 
         if (resultCheck == 0) {
 
@@ -1060,7 +1060,7 @@ function validateMyTurn() {
 
         }
 
-console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
+
 
     });
 }
