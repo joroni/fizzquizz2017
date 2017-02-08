@@ -24,7 +24,7 @@
       <link rel="stylesheet" href="fonts/font_awesome/css/font-awesome.min.css">
       <link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
       <link rel="stylesheet" href="css/rays/rays.css" type="text/css">
-        <link rel="stylesheet" href="inappbrowser.css" type="text/css">
+
 
       <script>
          var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
@@ -35,13 +35,14 @@
 
       <link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
       <style type="text/css">
-      #defaultCountdown { width: 240px; height: 45px; border: none;}
+
       #defaultCountdown .countdown-section:nth-child(2), #defaultCountdown .countdown-section:nth-child(1) {
         display: none;
       }
       #defaultCountdown {
         width: auto;
         right:0px;
+         height: 45px; border: none;
       }
 
       #defaultCountdown .countdown-section .countdown-period {
@@ -53,9 +54,7 @@
       }
 
       </style>
-<script>
-$('#defaultCountdown').prepend('You may skip in:');
-</script>
+
       <!--
          -->
       <!--<link rel="stylesheet" href="quizgame/quiz/css/custom.css" type="text/css">
@@ -950,21 +949,8 @@ $('#defaultCountdown').prepend('You may skip in:');
       <script type="text/javascript" src="js/my-app.js"></script>
 
    <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
-      <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
+  <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
-<!--
-<script>
-
-var insertZero = n => n < 10 ? "0"+n : ""+n,
-   displayTime = n => n ? time.textContent = insertZero(~~(n/3600)%3600) + ":" +
-                                             insertZero(~~(n/60)%60) + ":" +
-                                             insertZero(n%60): time.textContent = "IGNITION..!",
-                                             countDownFrom = n => (displayTime(n),
-                                             setTimeout(_ => n ? sid = countDownFrom(--n): displayTime(n), 1000)),sid;
-                                             countDownFrom(3610);setTimeout(_ => clearTimeout(sid),20005);
-
-
-</script>-->
       <!--<script type="text/javascript" src="js/quizinfo.js"></script>-->
       <!--  <script type="text/javascript">
          $$.validator.setDefaults( {

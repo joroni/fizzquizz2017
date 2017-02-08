@@ -910,7 +910,7 @@ width: 100% !important;
 #btnCancel, #btnUpdate {
 background: rgb(209,0,0);
 color: rgb(255,255,255);
-padding: 0 20px !important;
+
 width: 100% !important;
 }
 input[readonly] {
