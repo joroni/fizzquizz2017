@@ -986,7 +986,7 @@ function get_Quiz_History() {
     $('#output').empty();
     var user_id = localStorage.getItem('user_id');
     $('#output')
-        .html('<th colspan="4" style="padding: 0 5px; background: silver;">Stat</th>');
+        .html('<th colspan="4" style="padding: 10px; background: silver; color: #fff; text-align: center;">Statistics</th>');
     $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
 
         //$.each(result, function ( i, field ) {
@@ -1206,7 +1206,7 @@ function messagesList() {
 function messagesList() {
 
 
-  var myList = myApp.virtualList('.list-block', {
+  /*var myList = myApp.virtualList('.list-block.media-list', {
       // Array with items data
       items:  [
            {
@@ -1255,63 +1255,41 @@ function messagesList() {
   });
 
 
-localStorage.setItem('MediaList', myList);
+localStorage.setItem('MediaList', myList);*/
 
-//$$('.list-block').appendChild(myList);
 
-/*
-var myList = myApp.virtualList('.list-block', {
+
+var myList = myApp.virtualList('.list-block.virtual-list', {
     // Array with items data
-    items:  [
-         {
-           "id": 20,
-           "name": "Jeff Kirkland December Video Message",
-           "video": "Jeff Kirkland December Video Message-SD.mp4",
-           "text": "Jeff Kirkland December Video Message",
-           "audio": "",
-           "textF": "",
-           "image": "",
-           "is_live": 1,
-           "timestamp": "2017-01-22 14:55:05"
-         },
-         {
-           "id": 15,
-           "name": "Vestibulum quis tortor auctor",
-           "video": "freedoginrain.mp4",
-           "text": "Vestibulum quis tortor auctor, tempor orci vel, mattis neque. Morbi sagittis finibus lacus, vel congue nibh fringilla vitae. Donec et lorem sit amet nisi ornare vestibulum non nec est. Praesent ultrices nunc ligula, eget condimentum sapien malesuada eget. ",
-           "audio": "nkkjk",
-           "textF": "",
-           "image": "",
-           "is_live": 1,
-           "timestamp": "2017-02-02 19:03:48"
-         },
-         {
-           "id": 12,
-           "name": "Testing Video",
-           "video": "test2.mp4",
-           "text": "xcvxcvxcvxv",
-           "audio": "vxcvxcv",
-           "textF": "",
-           "image": "",
-           "is_live": 1,
-           "timestamp": "2017-02-02 19:04:07"
-         }
-       ],
+    items: [
+        {
+            title: 'Item 1',
+            picture: 'path/to/picture1.jpg'
+        },
+        {
+            title: 'Item 2',
+            picture: 'path/to/picture2.jpg'
+        },
+        // ...
+        {
+            title: 'Item 1000',
+            picture: 'path/to/picture1000.jpg'
+        },
+    ],
     // Custom render function to render item's HTML
     renderItem: function (index, item) {
         return '<li class="item-content">' +
-                  '<div class="item-media"><img src="' + item.video + '"></div>' +
+                  '<div class="item-media"><img src="' + item.picture + '"></div>' +
                   '<div class="item-inner">' +
-                      '<div class="item-title">' + item.name + '</div>' +
+                      '<div class="item-title">' + item.title + '</div>' +
                   '</div>' +
                '</li>';
     }
-});*/
+});
+localStorage.setItem('TempMediaLists', myList);
+
 
 }
-
-
-
 
 /*function runScanProfile(){
 
