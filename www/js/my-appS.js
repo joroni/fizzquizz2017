@@ -72,6 +72,33 @@ noNet(base_url + '/json.php',
 
 
 
+function initApp(){
+  
+      var userDataCheck = localStorage.getItem('userData');
+      //localStorage.setItem("bottomBar", 'none');
+
+      $$("#bottomBtns, .toolbar.bottom").hide();
+
+      if (userDataCheck != 0) {
+        myProfile();
+        check_storage();
+        validateMyTurn();
+        //scanIfQuizAvailable();
+
+        pullFreshQuizItems();
+        LoggedInButtons();
+
+
+
+       }else{
+         LoggedOutButtons();
+       }
+}
+
+
+initApp();
+
+
 
 // START checking if user is logged
 function check_storage() {
@@ -85,21 +112,36 @@ function check_storage() {
                 //  name: username
             }
         });
-
+        /*  $$('.login-button, .register-button').hide();
+          $$('.logout-button').show();
+          $$('.right').show();
+          $$('#welcomenav').removeClass('cached'); */
         $$('.center').css('width', 'auto');
         $$('.center').css('text-align', 'center');
         $$('.center > img').css('margin', '0 auto');
         LoggedInButtons();
         console.log('logged');
     //    runScanProfile();
-      //  scanIfQuizAvailable();
+        scanIfQuizAvailable();
         //validateMyTurn();
     } else {
         console.log('err');
 
+        //window.location.replace("index.html");mainView.router.load({
+      /*  mainView.router.load({
+            template: Template7.templates.index
 
+        });*/
 
         LoggedOutButtons();
+        /*$$('.login-button, .register-button').show();
+        $$('.logout-button').hide();
+
+        $$('.left').hide();
+        $$('.right').hide();
+        $$('.center').css('width', '100%');
+        $$('.center').css('text-align', 'center');
+        $$('.center > img').css('margin', '0 auto');*/
 
 
     }
@@ -108,31 +150,6 @@ function check_storage() {
 check_storage();
 // END checking if user is logged
 
-
-
-function initApp(){
-      var userDataCheck = localStorage.getItem('userData');
-      //localStorage.setItem("bottomBar", 'none');
-
-      $$("#bottomBtns, .toolbar.bottom").hide();
-
-      if (userDataCheck != 0) {
-        check_storage();
-        validateMyTurn();
-        //scanIfQuizAvailable();
-      	myProfile();
-        pullFreshQuizItems();
-        LoggedInButtons();
-
-
-
-       }else{
-         LoggedOutButtons();
-       }
-}
-
-
-initApp();
 
 
 
@@ -164,8 +181,6 @@ $$('a.close-popup').on('click', function () {
 
 function hideToolbar() {
     $$("#bottomBtns, .toolbar.bottom").hide();
-    $$("#videosplash").addClass('cached');
-
 }
 
 
@@ -205,10 +220,10 @@ function signin() {
     var password = user_pass_input;
 
     $.post(base_url + '/loginuser', {
-       username: user_name_input,
-        password: user_pass_input
-       // username,
-       // password
+        //username: user_name_input,
+        //password: user_pass_input
+        username,
+        password
     }).done(function(data) {
         if (data == 0) {
             LoggedOutButtons();
@@ -226,36 +241,32 @@ function signin() {
         } else if (data == 1) {
 
             LoggedInButtons();
-
             myProfile();
-            var myfirstname = localStorage.getItem("fname");
-            var mylastname = localStorage.getItem("lname");
-            var myusername = localStorage.getItem("userlogin");
-            var myemail = localStorage.getItem("email");
-            var mydivision = localStorage.getItem("division");
-            $('#userfirstname, .profile-firstname').text(myfirstname);
-            $('#userusername, .profile-id').text(myusername);
-            $('#userlastname, .profile-lastname').text(mylastname);
-            $('#useremail, .profile-email').text(myemail);
-            $('#userdivision, .profile-division').text(mydivision);
-        //    getQuizEndDate();
-
-
             validateMyTurn();
-            pullFreshQuizItems();
+
+
+
             get_Quiz_History();
+            //    localStorage.setItem("username", field.username);
+            //  localStorage.setItem("password", field.password);
+            //  localStorage.setItem("email", field.email);
+            //  localStorage.setItem("fname", field.fname);
+            //  localStorage.setItem("lname", field.lname);
+            //  localStorage.setItem("userlogin", field.username);
+            //  localStorage.setItem("division", field.division);
+            //  localStorage.setItem("user_division", field.division);
+            //  localStorage.setItem("aunit", field.aunit);
+            //  localStorage.setItem("area", field.area);
+            //  localStorage.setItem("lang", field.fname);
 
-            //myProfile();
 
-
-            //get_Quiz_History();
 
             localStorage.setItem("userlogin", user_name_input);
 
 
             localStorage.setItem("userData", data);
 
-          //  console.log("get_Quiz_History")
+            console.log("get_Quiz_History")
             console.log('Response body: ' + data);
 
             // Will pass context with retrieved user name
@@ -266,21 +277,10 @@ function signin() {
                     name: username
                 }
             });
-            initApp();
-            myApp.hideIndicator();
 
-            myApp.showIndicator();
             scanIfQuizAvailable();
+
             myApp.hideIndicator();
-
-            myApp.showIndicator();
-            initApp();
-            myApp.hideIndicator();
-
-
-  myApp.showIndicator();
-  validateMyTurn();
-    myApp.hideIndicator();
 
             //	window.location.href = "main.html";
 
@@ -511,7 +511,7 @@ function myProfile() {
             console.log(field.division);
             console.log(field.aunit);
             console.log(field.area);
-            //console.log(field.avatar);
+            console.log(field.avatar);
 
 
             localStorage.setItem("user_id", field.id);
@@ -529,33 +529,40 @@ function myProfile() {
             localStorage.setItem("user_area", field.area);
             localStorage.setItem("lang", field.fname);
 
-
+            /******* START PROFILE PAGE DATA ************/
             var myfirstname = localStorage.getItem("fname");
             var mylastname = localStorage.getItem("lname");
-            var myusername = localStorage.getItem("userlogin");
             var myemail = localStorage.getItem("email");
             var mydivision = localStorage.getItem("division");
-            $('#userfirstname, .profile-firstname').text(myfirstname);
-            $('#userusername, .profile-id').text(myusername);
-            $('#userlastname, .profile-lastname').text(mylastname);
-            $('#useremail, .profile-email').text(myemail);
-            $('#userdivision, .profile-division').text(mydivision);
+                        $('#userfirstname, .profile-firstname')
+                  .text(myfirstname);
+              $('#userusername, .profile-id')
+                  .text(field.username);
+              $('#userlastname, .profile-lastname')
+                  .text(mylastname);
+              $('#useremail, .profile-email')
+                  .text(myemail);
+              $('#userdivision, .profile-division')
+                  .text(mydivision);
+              /******* END PROFILE PAGE DATA ************/
 
-            get_Quiz_History();
-            myApp.hideIndicator();
+
+
+                validateMyTurn();
+
+          //  initApp();
+
         });
     });
 }
 
 
-/*
+
 function update_cancel() {
-    $('#profileContent')
-        .show();
-    $('#editmyProfile')
-        .hide();
+    $('#profileContent').show();
+    $('#editmyProfile').hide();
 }
-*/
+
 function update_user() {
     myApp.showIndicator();
     // var id = $('#user_id').val();
@@ -589,31 +596,24 @@ function update_user() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-                $('#update_0')
-                    .show();
+              ///  $('#update_0').show();
+                myApp.alert('Please try again', alertTitle);
 
             } else if (data == 1) {
                 myApp.hideIndicator();
-                $('#update_1')
-                    .show();
+              //  $('#update_1').show();
+                myApp.alert('Update Successful', alertTitle);
 
-                $('.profile-content')
-                    .show();
-                $('#editmyProfile')
-                    .hide();
+                //$('.profile-content').show();
+              //  $('#editmyProfile').hide();
                 //$('#user_id').text(id);
 
                 /*$('#user_name').text(username);*/
-                $('#user_password')
-                    .text(password);
-                $('#user_firstname')
-                    .text(fname);
-                $('#user_lastname')
-                    .text(lname);
-                $('#user_division')
-                    .text(division);
-                $('#user_email')
-                    .text(user_email);
+                $('#user_password').text(password);
+                $('#user_firstname').text(fname);
+                $('#user_lastname').text(lname);
+                $('#user_division').text(division);
+                $('#user_email').text(user_email);
 
                 window.location.reload();
             }
@@ -641,9 +641,9 @@ function showImageLoader() {
 function leaderBoard() {
 
 
- // var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
+  var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
   // document.getElementById("myFrame").setAttribute("src", loc);
- // $$("#myFrameLeader").attr("src", loc);
+  $$("#myFrameLeader").attr("src", loc);
 
 }
 
@@ -960,7 +960,7 @@ function register() {
                     myApp.alert(data + 'User Name is already taken.');
                     $('#reg_username').val('');
                     console.log('err');
-                 //   return;
+                    return;
                     //  alert(data);
                 }
             });
@@ -997,9 +997,8 @@ function get_Quiz_History() {
             $("#output2").append("<li> " + fields.datefrom + " </li>");
 
             var checkLQuiz = $("#output2 li:nth-child(1)").text();
-
-            localStorage.setItem('checkLQuiz', checkLQuiz);
             console.log("checkLQuiz", checkLQuiz);
+            localStorage.setItem('checkLQuiz', checkLQuiz);
 
 
 
@@ -1013,13 +1012,13 @@ function get_Quiz_History() {
 
 /******************************************/
 
-/*
+
 
 function myFunction() {
     $("#capturePhoto").hide();
     // window.location.replace("main.html");
 }
-*/
+
 
 /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
 function validateMyTurn() {
@@ -1034,19 +1033,29 @@ function validateMyTurn() {
         localStorage.setItem("dateToString", result.date_expire);
         var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
         var checkLastQuiz = localStorage.getItem("checkLQuiz").replace(/-/g,'');
-        var resultCheck = checkLastQuiz - dateFrStringVerify;
-        console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
+        var resultCheck = (checkLastQuiz - dateFrStringVerify);
+        console.log(resultCheck);
+        //console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
 
         if (resultCheck == 0) {
 
           console.log("NO UPDATES YET.");
-	         $$('.simple-list li:last-child').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
 
+            $("#getStarted2").hide();
+            $("#getStarted3").show();
+          //  $("#getStarted2").addClass("animate fadeInUpBig options fast");
+            //console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
         } else {
 
               console.log("HAS NEW UPDATES!");
-              $$('.simple-list li:last-child').html('<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:block; font-weight:700;"></a>');
 
+
+            //  $("#getStarted2").attr("disabled", "disabled");
+            $("#getStarted2").show();
+            //$("#getStarted3").html("<p style='color:red; text-align: center;'>SEE YOU ON THE NEXT ROUNDS...</p>");
+            $("#getStarted3").hide();
+            //  $("#getStarted2").css("background", "none");
+            //  myApp.alert("New Quiz", alertTitle);
 
         }
 
@@ -1097,7 +1106,7 @@ $$("#getStarted2").on("click", function () {
 //  bottomBarShow();
     //  $("#loadQuiz").load("fizzquizzData.html");
 });*/
-/*
+
 function pullFreshQuizItems() { //getQuizData
 
 
@@ -1117,7 +1126,7 @@ function pullFreshQuizItems() { //getQuizData
     });
 
 
-}*/
+}
 /*
 function bottomBarShow() {
 //  localStorage.setItem("bottomBar", 'block');
@@ -1321,7 +1330,7 @@ function scanIfQuizAvailable() {
 
 }
 
-//scanIfQuizAvailable();
+scanIfQuizAvailable();
 
 /*
           $$('#sendScore').on('click', function() {
@@ -1396,7 +1405,6 @@ function scanIfQuizAvailable() {
                     //name: username
                 }
             });
-            initApp();
             //validateMyTurn();
             scanIfQuizAvailable();
 
@@ -1407,11 +1415,11 @@ function scanIfQuizAvailable() {
 
 
 // Put all your page JS here
-/*
+
 $(function () {
     $('#slickQuiz').slickQuiz();
 });
-*/
+
 /*
 var saveBtn = $('#score_bottle').value();
 if (saveBtn != ''){
@@ -1532,7 +1540,7 @@ function showQuestions() {
 
 
 		        if (data == 0) {
-					         myApp.hideIndicator();
+					        myApp.hideIndicator();
 		              myApp.alert("uh oh, try again.", alertTitle);
 
 		        } else if (data == 1) {
@@ -1546,27 +1554,33 @@ function showQuestions() {
 								//bottomBarShow();
                 myApp.hideIndicator();
                 myApp.alert("Score Recorded!", alertTitle);
-                goToStart();
 
-                function goToStart() {
 
-                		setTimeout(function(){
 
-                }, 300);
                 $$('#about').addClass('cached');
                   mainView.router.load({
                       template: Template7.templates.welcomeTemplate,
                       context: {
                           //  name: username
                       }
+
+
                   });
+
+  initApp();
+              //      goToStart();
+
+
+
 
                 }
 
 
-                initApp();
 
-		        }
+
+
+
+
 
 		        /*else {
 
@@ -1608,25 +1622,7 @@ function showQuestions() {
 		}
 
 
-    function getQuizEndDate() {
 
-
-        var myDivision2 = localStorage.getItem('user_division');
-      //  var endDate = localStorage.getItem('dateToString');
-
-
-        $.get(base_url + "/jsonQuiz/" + myDivision2 , function(data) {
-            // $( ".result" ).html( data );
-            console.log('getQuizEndDate |', data);
-            // alert( "Load was performed." );
-            localStorage.setItem('QuizQuickData', data);
-            localStorage.getItem('dateToString', data.date_expire);
-
-
-        });
-
-
-    }
 
 
 
@@ -1649,5 +1645,3 @@ function pullFreshQuizItems() {
 
 
 }
-
-myApp.hideIndicator();

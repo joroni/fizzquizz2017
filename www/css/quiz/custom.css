@@ -1,7 +1,7 @@
 div#endQuiBtn {
-	margin-left: -20px;
-	margin-right: -20px;
-	margin-top: 40%;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10%;
 }
 
 body {
@@ -15,7 +15,7 @@ section#fixed-tab-home {
 overflow: hidden;
 }
 a:focus, a:hover {
-color: rgb(225,225,225) !important;
+color: rgb(209,0,0);
 }
 .mdl-badge[data-badge]:after {
 content: attr(data-badge);
@@ -518,10 +518,10 @@ max-width: 600px;
 .mdl-select__expandable-holder .mdl-select__label:after {
 bottom: 0;
 }
-.quizArea, .quizResults {
+.quizArea, .quizResults, .endQuiBtn {
 zoom: 1;
-padding: 0 10px;
-margin: 10% auto !important;
+padding: 0;
+margin: 0 auto !important;
 }
 .startQuiz, #playQuiz {
 /*margin-top: 0 !important;
@@ -532,6 +532,7 @@ border-radius: 0;*/
 /*background:#d10000 !important;
 color:#fff !important;*/
 font-size: 1.2em;
+margin-top: 0px;
 /*padding: 0;*/
 z-index:200000;
 }
@@ -591,8 +592,8 @@ text-align: center;
 padding: 10px;
 }
 a#sendScore {
-background:#d10000 !important;
-color:#fff !important;
+background: nine !important;
+color:red !important;
 font-size: 1.2em;
 }
 
@@ -600,24 +601,24 @@ font-size: 1.2em;
 .hidden {
 display:none;
 }
+
 li.question {
 min-height:540px;
 height:100%;
 }
 
-
+/*
 a.button.nextQuestion, a.button.play-quiz, a.button.send-score   {
 border: 0px solid #d10000 !important;
 position: relative !important;
 width:100% !important;
-/*right:-80px !important;
-bottom: 20px;*/
+
 color: #d10000;
 margin: 0 auto;
 font-size:1.5em !important;
 background: none;
 padding: 0 10px;
-}
+}*/
 /*
 a.button.nextQuestion {
 position: absolute;
@@ -909,7 +910,7 @@ width: 100% !important;
 #btnCancel, #btnUpdate {
 background: rgb(209,0,0);
 color: rgb(255,255,255);
-padding: 0 20px !important;
+
 width: 100% !important;
 }
 input[readonly] {

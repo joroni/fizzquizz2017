@@ -52,7 +52,7 @@ ol { list-style-type: decimal; }
 ol li { list-style-type: decimal; margin-left: 20px; }
 */
 
-
+/*
 .button {
     float: left;
     min-width: 250px;
@@ -75,7 +75,7 @@ ol li { list-style-type: decimal; margin-left: 20px; }
     background-color:rgb(209,0,0);
     border: 2px solid #d10000;
 }
-
+*/
 .startQuiz {
     margin-top: 40px;
 }
