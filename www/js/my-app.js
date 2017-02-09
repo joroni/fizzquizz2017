@@ -94,7 +94,8 @@ function noNet(path, success, error) {
                     success(JSON.parse(xhr.responseText));
                 }
             } else {
-                window.location.replace("nonet.html");
+              //  window.location.replace("nonet.html");
+                myApp.alert('Oooops, you are offline!', alertTitle);
             }
         }
     };
