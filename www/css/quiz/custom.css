@@ -520,7 +520,7 @@ bottom: 0;
 }
 .quizArea, .quizResults, .endQuiBtn {
 zoom: 1;
-padding: 0 10px;
+padding: 0;
 margin: 10% auto !important;
 }
 .startQuiz, #playQuiz {

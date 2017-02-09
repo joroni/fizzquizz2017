@@ -69,8 +69,7 @@
 
 
 			/* boooo opera */
-			-o-transition:
-			rotate  (  3600  deg  ); /* works */
+			/*-o-transition:rotate  (  3600  deg  )*/ /* works */
 			#fizzquizz.page-content {
 			padding-bottom:0 !important;
 			}
@@ -167,7 +166,7 @@
 					<div class="left sliding">
 						<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>
 					</div>
-					<div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:40px;"></div>
+					<div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:34px;"></div>
 					<div class="right">
 						<!-- Right link contains only icon - additional "icon-only" class-->
 						<a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>
@@ -179,7 +178,7 @@
 					 <div class="left sliding">
 							<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>
 					 </div>
-					 <div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:40px;"></div>
+					 <div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:34px;"></div>
 					 <div class="right">
 							<!-- Right link contains only icon - additional "icon-only" class
 								 <a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>-->
@@ -193,7 +192,7 @@
 					<div class="left sliding">
 						<!--<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>-->
 					</div>
-					<div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:40px;"></div>
+					<div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:34px;"></div>
 					<div class="right">
 						<!-- Right link contains only icon - additional "icon-only" class-->
 						<a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>
@@ -319,7 +318,7 @@
 
 																							<!-- a transparent image is preferable -->
 																						<!--	<img class="ratio" src="img/-text.png"/>-->
-																						<iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen></iframe>
+																						<iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen="no"></iframe>
 																						</div>
 																					<!--	<p>Please scale the "result" window to notice the effect.</p>-->
 																					</div>
@@ -454,7 +453,9 @@
 					      <!-- <p>Hi, {{name}}-->
 								<!--	<span class="usfirstname"></span>, welcome to Framework7 application on HTMLCenter!</p>-->
 								<div id="output2" style="visibility:visible; position: absolute; bottom: -9999px;"></div>
-					<ul class="simple-list">
+						<ul class="icon-canada simple-list">
+
+
 					<li>
 
 									<div id="raysDemoHolder" class="animated fadeInUpBig" style="width: 250px; height: 250px; margin: 0 auto;">
@@ -464,7 +465,7 @@
 								</div>
 							</li>
 						<li>
-							<a href="#refresher"  id="checkforquiz"  class="button button-big button-fill" style="color:#fff !important; background:limegreen !important; font-weight:700;">Look for Quiz</a>
+							<a href="#refresher"  id="checkforquiz"  class="button button-fill" style="color:#fff !important; background:limegreen !important; font-weight:700;">Look for Quiz</a>
 							<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:none; font-weight:700;"></a>
 
 					<!--		<a href="#quiz" id="getStarted2" class="button"  style="color:#fff; display:none; font-weight:700;"><span class="animated-icon"></span></a>-->
@@ -539,14 +540,14 @@
 											</div>
 										<!--	<p>Please scale the "result" window to notice the effect.</p>-->
 										</div>
-										<style>
+									<!--	<style>
 											#myFrameQuiz         {min-height:540px; width: 100%; top:0;}
 											html,body        {height:100%; width: 100%;}
 											.wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
 											.h_iframe        {position:relative;}
 											.h_iframe .ratio {display:noje;width:100%;height:100%;}
 											.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
-										</style>
+										</style>-->
 										<!--     <iframe src=""  style="height:540px; width:100%;" margin="0" align="middle" scrolling="auto"></iframe>-->
 										<!--  <iframe src="fizzquizzData.html" style="height:100%; width:100%;"></iframe>-->
 									</div>
@@ -567,7 +568,7 @@
 											<div class="item-inner">
 												<!--<div class="item-title label">Username</div>-->
 												<div class="item-input">
-													<input type="text" ng-model="username" id="reg_username" name="reg_username" placeholder="ECID">
+													<input type="text" id="reg_username" name="reg_username" placeholder="ECID">
 													<span id="reg_username_err" style="color:red; display:none;">Required</span>
 													<span id="user_taken" style="color:red; display:none;">ID is not valid/available! </span>
 												</div>
@@ -617,7 +618,7 @@
 												<!--<div class="item-title label">Password</div>-->
 												<div class="item-input">
 													<input type="password" id="reg_password" name="reg_password" placeholder="Password">
-													<span id="reg_username_err" style="color:red; display:none;">Required</span>
+													<span id="reg_password_err" style="color:red; display:none;">Required</span>
 												</div>
 											</div>
 										</div>
@@ -646,7 +647,7 @@
 											<div class="item-inner">
 												<!--<div class="item-title label">Sales Unit/Unité de ventes</div>-->
 												<div class="item-input">
-													<select id="aunit" name="aunit">
+													<select id="aunit" class="regaunit" name="aunit">
 														<option class="placeholder label"> -- Sales Unit/Unité de ventes -- </option>
 														<option value="west">West</option>
 														<option value="central">Central</option>
@@ -666,7 +667,7 @@
 													<select id="reg_area" name="reg_area">
 														<option> -- Sales Area/Secteur de vente -- </option>
 													</select>
-													<span id="aunit_err" style="color:red; display:none;">Required</span>
+													<span id="reg_area_err" style="color:red; display:none;">Required</span>
 												</div>
 											</div>
 										</div>
@@ -695,10 +696,12 @@
 											<a href="#" class="button button-big red back link">Cancel</a>
 										</div>
 										<div class="col-50">
-											<input id="submmit-register" onclick="register();" type="submit" value="Submit" class="button button-big red">
+											<a href="#"  onclick="register();"  class="button button-big red">Submit</a>
 										</div>
 									</div>
 								</div>
+
+
 							</div>
 						</form>
 					</div>
@@ -761,15 +764,19 @@
 						<!--	<a href="#" onclick="edittheProfile();" class="red">
 							<i class="f7-icons">compose</i>
 						</a>-->
-						<a href="#profile-edit" class="red">
+						<a href="#profile-edit" class="editProfilered">
 							<i class="f7-icons">compose</i>
 						</a>
 							<h3>
-								<span id="userfirstname" class="profile-firstname"></span>
-								<span id="userlastname" class="profile-lastname"></span>
+								<!--<span id="userfirstname" class="profile-firstname"></span>
+								<span id="userlastname" class="profile-lastname"></span>-->
+								<span class="profile-firstname"></span>
+								<span class="profile-lastname"></span>
 							</h3>
-							<h4><span id="userusername" class="profile-id"></span></h4>
-							<h5><span id="useremail" class="profile-email"></span></h5>
+							<!--<h4><span id="userusername" class="profile-id"></span></h4>
+							<h5><span id="useremail" class="profile-email"></span></h5>-->
+							<h4><span class="profile-id"></span></h4>
+							<h5><span class="profile-email"></span></h5>
 						</div>
 						<div class="content-block">
 							<div id="capturePhoto" style="display: none;">
@@ -836,7 +843,7 @@
 									</div>
 								</li>
 							</ul>
-							<div class="content-block">
+							<div class="">
 								<div class="col-100">
 									<table id="output">
 									</table>
@@ -848,9 +855,9 @@
 
 					<div data-page="profile-edit" class="page  no-swipeback cached">
 						 <div class="page-content">
-								<div id="editmyProfile" class="content-block centered">
+								<div id="editmyProfile" class="list-block centered">
 
-									<div id="editmyProfile" class="list-block">
+
 										 <ul>
 												<li>
 													 <div class="item-content">
@@ -976,7 +983,7 @@
 														</div>
 												 </div>
 											</div>
-										</div>
+
 								</div>
 							</div>
 					</div>

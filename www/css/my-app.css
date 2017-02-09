@@ -5,11 +5,26 @@
 @import "../quizgame/css/slickQuiz.css";
 @import "../quizgame/css/master.css";
 */
+
+#myFrameQuiz         {min-height:540px; width: 100%; top:0;}
+html,body        {height:100%; width: 100%;}
+.wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
+.h_iframe        {position:relative;}
+.h_iframe .ratio {display:none;width:100%;height:100%;}
+.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
+
+
+a.editProfile.red {
+  position: relative;
+  top: -50px;
+  right: -20px;
+}
+
 #defaultCountdown, #time{
   position: fixed;
   z-index: 200000;
   top: 50px;
-  right:10px !important;
+  right:23px !important;
   background: #000;
   color: #fff;
   padding: 0 10px !important;
@@ -187,8 +202,8 @@ body#main {
 }
 button, .button, a.button {
 float: left !important;
-font-weight:100;
-font-size:1.2em !important;
+font-weight:500;
+font-size:1.5em !important;
   background: transparent none repeat scroll 0 0 !important;
   border: 0px solid rgba(0, 0, 0, 0.1); !important;
   border-width:0 !important;
