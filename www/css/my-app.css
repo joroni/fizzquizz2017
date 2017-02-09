@@ -386,6 +386,7 @@ h2#redeemScore {
   margin: 0 auto;
   height: 100px;
   width: 100px;
+  border: none !important;
   background-size: contain;
   background-position: center center;
   color: transparent !important;
