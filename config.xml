@@ -12,14 +12,14 @@
 
 
 
-<feature name="SplashScreen" >
-    <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+  <feature name="SplashScreen" >
+      <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
 
-    <param name="onload" value="true" />
-</feature>
+      <param name="onload" value="true" />
+  </feature>
 
 
-
+3.7.1
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="default"/>
 
@@ -29,8 +29,8 @@
   <preference name="Fullscreen" value="true"/>
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="5000"/>
-
+  <preference name="SplashScreenDelay" value="1000"/>
+  <preference name="phonegap-version" value="6.5.0"/>
   <preference name="AllowInlineMediaPlayback" value="true"/>
   <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="BackupWebStorage" value="cloud"/>
