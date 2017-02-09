@@ -1147,8 +1147,25 @@ function scanIfQuizAvailable() {
 
 
 
+                        function leaderBoard() {
 
 
+                         // var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
+                          // document.getElementById("myFrame").setAttribute("src", loc);
+                         // $$("#myFrameLeader").attr("src", loc);
+
+                        }
+
+
+
+
+
+
+                        function messagesList() {
+
+
+                      
+                        }
 
 
           function showQuestions() {
