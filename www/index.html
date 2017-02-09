@@ -38,28 +38,32 @@
       <link rel="stylesheet" href="css/rays/rays.css" type="text/css">
 
 
-      <script>
-         var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
+			<script>
+				 var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
 
-      </script>
+
+
+			</script>
 <script src="vendor/jquery-1.7.min.js"></script>
-      <!--<script type="text/javascript" src="vendor/jquery-1.12.4.min.js"></script>-->
+			<!--<script type="text/javascript" src="vendor/jquery-1.12.4.min.js"></script>-->
 
-      <link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
-      <style type="text/css">
-      #defaultCountdown { width: auto; height: 45px; border: none; right:0;}
-      #defaultCountdown .countdown-section:nth-child(2), #defaultCountdown .countdown-section:nth-child(1) {
-        display: none;
-      }
+			<link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
+			<style type="text/css">
+			#defaultCountdown { width: auto; height: 45px; border: none; right:0;}
+			#defaultCountdown .countdown-section:nth-child(2), #defaultCountdown .countdown-section:nth-child(1) {
+				display: none;
+			}
 
 
-      #defaultCountdown .countdown-section .countdown-period {
-        text-align: center;
-      }
-      .countdown-show3 .countdown-section {
-        width:100%;
-        text-align: center;
-      }
+			#defaultCountdown .countdown-section .countdown-period {
+				text-align: center;
+			}
+			.countdown-show3 .countdown-section {
+				width:100%;
+				text-align: center;
+			}
+
+
 
 
 			/* boooo opera */
@@ -83,6 +87,9 @@
 		<div class="panel panel-left panel-cover layout-light">
 			<!--<div class="content-block-title">Left Panel</div>-->
 			<!--<a href="#" class="close-panel">Close</a>-->
+
+
+
 			<div class="profile-card">
 				<!--<img id="avatar" src="img/5388738458_ea9fd2a7d7_q.jpg" class="avatar profile-image">-->
 				<div id="avatar" class="avatar profile-image"></div>
@@ -93,38 +100,48 @@
 				<a href="#index" onclick="log_out();" class="close-panel">Logout</a>
 			</div>
 			<div class="list-block no-margin">
-				<ul>
-					<li>
-						<a href="#profile" class="item-link close-panel">
-							<div class="item-content">
-								<div class="item-media"><i class="icon icon-f7"></i></div>
-								<div class="item-inner">
-									<div class="item-title">Profile</div>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#leaderboard" class="item-link close-panel">
-							<div class="item-content">
-								<div class="item-media"><i class="icon icon-f7"></i></div>
-								<div class="item-inner">
-									<div class="item-title">Leader Board</div>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#messages" class="item-link close-panel">
-							<div class="item-content">
-								<div class="item-media"><i class="icon icon-f7"></i></div>
-								<div class="item-inner">
-									<div class="item-title">Messages</div>
-								</div>
-							</div>
-						</a>
-					</li>
-				</ul>
+				 <ul>
+						<li>
+							 <a href="#welcome" id="homeButton" class="item-link close-panel">
+									<div class="item-content">
+										 <div class="item-media"><i class="icon icon-f7"></i></div>
+										 <div class="item-inner">
+												<div class="item-title">Home</div>
+										 </div>
+									</div>
+							 </a>
+						</li>
+						<li>
+							 <a href="#profile" class="item-link close-panel">
+									<div class="item-content">
+										 <div class="item-media"><i class="icon icon-f7"></i></div>
+										 <div class="item-inner">
+												<div class="item-title">Profile</div>
+										 </div>
+									</div>
+							 </a>
+						</li>
+						<li>
+							 <a href="#leaderboard" onclick="leaderBoard();" class="item-link close-panel">
+									<div class="item-content">
+										 <div class="item-media"><i class="icon icon-f7"></i></div>
+										 <div class="item-inner">
+												<div class="item-title">Leader Board</div>
+										 </div>
+									</div>
+							 </a>
+						</li>
+						<li>
+							 <a href="#messages" onclick="messagesList();" class="item-link close-panel">
+									<div class="item-content">
+										 <div class="item-media"><i class="icon icon-f7"></i></div>
+										 <div class="item-inner">
+												<div class="item-title">Messages</div>
+										 </div>
+									</div>
+							 </a>
+						</li>
+				 </ul>
 			</div>
 		</div>
 		<!---********************** Right panel with cover effect ****************************-->
@@ -896,7 +913,7 @@
 					</div>
 				</div>
 
-					<div class="toolbarHold"></div>
+
 				<!-- Bottom Toolbar
 
 				<div class="toolbar">
@@ -913,98 +930,16 @@
 					</div>-->
 			</div>
 		</div>
-		<!-- Path to Framework7 Library JS-->
+
+
 		<script type="text/javascript" src="js/framework7/framework7.min.js"></script>
-		<!--<script type="text/javascript" src="vendor/jquery.validate.js"></script>-->
 		<!-- Path to your app js-->
-
-		<!--  <script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>-->
-		<script type="text/javascript" src="vendor/jquery-1.7.min.js"></script>
-		<script>
-				var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
-		</script>
 		<script type="text/javascript" src="js/my-app.js"></script>
-		<!--<script type="text/javascript" src="js/quizinfo.js"></script>-->
-		<!--  <script src="quizgame/quiz/js/jquery-1.7.min.js"></script>-->
-		<!--<script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>-->
-		<script src="js/slickquiz.js"></script>
-		<script>
-		//	mySlickQuiz();
-			//scanIfQuizAvailable();
 
-			//		pullFreshQuizItems();
-			var Quizes = localStorage.getItem("QuizData");
-			document.writeln("<script>");
-			document.writeln(Quizes);
-			document.writeln("<"+"/script>");
-		</script>
-		<!--<script type="text/javascript" src="js/quizinfo.js"></script>-->
-		<!--  <script type="text/javascript">
-			$$.validator.setDefaults( {
-			    submitHandler: function () {
-			        myApp.alert( "Submitted!" );
-			    }
-			} );
+ <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
+		<script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
-			$( document ).ready( function () {
-			    $("#signupForm").validate({
-			        rules: {
-			            reg_username: {
-			                required: true
-			            },
-			            reg_fname: {
-			                required: true
-			            },
-			            reg_lastname: {
-			                required: true
-			            },
-			            reg_email: {
-			                required: true,
-			                email: true
-			            },
-			            division: {
-			                required: true
-			            },
-			            aunit: {
-			                required: true
-			            },
-			            reg_area:  {
-			                required: true
-			            }
-			        },
-			        messages: {
 
-			            reg_username: {
-			                required: "Please enter your KO ID."
-			            },
-			            reg_fname: {
-			                required: "Please enter your First Name."
-			            },
-			            reg_lastname: {
-			                required: "Please enter your Last Name."
-			            },
-			            division: {
-			                required: "Please enter your Division"
-			            },
-			            aunit: {
-			                required: "Please enter your Unit"
-			            },
-			            reg_area:  {
-			                required: "Please enter your Area"
-			            },
 
-			            reg_email: "Please enter a valid Email address"
-			            // agree: "Please accept our policy"
-			        },
-
-			        highlight: function ( element, errorClass, validClass ) {
-			            $(element).parents(".item-input, select").addClass("has-error").removeClass("has-success");
-			        },
-			        unhighlight: function ( element, errorClass, validClass ) {
-			            $(element).parents(".item-input, select").addClass("has-success").removeClass("has-error");
-			        }
-			    })
-			});
-			</script>-->
 	</body>
 </html>
