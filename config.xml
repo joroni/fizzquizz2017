@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" id="com.example.helloworld" version="1.0.2">
-  <name>Fizz Quizz B3</name>
+  <name>Fizz Quizz</name>
   <description/>
   <author/>
   <content src="index.html"/>
@@ -19,7 +19,7 @@
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="5000"/>
-
+  <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
   <preference name="AllowInlineMediaPlayback" value="false"/>
   <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="BackupWebStorage" value="cloud"/>

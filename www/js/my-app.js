@@ -1,3 +1,13 @@
+if (Ext.os.is.iOS &amp;&amp; Ext.os.version.major &gt;= 7) {
+    Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
+}
+
+
+StatusBar.show();
+StatusBar.overlaysWebView(false);
+StatusBar.styleLightContent();
+StatusBar.backgroundColorByHexString("#d10000");
+
 // Initialize your app
 var myApp = new Framework7({
     animateNavBackIcon: true,
