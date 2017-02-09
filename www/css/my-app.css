@@ -63,6 +63,12 @@ html, body {
   font-feature-settings: "liga";
 }
 
+
+
+a.link.icon-only.open-panel {
+  right: -20px;
+  top: 5px;
+}
 .content-block {
 	margin:0 !important;
 }
