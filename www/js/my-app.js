@@ -258,22 +258,15 @@ function update_cancel() {
 function update_user() {
     myApp.showIndicator();
     // var id = $('#user_id').val();
-    var username = $('#username')
-        .val();
-    var password = $('#password')
-        .val();
-    var fname = $('#firstname')
-        .val();
-    var lname = $('#lastname')
-        .val();
-    var user_email = $('#email')
-        .val();
-    var division = $('#division')
-        .val();
-    var aunit = $('#unit')
-        .val();
-    var area = $('#area')
-        .val();
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var fname = $('#firstname').val();
+    var lname = $('#lastname').val();
+    var user_email = $('#email').val();
+   // var division = $('#division').val();
+    var user_division = $('#division').val();
+    var aunit = $('#unit').val();
+    var area = $('#area').val();
     // var privilege = $('#user_privilege').val();
 
     $.post(base_url + '/update/user', {
@@ -293,26 +286,18 @@ function update_user() {
 
             } else if (data == 1) {
                 myApp.hideIndicator();
-                $('#update_1')
-                    .show();
+                $('#update_1').show();
 
-                $('.profile-content')
-                    .show();
-                $('#editmyProfile')
-                    .hide();
+                $('.profile-content').show();
+                $('#editmyProfile').hide();
                 //$('#user_id').text(id);
 
                 /*$('#user_name').text(username);*/
-                $('#user_password')
-                    .text(password);
-                $('#user_firstname')
-                    .text(fname);
-                $('#user_lastname')
-                    .text(lname);
-                $('#user_division')
-                    .text(division);
-                $('#user_email')
-                    .text(user_email);
+                $('#user_password').text(password);
+                $('#user_firstname').text(fname);
+                $('#user_lastname').text(lname);
+                $('#user_division').text(division);
+                $('#user_email').text(user_email);
 
                 window.location.reload();
             }
@@ -1294,18 +1279,20 @@ function scanIfQuizAvailable() {
                           function goToStart() {
 
                           		setTimeout(function(){
-
+                                    $$('#welcome').addClass('cached');
                           }, 300);
-                          $$('#welcome').addClass('cached');
+                              mainView.router.load('#index');
+                          $$('#welcome').removeClass('cached');
 
-                          mainView.router.load('#index');
+
                           /*  mainView.router.load({
                                 template: Template7.templates.welcomeTemplate,
                                 context: {
                                     //  name: username
                                 }
                             });*/
-                            initApp();
+                            //initApp();
+
                           }
 
 
@@ -1313,39 +1300,6 @@ function scanIfQuizAvailable() {
 
           		        }
 
-          		        /*else {
-
-          						$.get(base_url +"/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/" + divisions + "/" + aunit + "/"  + score_bottle, function ( data ) {
-          		              		myApp.showIndicator();
-          		                if (data == 0) {
-          							myApp.hideIndicator();
-          							myApp.alert("uh oh, try again", alertTitle);
-
-          		                } else if (data == 1) {
-          							myApp.hideIndicator();
-          		                    myApp.alert("Score Updated", alertTitle);
-          		                    attempts++;
-          		                    localStorage.setItem("attempts", attempts);
-          		                    console.log("score updated");
-
-                                  function goToStart() {
-                                    mainView.router.load({
-                                        template: Template7.templates.index,
-                                        context: {
-                                            //  name: username
-                                        }
-                                    });
-                                    initApp();
-                                      setTimeout(function(){
-
-                                  }, 300);
-
-                                  }
-
-          		                }
-          		            });
-          		        }
-          */
           		        localStorage.setItem("recent_quiz", datefromDynamic);
 
 
@@ -1353,7 +1307,45 @@ function scanIfQuizAvailable() {
           		}
 
 
-              function getQuizEndDate() {
+
+
+
+
+            $$('#checkforquiz').on('click', function(){
+
+                mainView.router.load({
+                    template: Template7.templates.refresherTemplate,
+                    context: {
+                        //name: username
+                    }
+                });
+
+                $('.page-on-left').addClass('cached');
+
+                   // myApp.showIndicator();
+                // mainView.router.refreshPage();
+                   // mainView.router.reloadPreviousPage('#welcome');
+                   // myApp.hideIndicator();
+
+
+                    setTimeout(function(){
+                        mainView.router.load({
+                            template: Template7.templates.welcomeTemplate,
+                            context: {
+                                //name: username
+                            }
+                        });
+
+                    }, 3000);
+
+
+
+
+            });
+
+
+
+        function getQuizEndDate() {
 
 
                   var myDivision2 = localStorage.getItem('user_division');

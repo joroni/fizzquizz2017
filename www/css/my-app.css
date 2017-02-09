@@ -81,6 +81,12 @@ a.link.icon-only.open-panel {
 #fizzquizz.page-content {
 				padding-bottom:0 !important;
 			}
+#welcome .page-content {
+  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
 
 i.placeholder {
   color: #ddd !important;
@@ -141,7 +147,7 @@ ul.simple-list {
   margin: 0 auto;
 }
 body#slickQuiz, #slickQuiz {
-  background-color: : transparent !important;
+  background-color: transparent !important;
     background: none !important;
 }
 
@@ -317,7 +323,7 @@ a#getStarted2 {
   border-radius: 50%;
   -webkit-border-radius: 50%;
   background-color: black;
-  border 1px solid white;
+  border: 1px solid white;
   box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
   -webkit-box-shadow:rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
 }

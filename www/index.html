@@ -44,12 +44,13 @@
 
 
 			</script>
-<script src="vendor/jquery-1.7.min.js"></script>
+			<script src="vendor/jquery-1.7.min.js"></script>
 			<!--<script type="text/javascript" src="vendor/jquery-1.12.4.min.js"></script>-->
 
 			<link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
 			<style type="text/css">
-			#defaultCountdown { width: auto; height: 45px; border: none; right:0;}
+			#defaultCountdown { width: auto; height: auto; border: none; right:0;}
+
 			#defaultCountdown .countdown-section:nth-child(2), #defaultCountdown .countdown-section:nth-child(1) {
 				display: none;
 			}
@@ -57,6 +58,7 @@
 
 			#defaultCountdown .countdown-section .countdown-period {
 				text-align: center;
+				float: left;
 			}
 			.countdown-show3 .countdown-section {
 				width:100%;
@@ -202,13 +204,17 @@
 				</div>
 
 
-				<!-- Navbar inner for Register page-->
+				<!-- Navbar inner for Edit Profile page-->
 				<div data-page="profile-edit" class="navbar-inner cached">
 					 <div class="left sliding"><!--<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>--></div>
 					 <div class="center sliding">Edit Profile</div>
 				</div>
 
-
+				<!-- Navbar inner for Refresher page-->
+				<div data-page="refresher" class="navbar-inner cached">
+					<div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a></div>
+					<div class="center sliding">Checking</div>
+				</div>
 
 				<!-- Navbar inner for Login page-->
 				<div data-page="form" class="navbar-inner cached">
@@ -235,6 +241,9 @@
 					<div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons white">left</i></span></a></div>
 					<div class="center sliding">Videos</div>
 				</div>
+
+
+
 			</div>
 			<!---********************** Pages ****************************-->
 			<!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -255,16 +264,6 @@
 						<div class="content-block-title">Example Menu</div>
 						<div class="list-block">
 							<ul>
-								<li>
-									<a href="#welcome" class="item-link">
-										<div class="item-content">
-											<div class="item-inner">
-												<div class="item-title">Home</div>
-											</div>
-										</div>
-									</a>
-								</li>
-							</ul>
 								<li>
 									<a href="#register" class="register-button item-link">
 										<div class="item-content">
@@ -293,59 +292,17 @@
 									</a>
 								</li>
 
+							</ul>
 						</div>
+
+
+
 					</div>
 				</div>
 
 
-				<div data-page="index" class="page">
-									 <div class="page-content">
-											<div class="content-block-title">Example Application</div>
-											<div class="content-block">
-												 <div class="content-block-inner">
-														<p>Very simple HTML5 mobile web app.</p>
-														<p>With the help of Framework7.<br />
-															 Framework7 has bunch of pre built generic UI elements
-														</p>
-												 </div>
-											</div>
-											<div class="content-block-title">Example Menu</div>
-											<div class="list-block">
-												 <ul>
-														<li>
-															 <a href="#register" class="register-button item-link">
-																	<div class="item-content">
-																		 <div class="item-inner">
-																				<div class="item-title">Register</div>
-																		 </div>
-																	</div>
-															 </a>
-														</li>
-														<li>
-															 <a href="#form" class="login-button item-link">
-																	<div class="item-content">
-																		 <div class="item-inner">
-																				<div class="item-title">Login</div>
-																		 </div>
-																	</div>
-															 </a>
-														</li>
-														<li>
-															 <a href="#index" onclick="log_out();" class="logout-button item-link">
-																	<div class="item-content">
-																		 <div class="item-inner">
-																				<div class="item-title">Logout</div>
-																		 </div>
-																	</div>
-															 </a>
-														</li>
-
-												 </ul>
-											</div>
-									 </div>
-								</div>
 				         <!-- Message Page-->
-				         <script id="videosplashTemplate" type="text/template7">
+				<script id="videosplashTemplate" type="text/template7">
 				            <div id="videosplash" data-page="videosplash" class="page cached">
 
 
@@ -360,7 +317,7 @@
 
 																							<!-- a transparent image is preferable -->
 																						<!--	<img class="ratio" src="img/-text.png"/>-->
-																						<iframe id="myFrame" src="video-single.html" frameborder="0" allowfullscreen></iframe>
+																						<iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen></iframe>
 																						</div>
 																					<!--	<p>Please scale the "result" window to notice the effect.</p>-->
 																					</div>
@@ -496,8 +453,8 @@
 								</div>
 							</li>
 						<li>
+							<a href="#refresher"  id="checkforquiz"  class="button button-big button-fill" style="color:#fff !important; background:limegreen !important; font-weight:700;">Look for Quiz</a>
 							<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:none; font-weight:700;"></a>
-
 
 					<!--		<a href="#quiz" id="getStarted2" class="button"  style="color:#fff; display:none; font-weight:700;"><span class="animated-icon"></span></a>-->
 							<div id="getStarted3" style="display:none; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>
@@ -509,42 +466,51 @@
 					  </div>
 					</div>
 				</script>
-				<div class="popup quiz-popup">
-					<div class="view navbar-fixed">
-						<div class="pages">
-							<div class="page">
-								<div class="navbar">
-									<div class="navbar-inner">
-										<div class="center">Message of the DayTitle</div>
-										<div class="right"><a href="#" class="link close-popup">Done</a></div>
-									</div>
-								</div>
-								<div class="page-content">
-									<div class="content-block">
-										<div class="wrapper">
-											<div class="h_iframe">
-												<!-- a transparent image is preferable
-												<img class="ratio" src="img/-text.png"/>-->
-											<!--	<iframe src="http://www.youtube.com/embed/WsFWhL4Y84Y" frameborder="0" allowfullscreen></iframe>-->
-											</div>
-											<!--<p>Please scale the "result" window to notice the effect.</p>-->
-										</div>
-										<style>
-											html,body        {height:100%;}
-											.wrapper         {width:100%;height:100%;margin:0 auto;background:#CCC}
-											.h_iframe        {position:relative;}
-											.h_iframe .ratio {display:none;width:100%;height:auto;}
-											.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
-										</style>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
+
+
+				<script id="refresherTemplate" type="text/template7">
+					<div data-page="refresher" class="page cached">
+						<div class="page-content">
+							<div class="content-block-title">Checking Quiz</div>
+							<div class="content-block">
+								<div class="content-block-inner">
+
+									<p>With the help of Framework7.<br />
+										Framework7 has bunch of pre built generic UI elements
+									</p>
+									<!--	<script>
+
+
+
+										 $$( document ).ready( function () {
+										 // Go back on main View
+										 setTimeout(function(){
+										 mainView.router.load({
+										 template: Template7.templates.welcomeTemplate,
+										 context: {
+										 //name: username
+										 }
+										 });
+
+										 }, 3000);
+
+										 });
+
+
+				<--/script>-->
+			</div>
+		</div>
+
+		</div>
+		</div>
+		</script>
+
+
+
 				<!-- Quiz Page-->
 
-			<!--	<div data-page="quiz" class="page cached">
+				<div data-page="quiz" class="page cached">
 					<!--	<div id='stars' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars2' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars3' class="star-anim" style="z-index: 0;"></div> -->
@@ -558,12 +524,12 @@
 
 												<!-- a transparent image is preferable -->
 											<!--	<img class="ratio" src="img/-text.png"/>-->
-											<iframe id="myFrame" src="" frameborder="0" allowfullscreen></iframe>
+											<iframe id="myFrameQuiz" src="" frameborder="0" allowfullscreen></iframe>
 											</div>
 										<!--	<p>Please scale the "result" window to notice the effect.</p>-->
 										</div>
 										<style>
-											#myFrame         {min-height:540px; width: 100%; top:0;}
+											#myFrameQuiz         {min-height:540px; width: 100%; top:0;}
 											html,body        {height:100%; width: 100%;}
 											.wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
 											.h_iframe        {position:relative;}
@@ -1043,7 +1009,7 @@
 						</div>
 					</div>
 				</div>
-</div>
+
 
 				<!-- Bottom Toolbar
 
