@@ -30,9 +30,9 @@
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="1000"/>
-  <preference name="phonegap-version" value="4.3.1"/>
+  <preference name="phonegap-version" value="3.7.0"/>
   <preference name="AllowInlineMediaPlayback" value="true"/>
-  <preference name="AutoHideSplashScreen" value="true"/>
+  <preference name="AutoHideSplashScreen" value="false"/>
   <preference name="BackupWebStorage" value="cloud"/>
   <preference name="EnableViewportScale" value="false"/>
   <preference name="FadeSplashScreen" value="true"/>
