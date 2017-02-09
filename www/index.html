@@ -187,7 +187,7 @@
 				<!-- Navbar inner for Welcome page-->
 				<div data-page="welcome" id="welcomenav" class="navbar-inner cached">
 					<div class="left sliding">
-						<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>
+						<!--<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>-->
 					</div>
 					<div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:40px;"></div>
 					<div class="right">
@@ -200,6 +200,16 @@
 					<div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a></div>
 					<div class="center sliding">Register</div>
 				</div>
+
+
+				<!-- Navbar inner for Register page-->
+				<div data-page="register" class="navbar-inner cached">
+					 <div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a></div>
+					 <div class="center sliding">Register</div>
+				</div>
+
+
+
 				<!-- Navbar inner for Login page-->
 				<div data-page="form" class="navbar-inner cached">
 					<div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a></div>
@@ -208,7 +218,7 @@
 				<!-- Navbar inner for Services page-->
 				<div data-page="about" class="navbar-inner cached">
 					<div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons white">left</i></span></a></div>
-					<div class="center sliding">About</div>
+					<div class="center sliding">Quiz</div>
 				</div>
 				<!-- Navbar inner for Profile page-->
 				<div data-page="profile" class="navbar-inner cached">
@@ -350,10 +360,10 @@
 														 <div id="rays"></div>
 													</div>
 													<!--  <div id="animated-img" class="animated fadeInUpBig options fast"> -->
-													<div id="fizzquizz" class="page-content" style="padding: 10px 5px 0 5px !important;">
+													<div id="fizzquizz" class="page-content" style="padding: 40px 5px 0 5px !important;">
 														 <input name="questions" id="cand" type="hidden" />
 														 <div class="quizArea options fast">
-																<a href="#" id="playQuiz" onclick="showQuestions();" class="play-quiz button button-big startQuiz" style="display:block;">Play</a>
+																<a href="#" id="playQuiz" onclick="showQuestions();" class="play-quiz button button-big red startQuiz" style="display:block;">Play</a>
 																<!-- where the quiz gets built -->
 														 </div>
 														 <div class="quizResults">
@@ -382,7 +392,7 @@
 																<div class="bottles scoring">BOTTLES</div>
 																<div id="endQuiBtn" style="padding-top: 35%;">
 																	 <br />
-																	 <a href="#index" onclick="post_score_new();" id="sendScore" class="send-score button red" style="display:block;">Save</a>
+																	 <a href="#index" onclick="post_score_new();" id="sendScore" class="send-score button button-big red" style="display:block;">Save</a>
 																</div>
 														 </div>
 														 <!--</div>-->
@@ -489,7 +499,7 @@
 				</div>
 				<!-- Quiz Page-->
 
-				<div data-page="quiz" class="page cached">
+			<!--	<div data-page="quiz" class="page cached">
 					<!--	<div id='stars' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars2' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars3' class="star-anim" style="z-index: 0;"></div> -->
@@ -519,7 +529,7 @@
 										<!--  <iframe src="fizzquizzData.html" style="height:100%; width:100%;"></iframe>-->
 									</div>
 								</div>
-							</div>
+							</div>-->
 
 				<!-- Register Page-->
 				<div data-page="register" class="page cached">
@@ -814,67 +824,187 @@
 					</div>
 
 					<div data-page="profile-edit" class="page cached">
-						<div class="page-content">
-							<div id="editmyProfile" class="content-block centered">
+						 <div class="page-content">
+								<div id="editmyProfile" class="content-block centered">
 
+									<div id="editmyProfile" class="list-block">
+										 <ul>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">lock</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-->
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield readonly">
+																			<input class="mdl-textfield__input" readonly type="text" id="username">
+																			<label class="mdl-textfield__label" for="username"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
 
-							<div class="item-title">Profile Edit</div>
-							<div class="mdl-textfield mdl-js-textfield readonly">
-								<input class="mdl-textfield__input" readonly type="text" id="username">
-								<label class="mdl-textfield__label" for="username"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="password" id="password">
-								<label class="mdl-textfield__label" for="password"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="text" id="firstname">
-								<label class="mdl-textfield__label" for="firstname"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield">
-								<input class="mdl-textfield__input" type="text" id="lastname">
-								<label class="mdl-textfield__label" for="lastname"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield readonly">
-								<input class="mdl-textfield__input" readonly type="text" id="email">
-								<label class="mdl-textfield__label" for="email"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield readonly">
-								<input class="mdl-textfield__input" type="text" readonly id="division">
-								<label class="mdl-textfield__label" for="division"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield readonly">
-								<input class="mdl-textfield__input" type="text" readonly id="unit">
-								<label class="mdl-textfield__label" for="unit"></label>
-							</div>
-							<div class="mdl-textfield mdl-js-textfield readonly">
-								<input class="mdl-textfield__input" readonly type="text" id="area">
-								<label class="mdl-textfield__label" for="area"></label>
-							</div>
-							<div style='clear:both;'></div>
-							<div id="update_1" style="display:none; width: 100%; color: lawngreen;">Update Successful</div>
-							<div id="update_0" style="display:none;">Something wrong happen. Please Try again.</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="col-md-6" style="float: left;">
-										<button id="btnCancel" type='button'
-											class="mdl-layout__tab mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-											onclick="update_cancel();">
-										Cancel
-										</button>
-									</div>
-									<div class="col-md-6" style="float:left;">
-										<button id="btnUpdate" type='button'
-											class="mdl-layout__tab mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-											onclick="update_user();">
-										Update
-										</button>
-									</div>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-->
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield">
+																			<input class="mdl-textfield__input" type="password" id="password">
+																			<label class="mdl-textfield__label" for="password"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-->
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield">
+																			<input class="mdl-textfield__input" type="text" id="firstname">
+																			<label class="mdl-textfield__label" for="firstname"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-->
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield">
+																			<input class="mdl-textfield__input" type="text" id="lastname">
+																			<label class="mdl-textfield__label" for="lastname"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">lock</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-->
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield readonly">
+																			<input class="mdl-textfield__input" readonly type="text" id="email">
+																			<label class="mdl-textfield__label" for="email"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+										<!--    <li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 --<div class="item-title label">Username</div>-
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield readonly">
+																			<input class="mdl-textfield__input" type="text" readonly id="division">
+																			<label class="mdl-textfield__label" for="division"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield readonly">
+																			<input class="mdl-textfield__input" type="text" readonly id="unit">
+																			<label class="mdl-textfield__label" for="unit"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>
+												<li>
+													 <div class="item-content">
+															<div class="item-media"><em class="f7-icons">person</em></div>
+															<div class="item-inner">
+																 <!--<div class="item-title label">Username</div>-
+																 <div class="item-input">
+																	 <div class="mdl-textfield mdl-js-textfield readonly">
+																			<input class="mdl-textfield__input" readonly type="text" id="area">
+																			<label class="mdl-textfield__label" for="area"></label>
+																	 </div>
+																 </div>
+															</div>
+													 </div>
+												</li>-->
+											</ul>
+											<div class="content-block">
+												 <div class="row">
+														<div class="col-50">
+															 <a href="#" class="button button-big red back link">Cancel</a>
+														</div>
+														<div class="col-50">
+															 <a href="#"  id="btnUpdate" onclick="update_user();"  class="button button-big red">Update</a>
+														</div>
+												 </div>
+											</div>
+										</div>
 								</div>
 							</div>
-						</div>
 					</div>
-				</div>
+
+
+					 <div data-page="index" class="page">
+					            <div class="page-content">
+					               <div class="content-block-title">Example Application</div>
+					               <div class="content-block">
+					                  <div class="content-block-inner">
+					                     <p>Very simple HTML5 mobile web app.</p>
+					                     <p>With the help of Framework7.<br />
+					                        Framework7 has bunch of pre built generic UI elements
+					                     </p>
+					                  </div>
+					               </div>
+					               <div class="content-block-title">Example Menu</div>
+					               <div class="list-block">
+					                  <ul>
+					                     <li>
+					                        <a href="#register" class="register-button item-link">
+					                           <div class="item-content">
+					                              <div class="item-inner">
+					                                 <div class="item-title">Register</div>
+					                              </div>
+					                           </div>
+					                        </a>
+					                     </li>
+					                     <li>
+					                        <a href="#form" class="login-button item-link">
+					                           <div class="item-content">
+					                              <div class="item-inner">
+					                                 <div class="item-title">Login</div>
+					                              </div>
+					                           </div>
+					                        </a>
+					                     </li>
+					                     <li>
+					                        <a href="#index" onclick="log_out();" class="logout-button item-link">
+					                           <div class="item-content">
+					                              <div class="item-inner">
+					                                 <div class="item-title">Logout</div>
+					                              </div>
+					                           </div>
+					                        </a>
+					                     </li>
+
+					                  </ul>
+					               </div>
+					            </div>
+					         </div>
 					<!-- Leader Board Page-->
 					<div data-page="leaderboard" class="page cached">
 						<div class="page-content">

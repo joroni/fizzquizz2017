@@ -1279,18 +1279,20 @@ function scanIfQuizAvailable() {
                           		setTimeout(function(){
 
                           }, 300);
-                          $$('#about').addClass('cached');
-                            mainView.router.load({
+                          $$('#welcome').addClass('cached');
+
+                          mainView.router.load('#index');
+                          /*  mainView.router.load({
                                 template: Template7.templates.welcomeTemplate,
                                 context: {
                                     //  name: username
                                 }
-                            });
-
+                            });*/
+                            initApp();
                           }
 
 
-                          initApp();
+
 
           		        }
 

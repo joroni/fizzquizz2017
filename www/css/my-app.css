@@ -5,7 +5,20 @@
 @import "../quizgame/css/slickQuiz.css";
 @import "../quizgame/css/master.css";
 */
+#defaultCountdown, #time{
+  position: fixed;
+  z-index: 200000;
+  top: 50px;
+  right:10px !important;
+  background: #000;
+  color: #fff;
+  padding: 0 10px !important;
+}
 
+div#fizzquizz {
+  min-height: 420px !important;
+  padding-top: 40px !important;
+}
 
 .toolbar.bottom {
   position: fixed;
@@ -161,7 +174,7 @@ body#main {
   width: 100%;
 }
 button, .button, a.button {
-float: none !important;
+float: left !important;
 font-weight:100;
 font-size:1.2em !important;
   background: transparent none repeat scroll 0 0 !important;
@@ -178,7 +191,7 @@ font-size:1.2em !important;
 }
 
 
-button:hover, .button:hover {
+button:hover, .button:hover, a.button:hover {
   color: #d10000 !important;
   background: rgba(209, 0, 0, 0.1) !important;
 }
