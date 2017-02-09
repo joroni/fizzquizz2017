@@ -30,7 +30,7 @@
   <preference name="MediaPlaybackRequiresUserAction" value="false"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="SuppressesIncrementalRendering" value="false"/>
-  <preference name="TopActivityIndicator" value="gray"/>
+  <preference name="TopActivityIndicator" value="red"/>
   <preference name="GapBetweenPages" value="0"/>
   <preference name="PageLength" value="0"/>
   <preference name="PaginationBreakingMode" value="page"/>
@@ -45,6 +45,7 @@
   <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2"/>
 
   <platform name="ios">
+    <icon src="icon.png"/>
     <icon src="/res/ios/icon/icon.png" width="57" height="57"/>
     <icon src="/res/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="/res/ios/icon/icon-72.png" width="72" height="72"/>
@@ -79,6 +80,7 @@
     </config-file>
   </platform>
   <platform name="android">
+    <icon src="icon.png"/>
     <icon src="/res/android/icon/ldpi.png" density="ldpi"/>
     <icon src="/res/android/icon/mdpi.png" density="mdpi"/>
     <icon src="/res/android/icon/hdpi.png" density="hdpi"/>
