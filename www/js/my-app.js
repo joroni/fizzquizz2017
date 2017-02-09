@@ -1,14 +1,9 @@
 // Initialize your app
 var myApp = new Framework7({
-    //popupCloseByOutside:false, //changed this to false to avoid auto close
-    pushState: false,
-    autoLayout: true,
     animateNavBackIcon: true,
     template7Pages: true,
     precompileTemplates: true
 });
-
-
 
 // Export selectors engine
 var $$ = Dom7;
@@ -22,22 +17,50 @@ var mainView = myApp.addView('.view-main', {
     domCache: true
 });
 
+function initApp(){
+      var userDataCheck = localStorage.getItem('userData');
+
+      if (userDataCheck != 0) {
+        scanIfQuizAvailable();
+        //  myApp.myProfile();
+        //  myApp.pullFreshQuizItems();
+        //  myApp.LoggedInButtons();
+       }else{
+         LoggedOutButtons();
+       }
+}
 
 
-$$('.hide-toolbar').on('click', function () {
-  //  mainView.hideToolbar();
-      $$("#bottomBtns, .toolbar.bottom").hide();
+initApp();
 
+
+
+ ///
+
+/* @TODO FizzQuizzAWS credentials */
+// Setup your FizzQuizzAWS applicationId and API key
+var applicationId = 'xxx';
+var restApiKey = 'yyy';
+
+
+localStorage.setItem("bottomBar", 'none');
+
+var bottomBar = localStorage.getItem('bottomBar');
+
+// Funcion to handle Cancel button on Login page
+/*$$('#cancel-login').on('click', function() {
+    // Clear field values
+    $$('#user_name_input').val('');
+    $$('#user_pass_input').val('');
 });
+*/
+$$('.view').addClass('theme-red layout-light');
 
-$$('.show-toolbar').on('click', function () {
-  //  mainView.showToolbar();
-    $$("#bottomBtns, .toolbar.bottom").show();
-
-});
-
-
-
+$('.view').append('<div class="toolbar bottom" style="display:'+bottomBar+';">'+
+                                '<div class="toolbar-inner">'+
+                                  '<a href="#welcome" class="link">Welcome y</a>'+
+                                  '<a href="#index" class="link">Index x</a>'+
+                              '</div>');
 
 var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
 
@@ -51,8 +74,7 @@ function noNet(path, success, error) {
                     success(JSON.parse(xhr.responseText));
                 }
             } else {
-                myApp.alert('Ooops, You are offline!')
-              //  window.location.replace("nonet.html");
+                window.location.replace("nonet.html");
             }
         }
     };
@@ -71,9 +93,6 @@ noNet(base_url + '/json.php',
 // END connection to server
 
 
-
-
-
 // START checking if user is logged
 function check_storage() {
 
@@ -86,21 +105,36 @@ function check_storage() {
                 //  name: username
             }
         });
-
+        /*  $$('.login-button, .register-button').hide();
+          $$('.logout-button').show();
+          $$('.right').show();
+          $$('#welcomenav').removeClass('cached'); */
         $$('.center').css('width', 'auto');
         $$('.center').css('text-align', 'center');
         $$('.center > img').css('margin', '0 auto');
         LoggedInButtons();
         console.log('logged');
     //    runScanProfile();
-      //  scanIfQuizAvailable();
+        scanIfQuizAvailable();
         //validateMyTurn();
     } else {
         console.log('err');
 
+        //window.location.replace("index.html");mainView.router.load({
+      /*  mainView.router.load({
+            template: Template7.templates.index
 
+        });*/
 
         LoggedOutButtons();
+        /*$$('.login-button, .register-button').show();
+        $$('.logout-button').hide();
+
+        $$('.left').hide();
+        $$('.right').hide();
+        $$('.center').css('width', '100%');
+        $$('.center').css('text-align', 'center');
+        $$('.center > img').css('margin', '0 auto');*/
 
 
     }
@@ -108,88 +142,6 @@ function check_storage() {
 }
 check_storage();
 // END checking if user is logged
-
-
-
-function initApp(){
-      var userDataCheck = localStorage.getItem('userData');
-      //localStorage.setItem("bottomBar", 'none');
-
-      $$("#bottomBtns, .toolbar.bottom").hide();
-
-      if (userDataCheck != 0) {
-        check_storage();
-        validateMyTurn();
-        //scanIfQuizAvailable();
-      	myProfile();
-        pullFreshQuizItems();
-        LoggedInButtons();
-
-
-
-       }else{
-         LoggedOutButtons();
-       }
-}
-
-
-initApp();
-
-
-
-function messageTimer(){
-var startQuiz = new Date();
-startQuiz=new Date(startQuiz.getTime());
-var timeOut = +10;
-$("#defaultCountdown.timer").countdown({
-  until: timeOut,
-  onExpiry: liftOff});
-
-function liftOff() {
-$$("#defaultCountdown.timer").hide();
-  $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
-                                  '<div class="toolbar-inner">'+
-                                    '<a href="#welcome" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
-                                    '<a href="#about" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
-                                '</div>');
-  // myApp.alert('We have lift off!');
-  }
-
-}
-
-$$('.right, a.close-popup').css("z-index", "10500 !important");
-$$('a.close-popup').css("cursor", "pointer");
-$$('a.close-popup').on('click', function () {
-  myApp.closeModal('.picker-info')
-});
-
-function hideToolbar() {
-    $$("#bottomBtns, .toolbar.bottom").hide();
-    $$("#videosplash").addClass('cached');
-
-}
-
-
- ///
-
-/* @TODO FizzQuizzAWS credentials */
-// Setup your FizzQuizzAWS applicationId and API key
-var applicationId = 'xxx';
-var restApiKey = 'yyy';
-
-
-
-
-// Funcion to handle Cancel button on Login page
-/*$$('#cancel-login').on('click', function() {
-    // Clear field values
-    $$('#user_name_input').val('');
-    $$('#user_pass_input').val('');
-});
-*/
-$$('.view').addClass('theme-red layout-light');
-
-//var bottomBar = localStorage.getItem('bottomBar');
 
 
 
@@ -206,10 +158,10 @@ function signin() {
     var password = user_pass_input;
 
     $.post(base_url + '/loginuser', {
-       username: user_name_input,
-        password: user_pass_input
-       // username,
-       // password
+        //username: user_name_input,
+        //password: user_pass_input
+        username,
+        password
     }).done(function(data) {
         if (data == 0) {
             LoggedOutButtons();
@@ -228,35 +180,31 @@ function signin() {
 
             LoggedInButtons();
 
-            myProfile();
-            var myfirstname = localStorage.getItem("fname");
-            var mylastname = localStorage.getItem("lname");
-            var myusername = localStorage.getItem("userlogin");
-            var myemail = localStorage.getItem("email");
-            var mydivision = localStorage.getItem("division");
-            $('#userfirstname, .profile-firstname').text(myfirstname);
-            $('#userusername, .profile-id').text(myusername);
-            $('#userlastname, .profile-lastname').text(mylastname);
-            $('#useremail, .profile-email').text(myemail);
-            $('#userdivision, .profile-division').text(mydivision);
-        //    getQuizEndDate();
-
-
             validateMyTurn();
-            pullFreshQuizItems();
+            myProfile();
+
+
             get_Quiz_History();
+            //    localStorage.setItem("username", field.username);
+            //  localStorage.setItem("password", field.password);
+            //  localStorage.setItem("email", field.email);
+            //  localStorage.setItem("fname", field.fname);
+            //  localStorage.setItem("lname", field.lname);
+            //  localStorage.setItem("userlogin", field.username);
+            //  localStorage.setItem("division", field.division);
+            //  localStorage.setItem("user_division", field.division);
+            //  localStorage.setItem("aunit", field.aunit);
+            //  localStorage.setItem("area", field.area);
+            //  localStorage.setItem("lang", field.fname);
 
-            //myProfile();
 
-
-            //get_Quiz_History();
 
             localStorage.setItem("userlogin", user_name_input);
 
 
             localStorage.setItem("userData", data);
 
-          //  console.log("get_Quiz_History")
+            console.log("get_Quiz_History")
             console.log('Response body: ' + data);
 
             // Will pass context with retrieved user name
@@ -267,21 +215,10 @@ function signin() {
                     name: username
                 }
             });
-            initApp();
-            myApp.hideIndicator();
 
-            myApp.showIndicator();
             scanIfQuizAvailable();
+
             myApp.hideIndicator();
-
-            myApp.showIndicator();
-            initApp();
-            myApp.hideIndicator();
-
-
-  myApp.showIndicator();
-  validateMyTurn();
-    myApp.hideIndicator();
 
             //	window.location.href = "main.html";
 
@@ -512,7 +449,7 @@ function myProfile() {
             console.log(field.division);
             console.log(field.aunit);
             console.log(field.area);
-            //console.log(field.avatar);
+            console.log(field.avatar);
 
 
             localStorage.setItem("user_id", field.id);
@@ -530,33 +467,21 @@ function myProfile() {
             localStorage.setItem("user_area", field.area);
             localStorage.setItem("lang", field.fname);
 
-
-            var myfirstname = localStorage.getItem("fname");
-            var mylastname = localStorage.getItem("lname");
-            var myusername = localStorage.getItem("userlogin");
-            var myemail = localStorage.getItem("email");
-            var mydivision = localStorage.getItem("division");
-            $('#userfirstname, .profile-firstname').text(myfirstname);
-            $('#userusername, .profile-id').text(myusername);
-            $('#userlastname, .profile-lastname').text(mylastname);
-            $('#useremail, .profile-email').text(myemail);
-            $('#userdivision, .profile-division').text(mydivision);
-
             get_Quiz_History();
-            myApp.hideIndicator();
+
         });
     });
 }
 
 
-/*
+
 function update_cancel() {
     $('#profileContent')
         .show();
     $('#editmyProfile')
         .hide();
 }
-*/
+
 function update_user() {
     myApp.showIndicator();
     // var id = $('#user_id').val();
@@ -637,17 +562,6 @@ function showImageLoader() {
         .show();
     imageProfile();
 }
-
-
-function leaderBoard() {
-
-
- // var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
-  // document.getElementById("myFrame").setAttribute("src", loc);
- // $$("#myFrameLeader").attr("src", loc);
-
-}
-
 
 function imageProfile() {
 
@@ -774,6 +688,48 @@ function LoggedOutButtons() {
     $$('#welcomenav').addClass('cached');
 }
 
+
+
+
+function messageTimer(){
+var startQuiz = new Date();
+startQuiz=new Date(startQuiz.getTime());
+var timeOut = +10;
+$("#defaultCountdown.timer").countdown({
+  until: timeOut,
+  onExpiry: liftOff});
+
+function liftOff() {
+$$("#defaultCountdown.timer").hide();
+  $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
+                                  '<div class="toolbar-inner">'+
+                                    '<a href="#welcome" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
+                                    '<a href="#about" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                '</div>');
+  // myApp.alert('We have lift off!');
+  }
+
+}
+
+function messageTimer(){
+var startQuiz = new Date();
+startQuiz=new Date(startQuiz.getTime());
+var timeOut = +10;
+$("#defaultCountdown.timer").countdown({
+  until: timeOut,
+  onExpiry: liftOff});
+
+function liftOff() {
+$$("#defaultCountdown.timer").hide();
+  $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
+                                  '<div class="toolbar-inner">'+
+                                    '<a href="#welcome" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
+                                    '<a href="#about" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                '</div>');
+  // myApp.alert('We have lift off!');
+  }
+
+}
 function loadPages() {
 
     pullFreshQuizItems();
@@ -808,28 +764,7 @@ function loadPages() {
       });
 
 
-    /*  $('#toolbarHold').appendChild('<div class="toolbar bottom" style="display:block !important;">'+
-                                      '<div class="toolbar-inner">'+
-                                        '<a href="#welcome" class="link">Welcome y</a>'+
-                                        '<a href="#about" class="link">Skip</a>'+
-                                    '</div>');*/
 }
-
-
-
-$(function(){
-  $(".play-quiz").on('click', function(){
-    $(this).hide();
-  //  $(".send-score").show();
-    //  $('#endQuiBtn').hide();
-  });
-
-  $(".send-score").on('click', function(){
-  //  $(this).hide();
-    $(".play-quiz").show();
-  })
-
-})
 
 
 function getStart() {
@@ -961,7 +896,7 @@ function register() {
                     myApp.alert(data + 'User Name is already taken.');
                     $('#reg_username').val('');
                     console.log('err');
-                 //   return;
+                    return;
                     //  alert(data);
                 }
             });
@@ -985,7 +920,7 @@ function get_Quiz_History() {
     $('#output').empty();
     var user_id = localStorage.getItem('user_id');
     $('#output')
-        .html('<th colspan="4" style="padding: 10px; background: silver; color: #fff; text-align: center;">Statistics</th>');
+        .html('<th colspan="4" style="padding: 0 5px; background: silver;">Stat</th>');
     $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
 
         //$.each(result, function ( i, field ) {
@@ -998,9 +933,8 @@ function get_Quiz_History() {
             $("#output2").append("<li> " + fields.datefrom + " </li>");
 
             var checkLQuiz = $("#output2 li:nth-child(1)").text();
-
-            localStorage.setItem('checkLQuiz', checkLQuiz);
             console.log("checkLQuiz", checkLQuiz);
+            localStorage.setItem('checkLQuiz', checkLQuiz);
 
 
 
@@ -1014,13 +948,13 @@ function get_Quiz_History() {
 
 /******************************************/
 
-/*
+
 
 function myFunction() {
     $("#capturePhoto").hide();
     // window.location.replace("main.html");
 }
-*/
+
 
 /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
 function validateMyTurn() {
@@ -1033,21 +967,31 @@ function validateMyTurn() {
         console.log("validateMyTurn | date_expire", result.date_expire);
         localStorage.setItem("dateFrString", result.date_published);
         localStorage.setItem("dateToString", result.date_expire);
-        var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
-        var checkLastQuiz = localStorage.getItem("checkLQuiz").replace(/-/g,'');
-        var resultCheck = checkLastQuiz - dateFrStringVerify;
+        var dateFrStringVerify = localStorage.getItem("dateFrString");
+        var checkLastQuiz = localStorage.getItem("checkLQuiz");
         console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
+        if (dateFrStringVerify === checkLastQuiz) {
+            //  $("#pop-alert").hide();
 
-        if (resultCheck == 0) {
-
-          console.log("NO UPDATES YET.");
-	         $$('.simple-list li:last-child').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
+            //  myApp.showIndicator();
+            //    noupdate();
+            console.log("NO UPDATES YET.");
+            //  $("#getStarted2").attr("disabled", "disabled");
+            $("#getStarted3").show();
+            //$("#getStarted3").html("<p style='color:red; text-align: center;'>SEE YOU ON THE NEXT ROUNDS...</p>");
+            $("#getStarted2").hide();
+            //  $("#getStarted2").css("background", "none");
 
         } else {
+            //  myApp.showIndicator();
+            //    hasupdate();
+            console.log("HAS NEW UPDATES!");
 
-              console.log("HAS NEW UPDATES!");
-              $$('.simple-list li:last-child').html('<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:block; font-weight:700;"></a>');
+            $("#getStarted3").hide();
+            $("#getStarted2").show();
+            $("#getStarted2").addClass("animate fadeInUpBig options fast");
 
+            //  myApp.alert("New Quiz", alertTitle);
 
         }
 
@@ -1098,7 +1042,7 @@ $$("#getStarted2").on("click", function () {
 //  bottomBarShow();
     //  $("#loadQuiz").load("fizzquizzData.html");
 });*/
-/*
+
 function pullFreshQuizItems() { //getQuizData
 
 
@@ -1118,42 +1062,19 @@ function pullFreshQuizItems() { //getQuizData
     });
 
 
-}*/
-/*
+}
+
 function bottomBarShow() {
-//  localStorage.setItem("bottomBar", 'block');
- // var bottomBar = localStorage.getItem("bottomBar");
-  var bottomBar = localStorage.getItem("show");
-  $('.toolbarHold').appendChild('<div class="toolbar bottom" style="display:block;">'+
+  localStorage.setItem("bottomBar", 'block');
+  var bottomBar = localStorage.getItem("bottomBar");
+  $('.toolbarHold').html('<div class="toolbar bottom" style="display:'+bottomBar+';">'+
                                   '<div class="toolbar-inner">'+
                                     '<a href="#welcome" class="link">Welcome y</a>'+
-                                    '<a href="#about" class="link">Skip</a>'+
+                                    '<a href="#index" class="link">Index x</a>'+
                                 '</div>');
-  //myApp.alert(bottomBar);
-}*/
+  myApp.alert(bottomBar);
+}
 //pullFreshQuizItems();
-
-
-
-$$(function(){
-  var $refreshButton = $('#refresh');
-  var $results = $('#css_result');
-
-  function refresh(){
-    var css = $('style.cp-pen-styles').text();
-    $results.html(css);
-  }
-
-  refresh();
-  $refreshButton.click(refresh);
-
-  // Select all the contents when clicked
-  $results.click(function(){
-    $(this).select();
-  });
-});
-
-
 
 function playMessage() {
     function onDeviceReady() {
@@ -1177,111 +1098,6 @@ function playMessage() {
         });
     }
 }
-
-/*
-function messagesList() {
-
-      $(document).ready(function(){
-
-
-          $.post( "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/getvideo")
-                  .done(function( data ) {
-                      $('#externalLoad').html(data);
-                  });
-
-      });
-}
-*/
-
-
-function messagesList() {
-
-
-  /*var myList = myApp.virtualList('.list-block.media-list', {
-      // Array with items data
-      items:  [
-           {
-             "id": 20,
-             "name": "Jeff Kirkland December Video Message",
-             "video": "Jeff Kirkland December Video Message-SD.mp4",
-             "text": "Jeff Kirkland December Video Message",
-             "audio": "",
-             "textF": "",
-             "image": "",
-             "is_live": 1,
-             "timestamp": "2017-01-22 14:55:05"
-           },
-           {
-             "id": 15,
-             "name": "Vestibulum quis tortor auctor",
-             "video": "freedoginrain.mp4",
-             "text": "Vestibulum quis tortor auctor, tempor orci vel, mattis neque. Morbi sagittis finibus lacus, vel congue nibh fringilla vitae. Donec et lorem sit amet nisi ornare vestibulum non nec est. Praesent ultrices nunc ligula, eget condimentum sapien malesuada eget. ",
-             "audio": "nkkjk",
-             "textF": "",
-             "image": "",
-             "is_live": 1,
-             "timestamp": "2017-02-02 19:03:48"
-           },
-           {
-             "id": 12,
-             "name": "Testing Video",
-             "video": "test2.mp4",
-             "text": "xcvxcvxcvxv",
-             "audio": "vxcvxcv",
-             "textF": "",
-             "image": "",
-             "is_live": 1,
-             "timestamp": "2017-02-02 19:04:07"
-           }
-         ],
-      // Custom render function to render item's HTML
-      renderItem: function (index, item) {
-          return '<li class="item-content">' +
-                    '<div class="item-media"><img src="'+ base_url +'/app/views/media/'+ item.video + '"></div>' +
-                    '<div class="item-inner">' +
-                        '<div class="item-title">' + item.name + '</div>' +
-                    '</div>' +
-                 '</li>';
-      }
-  });
-
-
-localStorage.setItem('MediaList', myList);*/
-
-
-
-var myList = myApp.virtualList('.list-block.virtual-list', {
-    // Array with items data
-    items: [
-        {
-            title: 'Item 1',
-            picture: 'path/to/picture1.jpg'
-        },
-        {
-            title: 'Item 2',
-            picture: 'path/to/picture2.jpg'
-        },
-        // ...
-        {
-            title: 'Item 1000',
-            picture: 'path/to/picture1000.jpg'
-        },
-    ],
-    // Custom render function to render item's HTML
-    renderItem: function (index, item) {
-        return '<li class="item-content">' +
-                  '<div class="item-media"><img src="' + item.picture + '"></div>' +
-                  '<div class="item-inner">' +
-                      '<div class="item-title">' + item.title + '</div>' +
-                  '</div>' +
-               '</li>';
-    }
-});
-localStorage.setItem('TempMediaLists', myList);
-
-
-}
-
 /*function runScanProfile(){
 
          myProfile();
@@ -1397,258 +1213,191 @@ function scanIfQuizAvailable() {
                     //name: username
                 }
             });
-            initApp();
             //validateMyTurn();
             scanIfQuizAvailable();
 
 
           });
 
-/**************************** QUIZ SCRIPTS ********************************************/
 
-
-// Put all your page JS here
 /*
-$(function () {
-    $('#slickQuiz').slickQuiz();
-});
-*/
-/*
-var saveBtn = $('#score_bottle').value();
-if (saveBtn != ''){
-  $('.send-score').show();
-}
-else {
-    $('.send-score').show();
-}*/
+        		function post_score_new() {
+        				//myApp.showIndicator();
+        		    var user_id =  $("#user_id").val();
+        		    var datefromDynamic = $("#datefrom").val();
+        		    var score_bottle = $("#score_bottle").val();
+        		    var attempts = $("#attempts").val();
 
-var media_id = "102516";
-							var attempts = localStorage.getItem("attempts");
-
-							$(".startQuiz").on("click", function () {
-							    //var set = "S1121016";
-
-							    attempts++;
-							    //attempts = localStorage.getItem("attempts");
-							    localStorage.setItem("attempts", attempts);
+        		    var divisions = $("#divisions").val();
+        		    var area = $("#area").val();
+        		    var aunit = $("#aunit").val();
 
 
-							    var datefrom = localStorage.getItem("dateFrString");
-							    var user = localStorage.getItem("userlogin");
-							    var user_id = localStorage.getItem("user_id");
-
-							    var area = localStorage.getItem("user_area");
-							    var division = localStorage.getItem("user_division");
-							    var divisions = division;
-							    var aunit = localStorage.getItem("user_aunit");
-
-							    $("#area").val(area);
-							    $("#aunit").val(aunit);
-							    $("#datefrom").val(datefrom);
-							    $("#divisions").val(divisions);
-							    $("#user_id").val(user_id);
-
-							    $("#attempts").val(attempts);
-									localStorage.setItem("bottomBar", 'block');
-								  //alert(bottomBar);
+        		    console.log("Attempts", attempts);
 
 
-							    console.log("scored");
-							});
+        		    $.get(base_url + "/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/"  + divisions + "/" + aunit + "/" +  score_bottle, function ( data ) {
+
+
+        		        if (data == 0) {
+        							//	myApp.hideIndicator();
+        		              myApp.alert("uh oh, try again.", alertTitle);
+        		            // $("#update_0").show();
+        		        } else if (data == 1) {
+        		            attempts = 1;
+        								//	myApp.hideIndicator();
+        		            localStorage.setItem("attempts", attempts);
+        		              myApp.alert("Score Recorded!");
+
+                          bottomBarShow();
 
 
 
 
+        		            console.log("score recorded");
+        		          //  localStorage.removeItem("QuizData");
+        		           // window.location.replace("index.html");
+        							  // mainView.router.load();
+
+
+
+        		        }
+
+        		        else {
+
+        						$.get(base_url +"/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/" + divisions + "/" + aunit + "/"  + score_bottle, function ( data ) {
+        		                //$.post("http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/index.php/update/user", {username: username, password: password, fname: fname})
+        										myApp.showIndicator();
+        		                if (data == 0) {
+        											//	myApp.hideIndicator();
+        											//	myApp.alert("uh oh, try again", alertTitle);
+        		                    myApp.alert("uh oh, try again.");
+        		                    // $("#update_0").show();
+        		                } else if (data == 1) {
+        										//	myApp.hideIndicator();
+        		                    myApp.alert("Score Updated", tit);
+        		                    attempts++;
+        		                    localStorage.setItem("attempts", attempts);
+        		                    console.log("score updated");
+        											bottomBarShow();
+
+        											//	mainView.router.load();
+
+        		                }
+        		            });
+        		        }
+
+        		        localStorage.setItem("recent_quiz", datefromDynamic);
+        		//        goto_home();
+
+        		    });
+        		}
+
+            /*function post_score_new() {
+                //myApp.showIndicator();
+                var user_id =  $("#user_id").val();
+                var datefromDynamic = $("#datefrom").val();
+                var score_bottle = $("#score_bottle").val();
+                var attempts = $("#attempts").val();
+
+                var divisions = $("#divisions").val();
+                var area = $("#area").val();
+                var aunit = $("#aunit").val();
+
+
+                console.log("Attempts", attempts);
+
+
+                $.get(base_url + "/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/"  + divisions + "/" + aunit + "/" +  score_bottle, function ( data ) {
+
+
+                    if (data == 0) {
+                      //	myApp.hideIndicator();
+                          myApp.alert("uh oh, try again.", alertTitle);
+                        // $$("#update_0").show();
+                    } else if (data == 1) {
+                        attempts = 1;
+                        //	myApp.hideIndicator();
+                        localStorage.setItem("attempts", attempts);
+
+                     myApp.alert("Score Recorded!", alertTitle);
+                        console.log("score recorded");
+                        localStorage.removeItem("QuizData");
+                       // window.location.replace("index.html");
+
+                        // window.location.replace("#index");
 
 
 
 
 
-function showQuestions() {
-		$(".raysDemo").removeClass('fadeInUpBig');
-		$(".raysDemo").addClass('fadeOut animated');
-		$(".raysDemo").css('top', '-9999px');
-
-    function onDeviceReady() {
-
-        $.ajax({
-            url: base_url + "/getvideo/single",
-            dataType: "json",
-        }).success(function(data) {
-            for (i = 0; i < data.length; i++) {
-                var videoFile = data[i]["video"];
-                var nameFile = (data[i]["name"]);
 
 
-    $(".popup-overlay").append("<video><source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'></video>");
+                    }
 
-                $("video").append("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
-                console.log(nameFile);
-                console.log(videoFile);
+                    localStorage.setItem("recent_quiz", datefromDynamic);
+            //        goto_home();
+
+                      mainView.router.load({
+                          template: Template7.templates.index
+
+                      });
+
+                });
             }
-
-        });
-    }
-
-
-		setTimeout(function(){
-	     $(".raysDemo").hide();
-}, 600);
-
-
-}
-
-
-	/*	$("li.question:last-child > .nextQuestion").on('click',function(){
-
-
-    $('.send-score').show();
-
-  });*/
-
-
-
-
-		function post_score_new() {
-
-			myApp.showIndicator();
-		    var user_id =  $("#user_id").val();
-		    var datefromDynamic = $("#datefrom").val();
-		    var score_bottle = $("#score_bottle").val();
-		    var attempts = $("#attempts").val();
-
-		    var divisions = $("#divisions").val();
-		    var area = $("#area").val();
-		    var aunit = $("#aunit").val();
-
-
-		    console.log("Attempts", attempts);
-
-
-		    $.get(base_url + "/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/"  + divisions + "/" + aunit + "/" +  score_bottle, function ( data ) {
-
-
-
-
-
-
-		        if (data == 0) {
-					         myApp.hideIndicator();
-		              myApp.alert("uh oh, try again.", alertTitle);
-
-		        } else if (data == 1) {
-		            attempts = 1;
-
-		            localStorage.setItem("attempts", attempts);
-
-							//localStorage.setItem("bottomBar", 'show');
-		            console.log("score recorded");
-								//$(".toolbar.bottom").show();
-								//bottomBarShow();
-                myApp.hideIndicator();
-                myApp.alert("Score Recorded!", alertTitle);
-                goToStart();
-
-                function goToStart() {
-
-                		setTimeout(function(){
-
-                }, 300);
-                $$('#about').addClass('cached');
-                  mainView.router.load({
-                      template: Template7.templates.welcomeTemplate,
-                      context: {
-                          //  name: username
-                      }
-                  });
-
-                }
-
-
-                initApp();
-
-		        }
-
-		        /*else {
-
-						$.get(base_url +"/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/" + divisions + "/" + aunit + "/"  + score_bottle, function ( data ) {
-		              		myApp.showIndicator();
-		                if (data == 0) {
-							myApp.hideIndicator();
-							myApp.alert("uh oh, try again", alertTitle);
-
-		                } else if (data == 1) {
-							myApp.hideIndicator();
-		                    myApp.alert("Score Updated", alertTitle);
-		                    attempts++;
-		                    localStorage.setItem("attempts", attempts);
-		                    console.log("score updated");
-
-                        function goToStart() {
-                          mainView.router.load({
-                              template: Template7.templates.index,
-                              context: {
-                                  //  name: username
-                              }
-                          });
-                          initApp();
-                            setTimeout(function(){
-
-                        }, 300);
-
-                        }
-
-		                }
-		            });
-		        }
 */
-		        localStorage.setItem("recent_quiz", datefromDynamic);
-
-
-		    });
-		}
-
-
-    function getQuizEndDate() {
-
-
-        var myDivision2 = localStorage.getItem('user_division');
-      //  var endDate = localStorage.getItem('dateToString');
-
-
-        $.get(base_url + "/jsonQuiz/" + myDivision2 , function(data) {
-            // $( ".result" ).html( data );
-            console.log('getQuizEndDate |', data);
-            // alert( "Load was performed." );
-            localStorage.setItem('QuizQuickData', data);
-            localStorage.getItem('dateToString', data.date_expire);
-
-
-        });
-
-
-    }
 
 
 
-function pullFreshQuizItems() {
 
 
-    var myDivision2 = localStorage.getItem('user_division');
-    var endDate = localStorage.getItem('dateToString');
+            /*
+            $("ul.answers li.input[type=radio], .checkAnswer").on("click", function(){
+            $("a.nextQuestion").show()
+
+            });*/
 
 
-    $.get(base_url + "/jsonQuiz/" + myDivision2 + "/" + endDate, function(data) {
-        // $( ".result" ).html( data );
-        console.log('pullFreshQuizItems |', data);
-        // alert( "Load was performed." );
-        localStorage.setItem('QuizData', data);
+          /*  var media_id = "102516";
+            var attempts = localStorage.getItem("attempts");
+
+            $$("#playQuiz").on("click", function () {
+                //var set = "S1121016";
+                //$$("#raysDemoHolder").css('display', 'none');
+                $$(".raysDemo").hide();
+                $$("#playQuiz").hide();
 
 
+              //get_Quiz_History();
+                attempts++;
+                //attempts = localStorage.getItem("attempts");
+                localStorage.setItem("attempts", attempts);
 
-    });
+
+                var datefrom = localStorage.getItem("dateFrString");
+                var user = localStorage.getItem("userlogin");
+                var user_id = localStorage.getItem("user_id");
+
+                var area = localStorage.getItem("user_area");
+                var division = localStorage.getItem("user_division");
+                var divisions = division;
+                var aunit = localStorage.getItem("user_aunit");
+
+                $("#area").val(area);
+                $("#aunit").val(aunit);
+                $("#datefrom").val(datefrom);
+                $("#divisions").val(divisions);
+                $("#user_id").val(user_id);
+
+                $("#attempts").val(attempts);
+
+                localStorage.setItem("bottomBar", 'block');
+                alert(bottomBar);
+                console.log("scored");
+
+            });
+
+*/
 
 
-}
-
-myApp.hideIndicator();
+          //  scanIfQuizAvailable();

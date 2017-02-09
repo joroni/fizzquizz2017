@@ -1,28 +1,26 @@
-
+<link href="quizgame/css/reset.css" media="screen" rel="stylesheet" type="text/css">
+<link href="quizgame/css/slickQuiz.css" media="screen" rel="stylesheet" type="text/css">
+<link href="quizgame/css/master.css" media="screen" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="quizgame/quiz/css/rays.css" type="text/css">
+<style>
+	/* boooo opera */
+	-o-transition:
+	rotate  (  3600  deg  ); /* works */
+	#Qfizzquizz.page-content {
+	padding-bottom:0 !important;
+	}
+</style>
+<!--	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">-->
+<link rel="stylesheet" href="css/quiz/custom.css" type="text/css">
+<link rel="stylesheet" href="css/animate/animate.css" type="text/css">
 <link rel="stylesheet" href="css/my-app.css">
+<link rel="stylesheet" href="css/parallax-star-background-in-css/stars.css" type="text/css">
 <!-- Path to Framework7 Library CSS-->
 <link rel="stylesheet" href="css/framework7/framework7.min.css">
 <link rel="stylesheet" href="fonts/font_awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
-
-<link rel="stylesheet" href="css/rays/rays.css" type="text/css">
-
-
-<link href="css/quiz/reset.css" media="screen" rel="stylesheet" type="text/css">
-<link href="css/quiz/slickQuiz.css" media="screen" rel="stylesheet" type="text/css">
-<link href="css/quiz/master.css" media="screen" rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="css/quiz/custom.css" type="text/css">
-<link rel="stylesheet" href="css/animate/animate.css" type="text/css">
-
-
-<link rel="stylesheet" href="css/parallax-star-background-in-css/stars.css" type="text/css">
-
-<script src="vendor/jquery-1.7.min.js"></script>
-<script>
-var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
-
-</script>
+<script src="quizgame/quiz/js/jquery-1.7.min.js"></script>
 
 <!-- Path to your app js-->
   <script type="text/javascript" src="js/framework7/framework7.min.js"></script>
@@ -32,7 +30,10 @@ var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzqui
 <body id="slickQuiz">
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 	<div class="" id="fizzquizzA">
-
+		<!--<div id='stars' class="star-anim" style="z-index: 0;"></div>
+		<div id='stars2' class="star-anim" style="z-index: 0;"></div>
+		<div id='stars3' class="star-anim" style="z-index: 0;"></div>-->
+		<!--<div class="is-active" id="fixed-tab-home">-->
 			<div id="raysDemoHolder" class="raysDemo animated fadeInUpBig quiz" style="width: 250px; height: 250px; margin: 20% auto;">
 				<img id="raysLogo" class="icon animated fadeInUpBig options fast" style="height:250px;" src="img/coke-bottle-real3.png">
 				<div id="rays"></div>
@@ -57,7 +58,45 @@ var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzqui
 							<!-- where the quiz ranking level goes -->
 						</h2>
 						<span></span>
+						<script>
+							//var score_bottle = $("#score_bottle").val(overallScore);
+							//   var attempts = 0;
+							var media_id = "102516";
+							var attempts = localStorage.getItem("attempts");
 
+							$(".startQuiz").on("click", function () {
+							    //var set = "S1121016";
+
+							    attempts++;
+							    //attempts = localStorage.getItem("attempts");
+							    localStorage.setItem("attempts", attempts);
+
+
+							    var datefrom = localStorage.getItem("dateFrString");
+							    var user = localStorage.getItem("userlogin");
+							    var user_id = localStorage.getItem("user_id");
+
+							    var area = localStorage.getItem("user_area");
+							    var division = localStorage.getItem("user_division");
+							    var divisions = division;
+							    var aunit = localStorage.getItem("user_aunit");
+
+							    $("#area").val(area);
+							    $("#aunit").val(aunit);
+							    $("#datefrom").val(datefrom);
+							    $("#divisions").val(divisions);
+							    $("#user_id").val(user_id);
+
+							    $("#attempts").val(attempts);
+									localStorage.setItem("bottomBar", 'block');
+								alert(bottomBar);
+
+
+							    console.log("scored");
+							});
+
+
+						</script>
 
 
 
@@ -82,12 +121,121 @@ var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzqui
 		</div>
 	</div>
 </div>
+<script>
+	function showQuestions() {
+		$("#raysDemoHolder").removeClass('fadeInUpBig');
+		$("#raysDemoHolder").addClass('fadeOut animated');
+		$("#raysDemoHolder").css('top', '-9999px');
+		setTimeout(function(){
+	$("#raysDemoHolder").hide();
+
+}, 600);
 
 
+	//	$("#raysDemoHolder").hide();
+
+	}
+		function post_score_new() {
+				myApp.showIndicator();
+		    var user_id =  $("#user_id").val();
+		    var datefromDynamic = $("#datefrom").val();
+		    var score_bottle = $("#score_bottle").val();
+		    var attempts = $("#attempts").val();
+
+		    var divisions = $("#divisions").val();
+		    var area = $("#area").val();
+		    var aunit = $("#aunit").val();
+
+
+		    console.log("Attempts", attempts);
+
+
+		    $.get(base_url + "/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/"  + divisions + "/" + aunit + "/" +  score_bottle, function ( data ) {
+
+
+		        if (data == 0) {
+							//	myApp.hideIndicator();
+		              myApp.alert("uh oh, try again.", alertTitle);
+		            // $("#update_0").show();
+		        } else if (data == 1) {
+		            attempts = 1;
+								myApp.hideIndicator();
+		            localStorage.setItem("attempts", attempts);
+		            myApp.alert("Score Recorded!", alertTitle);
+								localStorage.setItem("bottomBar", 'show');
+		            console.log("score recorded");
+								$(".toolbar.bottom").show();
+								bottomBarShow();
+		          //  localStorage.removeItem("QuizData");
+		           // window.location.replace("index.html");
+							  // mainView.router.load();
+
+
+
+		        }
+
+		        else {
+
+						$.get(base_url +"/user_results_new/update/" + user_id + "/" + datefromDynamic + "/" + area + "/" + divisions + "/" + aunit + "/"  + score_bottle, function ( data ) {
+		                //$.post("http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/index.php/update/user", {username: username, password: password, fname: fname})
+										myApp.showIndicator();
+		                if (data == 0) {
+											//	myApp.hideIndicator();
+											//	myApp.alert("uh oh, try again", alertTitle);
+		                    alert("uh oh, try again.");
+		                    // $("#update_0").show();
+		                } else if (data == 1) {
+										//	myApp.hideIndicator();
+		                    myApp.alert("Score Updated", alertTitle);
+		                    attempts++;
+		                    localStorage.setItem("attempts", attempts);
+		                    console.log("score updated");
+
+													bottomBarShow();
+														$(".toolbar.bottom").show();
+		                    // navigator.notification.alert("score updated");
+		                //    window.location.replace("index.html");
+		                    //$("#pop-alert").hide();
+
+											//	mainView.router.load();
+
+		                }
+		            });
+		        }
+
+		        localStorage.setItem("recent_quiz", datefromDynamic);
+		//        goto_home();
+
+		    });
+		}
+	</script>
+
+
+	<script>
+	var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
+
+		pullFreshQuizItems();
+		var Quizes = localStorage.getItem("QuizData");
+		document.writeln("<script>");
+		document.writeln(Quizes);
+		document.writeln("<"+"/script>");
+	</script>
 	<script src="js/slickquiz.js"></script>
 
+	<script>
+		$(function () {
+		    $("#slickQuiz").slickQuiz();
 
+		});
+		//loaderSpin();
 
+	/*
+		function loadQuestionItems() {
+		$("#raysDemoHolder").hide();
+		}
+	*/
+
+	</script>
 	<script src="quizgame/js/master.js"></script>
 	<script src="quizgame/js/actions.js"></script>
 </body>
