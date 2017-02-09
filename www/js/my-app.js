@@ -462,7 +462,7 @@ function log_out() {
     mainView.router.load({
         template: Template7.templates.index
 
-    })
+    });
     LoggedOutButtons();
 
 }
@@ -894,6 +894,44 @@ function goto_home() {
 }
 
 
+
+
+// Dummy Content
+var songs = ['Yellow Submarine', 'Don\'t Stop Me Now', 'Billie Jean', 'Californication'];
+var authors = ['Beatles', 'Queen', 'Michael Jackson', 'Red Hot Chili Peppers'];
+
+// Pull to refresh content
+var ptrContent = $$('.pull-to-refresh-content');
+
+// Add 'refresh' listener on it
+ptrContent.on('ptr:refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+        // Random image
+        var picURL = 'http://hhhhold.com/88/d/jpg?' + Math.round(Math.random() * 100);
+        // Random song
+        var song = songs[Math.floor(Math.random() * songs.length)];
+        // Random author
+        var author = authors[Math.floor(Math.random() * authors.length)];
+        // List item html
+        var itemHTML = '<li class="item-content">' +
+            '<div class="item-media"><img src="' + picURL + '" width="44"/></div>' +
+            '<div class="item-inner">' +
+            '<div class="item-title-row">' +
+            '<div class="item-title">' + song + '</div>' +
+            '</div>' +
+            '<div class="item-subtitle">' + author + '</div>' +
+            '</div>' +
+            '</li>';
+        // Prepend new list element
+        ptrContent.find('ul').prepend(itemHTML);
+        // When loading done, we need to reset it
+        myApp.pullToRefreshDone();
+    }, 2000);
+});
+
+
+
 /*
 function loadQuestionItems() {
     $$("#raysDemoHolder").toggleClass('hidden');
@@ -1280,8 +1318,12 @@ function scanIfQuizAvailable() {
                           function goToStart() {
 
                           		setTimeout(function(){
+                                    myApp.showIndicator();
                                     $$('#welcome').addClass('cached');
-                          }, 300);
+                                    initApp();
+
+                          }, 3000);
+                              myApp.hideIndicator();
                               mainView.router.load('#index');
                           $$('#welcome').removeClass('cached');
 
@@ -1335,8 +1377,9 @@ function scanIfQuizAvailable() {
                             context: {
                                 //name: username
                             }
-                        });
 
+                        });
+                        initApp();
                     }, 3000);
 
 
