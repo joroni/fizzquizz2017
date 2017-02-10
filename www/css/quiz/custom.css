@@ -592,7 +592,7 @@ text-align: center;
 padding: 10px;
 }
 a#sendScore {
-background: none !important;
+background: nine !important;
 color:red !important;
 font-size: 1.2em;
 }
@@ -631,14 +631,14 @@ line-height:22px !important;
 }
 .button:hover {
 color: #d10000 !important;
-background-color: rgba(209,0,0,0.1) !important;
+background-color: rgba(209,0,0,0) !important;
 border: 0px solid #d10000 !important;
 }
 ol.questions {
 margin-top:-20px !important;
 }
 #fizzquizz {
-top:40px;
+top:-20px;
 }
 .answerResult {
 margin: 0 auto;
@@ -784,12 +784,12 @@ background-size: cover;
 border: 1px solid rgba(0, 0, 0, 0.1);
 border-radius: 50%;
 display: inline-block;
-height:100px;
+height:40px;
 left: auto;
 color: transparent;
 margin-bottom: 10px;
 position: relative;
-width: 100px;
+width: 40px;
 }
 #profile-content h3 span#fnames {
 float: left;
@@ -907,12 +907,12 @@ color: rgb(255,255,255);
 padding: 0 !important;
 width: 100% !important;
 }
-/*#btnCancel, #btnUpdate {
+#btnCancel, #btnUpdate {
 background: rgb(209,0,0);
 color: rgb(255,255,255);
 
 width: 100% !important;
-}*/
+}
 input[readonly] {
 color: #999;
 text-transform: capitalize;

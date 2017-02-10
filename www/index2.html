@@ -35,11 +35,15 @@
 
       <link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
       <style type="text/css">
-      #defaultCountdown { width: auto; height: 45px; border: none; right:0;}
+
       #defaultCountdown .countdown-section:nth-child(2), #defaultCountdown .countdown-section:nth-child(1) {
         display: none;
       }
-
+      #defaultCountdown {
+        width: auto;
+        right:0px;
+         height: 45px; border: none;
+      }
 
       #defaultCountdown .countdown-section .countdown-period {
         text-align: center;
@@ -51,16 +55,6 @@
 
       </style>
 
-      <script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
-
-
-
-<script>
-   mySlickQuiz();
-
-     $('#slickQuiz').slickQuiz();
-     $('#defaultCountdown').prepend('You may skip in:');
-</script>
       <!--
          -->
       <!--<link rel="stylesheet" href="quizgame/quiz/css/custom.css" type="text/css">
@@ -88,7 +82,7 @@
          <div class="list-block no-margin">
             <ul>
                <li>
-                  <a href="#welcome" id="homeButton" class="item-link close-panel">
+                  <a href="#welcomeTemplate" class="item-link close-panel">
                      <div class="item-content">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
@@ -185,7 +179,7 @@
             <div class="center sliding">Register</div>
          </div>
          <!-- Navbar inner for Login page-->
-         <div data-page="auth" class="navbar-inner cached">
+         <div data-page="form" class="navbar-inner cached">
             <div class="left sliding"><a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a></div>
             <div class="center sliding">Login</div>
          </div>
@@ -238,7 +232,7 @@
                         </a>
                      </li>
                      <li>
-                        <a href="#auth" class="login-button item-link">
+                        <a href="#form" class="login-button item-link">
                            <div class="item-content">
                               <div class="item-inner">
                                  <div class="item-title">Login</div>
@@ -246,7 +240,7 @@
                            </div>
                         </a>
                      </li>
-                  <!--   <li>
+                     <li>
                         <a href="#index" onclick="log_out();" class="logout-button item-link">
                            <div class="item-content">
                               <div class="item-inner">
@@ -254,7 +248,7 @@
                               </div>
                            </div>
                         </a>
-                     </li>-->
+                     </li>
 
                   </ul>
                </div>
@@ -333,6 +327,9 @@
                      <script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
                      <script>
                         mySlickQuiz();
+                        //	 scanIfQuizAvailable();
+
+                        //		pullFreshQuizItems();
 
                         var Quizes = localStorage.getItem("QuizData");
                         document.writeln("<script>");
@@ -372,12 +369,12 @@
             			</div>
             		</li>
             	<li>
-            <!--  	<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:none; font-weight:700;"></a>
+            	<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:none; font-weight:700;"></a>
 
-          						<a href="#quiz" id="getStarted2" onclick="loadPages();" data-popup=".message-popup" class="button open-popup with-animation" style="color:#d10000; display:none; font-weight:700;"></a>-->
+            <!--						<a href="#quiz" id="getStarted2" onclick="loadPages();" data-popup=".message-popup" class="button open-popup with-animation" style="color:#d10000; display:none; font-weight:700;"></a>-->
 
-            <!--		<a href="#quiz" id="getStarted2" class="button"  style="color:#fff; display:none; font-weight:700;"><span class="animated-icon"></span></a>
-            		<div id="getStarted3" style="display:none; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>-->
+            <!--		<a href="#quiz" id="getStarted2" class="button"  style="color:#fff; display:none; font-weight:700;"><span class="animated-icon"></span></a>-->
+            		<div id="getStarted3" style="display:none; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>
 
             <!--  <a href="#index" onclick="log_out();" class="logout-button item-link">Logout</a>-->
             		</li>
@@ -576,7 +573,7 @@
             </div>
          </div>
          <!-- Form Page-->
-         <div data-page="auth" class="page cached">
+         <div data-page="form" class="page cached">
             <div class="page-content">
                <div class="content-block">
                   <p>
@@ -745,136 +742,62 @@
             <div data-page="profile-edit" class="page cached">
                <div class="page-content">
                   <div id="editmyProfile" class="content-block centered">
-
-                    <div id="editmyProfile" class="list-block">
-                       <ul>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">lock</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-->
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield readonly">
-                                        <input class="mdl-textfield__input" readonly type="text" id="username">
-                                        <label class="mdl-textfield__label" for="username"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-->
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="password" id="password">
-                                        <label class="mdl-textfield__label" for="password"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-->
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="firstname">
-                                        <label class="mdl-textfield__label" for="firstname"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-->
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="lastname">
-                                        <label class="mdl-textfield__label" for="lastname"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">lock</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-->
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield readonly">
-                                        <input class="mdl-textfield__input" readonly type="text" id="email">
-                                        <label class="mdl-textfield__label" for="email"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                      <!--    <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   --<div class="item-title label">Username</div>-
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield readonly">
-                                        <input class="mdl-textfield__input" type="text" readonly id="division">
-                                        <label class="mdl-textfield__label" for="division"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield readonly">
-                                        <input class="mdl-textfield__input" type="text" readonly id="unit">
-                                        <label class="mdl-textfield__label" for="unit"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>
-                          <li>
-                             <div class="item-content">
-                                <div class="item-media"><em class="f7-icons">person</em></div>
-                                <div class="item-inner">
-                                   <!--<div class="item-title label">Username</div>-
-                                   <div class="item-input">
-                                     <div class="mdl-textfield mdl-js-textfield readonly">
-                                        <input class="mdl-textfield__input" readonly type="text" id="area">
-                                        <label class="mdl-textfield__label" for="area"></label>
-                                     </div>
-                                   </div>
-                                </div>
-                             </div>
-                          </li>-->
-                        </ul>
-                        <div class="content-block">
-                           <div class="row">
-                              <div class="col-50">
-                                 <a href="#" class="button button-big red back link">Cancel</a>
-                              </div>
-                              <div class="col-50">
-                                 <a href="#"  id="btnUpdate" onclick="update_user();"  class="button button-big red">Update</a>
-                              </div>
+                     <div class="item-title">Profile Edit</div>
+                     <div class="mdl-textfield mdl-js-textfield readonly">
+                        <input class="mdl-textfield__input" readonly type="text" id="username">
+                        <label class="mdl-textfield__label" for="username"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="password" id="password">
+                        <label class="mdl-textfield__label" for="password"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="firstname">
+                        <label class="mdl-textfield__label" for="firstname"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="lastname">
+                        <label class="mdl-textfield__label" for="lastname"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield readonly">
+                        <input class="mdl-textfield__input" readonly type="text" id="email">
+                        <label class="mdl-textfield__label" for="email"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield readonly">
+                        <input class="mdl-textfield__input" type="text" readonly id="division">
+                        <label class="mdl-textfield__label" for="division"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield readonly">
+                        <input class="mdl-textfield__input" type="text" readonly id="unit">
+                        <label class="mdl-textfield__label" for="unit"></label>
+                     </div>
+                     <div class="mdl-textfield mdl-js-textfield readonly">
+                        <input class="mdl-textfield__input" readonly type="text" id="area">
+                        <label class="mdl-textfield__label" for="area"></label>
+                     </div>
+                     <div style='clear:both;'></div>
+                     <div id="update_1" style="display:none; width: 100%; color: lawngreen;">Update Successful</div>
+                     <div id="update_0" style="display:none;">Something wrong happen. Please Try again.</div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="col-md-6" style="float: left;">
+                              <button id="btnCancel" type='button'
+                                 class="mdl-layout__tab mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                                 onclick="update_cancel();">
+                              Cancel
+                              </button>
+                           </div>
+                           <div class="col-md-6" style="float:left;">
+                              <button id="btnUpdate" type='button'
+                                 class="mdl-layout__tab mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                                 onclick="update_user();">
+                              Update
+                              </button>
                            </div>
                         </div>
-                      </div>
+                     </div>
                   </div>
-                </div>
+               </div>
             </div>
             <!-- Leader Board Page-->
             <div data-page="leaderboard" class="page cached">
@@ -902,31 +825,99 @@
                   </div>
                </div>
             </div>
-
-
-
-
             <!-- Messages Board Page-->
             <div data-page="messages" class="page cached">
-                  <div class="page-content">
-                      <script>
-                          // var MediaLists = localStorage.getItem('MediaList');
-                          var MediaLists = localStorage.getItem('TemMediaLists');
-
-                      </script>
-                      <!-- Media list block has additional "media-list" class -->
-                      <div class="list-block virtual-list">
-                              <ul class="message-videos">
-                                  <li></li>
-
-                              </ul>
-                      </div>
+               <div class="page-content">
+                  <script>
+                     var MediaLists = localStorage.getItem('MediaList');
 
 
-
-
+                  </script>
+                  <!-- Media list block has additional "media-list" class -->
+                  <div class="list-block media-list">
+                     <ul>
+                     </ul>
                   </div>
-              </div>
+                  <!--
+                     <div class="content-block-title">Songs</div>
+                     <div class="list-block media-list">
+                     <ul>
+                     <li>
+                     <a href="#" class="item-link item-content">
+                     <div class="item-media"><img src="..." width="80"></div>
+                     <div class="item-inner">
+                     <div class="item-title-row">
+                     <div class="item-title">Yellow Submarine</div>
+                     <div class="item-after">$15</div>
+                     </div>
+                     <div class="item-subtitle">Beatles</div>
+                     <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                     </div>
+                     </a>
+                     </li>
+                     ...
+                     </ul>
+                     </div>
+
+                     			<div class="content-block-title">Mail App</div>
+                     			<div class="list-block media-list">
+                     			<ul>
+                     				<li>
+                     					<a href="#" class="item-link item-content">
+                     						<div class="item-inner">
+                     							<div class="item-title-row">
+                     								<div class="item-title">Facebook</div>
+                     								<div class="item-after">17:14</div>
+                     							</div>
+                     							<div class="item-subtitle">New messages from John Doe</div>
+                     							<div class="item-text">Lorem ipsum dolor sit amet...</div>
+                     						</div>
+                     					</a>
+                     				</li>
+                     				...
+
+                     			</ul>
+                     			</div>
+
+                     			<div class="content-block-title">Something more simple</div>
+                     			<div class="list-block media-list">
+                     			<ul>
+                     				<li>
+                     					<div class="item-content">
+                     						<div class="item-media"><img src="..." width="44"></div>
+                     						<div class="item-inner">
+                     							<div class="item-title-row">
+                     								<div class="item-title">Yellow Submarine</div>
+                     							</div>
+                     							<div class="item-subtitle">Beatles</div>
+                     						</div>
+                     					</div>
+                     				</li>
+                     				...
+                     			</ul>
+                     			</div>
+
+                     			<div class="content-block-title">Inset</div>
+                     			<div class="list-block media-list inset">
+                     			<ul>
+                     				<li>
+                     					<a href="#" class="item-link item-content">
+                     						<div class="item-media"><img src="..." width="44"></div>
+                     						<div class="item-inner">
+                     							<div class="item-title-row">
+                     								<div class="item-title">Yellow Submarine</div>
+                     							</div>
+                     							<div class="item-subtitle">Beatles</div>
+                     						</div>
+                     					</a>
+                     				</li>
+                     				...
+                     			</ul>
+                     			</div>
+
+                     -->
+               </div>
+            </div>
 
 
 
@@ -938,12 +929,18 @@
 
 
 
+
+            <!-- Toolbar has additional "toolbar-bottom" class
+            <div class="toolbar toolbar-bottom">
+              <div class="toolbar-inner">
+                <a href="#welcome" class="link">Play</a>
+                <a href="#about" class="link">Canel</a>
 
             </div>
             </div>
 
 
-
+-->
       </div>
 
       <!-- Path to Framework7 Library JS-->
@@ -952,21 +949,8 @@
       <script type="text/javascript" src="js/my-app.js"></script>
 
    <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
-      <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
+  <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
-<!--
-<script>
-
-var insertZero = n => n < 10 ? "0"+n : ""+n,
-   displayTime = n => n ? time.textContent = insertZero(~~(n/3600)%3600) + ":" +
-                                             insertZero(~~(n/60)%60) + ":" +
-                                             insertZero(n%60): time.textContent = "IGNITION..!",
-                                             countDownFrom = n => (displayTime(n),
-                                             setTimeout(_ => n ? sid = countDownFrom(--n): displayTime(n), 1000)),sid;
-                                             countDownFrom(3610);setTimeout(_ => clearTimeout(sid),20005);
-
-
-</script>-->
       <!--<script type="text/javascript" src="js/quizinfo.js"></script>-->
       <!--  <script type="text/javascript">
          $$.validator.setDefaults( {

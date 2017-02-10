@@ -1,25 +1,16 @@
-<body class="minimum">
+<head>
   <link href="vendor/videojs/video-js.css" rel="stylesheet">
 
   <!-- If you'd like to support IE8 -->
   <script src="vendor/videojs/videojs-ie8.min.js"></script>
-
-
   <style>
   .video-js {
     background-color:transparent !important;
-     position: relative !important;
-      margin-top: 25%;
   }
-      body.minimum {
-          height: auto !important;
-      }
-
-  
   </style>
 
 
-  <video id="my-video" class="video-js" controls preload="auto" autoplay="true" style="width:100%; min-height: 240px; height:auto; overflow: hidden;"
+  <video id="my-video" class="video-js" controls preload="auto" autoplay="true" style="width:100%; height: 100%"
   poster="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/poster.jpg" data-setup="{}">
     <source src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/freeseaturtleswimming.mp4" type='video/mp4'>
     <source src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/freeseaturtleswimming.webm" type='video/webm'>
