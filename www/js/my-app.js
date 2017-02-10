@@ -1183,10 +1183,45 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
 
-    function messagesList() {
+
+        function messagesList() {
+
+          $.getJSON(base_url + '/getvideo/list', function(results) {
+
+              $.each(results, function(i, fields) {
+                  var poser = 'poster.jpg';
+                  $('ul.message-videos').append('<li>'+
+                      '<a class="item-link item-content" href="'+ base_url +'/getvideo/list/messages'+ fields.video +'">'+
+                      '<div class="item-media">'+
+                      '<img width="80" src="'+base_url +'/app/views/media/'+ poser +'">'+
+                      '</div>'+
+                      '<div class="item-inner">'+
+                      '<div class="item-title-row">'+
+                      '<div class="item-title"> '+ fields.name +' </div>'+
+                      '<div class="item-after">'+ fields.id +' </div>'+
+                      '</div>'+
+                      '<div class="item-subtitle"> '+ fields.timestamp +'</div>'+
+                      '<div class="item-text">'+ fields.text + '</div>'+
+                      '</div>'+
+                      '</a>'+
+                      '</li>');
 
 
-    }
+
+                  /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
+                  $("#output2").append("<li> " + fields.datefrom + " </li>");
+
+                  var checkLQuiz = $("#output2 li:nth-child(1)").text();
+                  console.log("checkLQuiz", checkLQuiz);
+                  localStorage.setItem('checkLQuiz', checkLQuiz);
+
+
+
+              });
+          });
+
+
+      }
 
 
     function showQuestions() {
@@ -1409,4 +1444,3 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
     myApp.hideIndicator();
-
