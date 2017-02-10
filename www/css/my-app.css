@@ -23,8 +23,8 @@ a.editProfile.red {
 #defaultCountdown, #time{
   position: fixed;
   z-index: 200000;
-  top: 50px;
-  right:23px !important;
+  top: 0;
+  right:0 !important;
   background: #000;
   color: #fff;
   padding: 0 10px !important;

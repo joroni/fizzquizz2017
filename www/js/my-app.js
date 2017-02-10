@@ -847,10 +847,10 @@ function validateMyTurn() {
         localStorage.setItem("dateToString", result.date_expire);
         var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
         var checkLastQuiz = localStorage.getItem("checkLQuiz").replace(/-/g,'');
-       // var resultCheck = checkLastQuiz - dateFrStringVerify;
+        var resultCheck = checkLastQuiz - dateFrStringVerify;
         console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
 
-        if (checkLastQuiz === dateFrStringVerify) {
+        if (resultCheck === 0) {
 
           console.log("NO UPDATES YET.");
 	         $$('.simple-list li:last-child').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
@@ -977,7 +977,7 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
 //pullFreshQuizItems();
-
+/*
     function playMessage() {
         function onDeviceReady() {
 
@@ -998,7 +998,7 @@ ptrContent.on('ptr:refresh', function (e) {
             });
         }
     }
-
+*/
     /*function runScanProfile(){
 
      myProfile();
@@ -1259,39 +1259,6 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
 
-    function showQuestions() {
-        $(".raysDemo").removeClass('fadeInUpBig');
-        $(".raysDemo").addClass('fadeOut animated');
-        $(".raysDemo").css('top', '-9999px');
-
-        function onDeviceReady() {
-
-            $.ajax({
-                url: base_url + "/getvideo/single",
-                dataType: "json",
-            }).success(function ( data ) {
-                for (i = 0; i < data.length; i++) {
-                    var videoFile = data[i]["video"];
-                    var nameFile = (data[i]["name"]);
-
-
-                    $(".popup-overlay").append("<video><source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'></video>");
-
-                    $("video").append("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
-                    console.log(nameFile);
-                    console.log(videoFile);
-                }
-
-            });
-        }
-
-
-        setTimeout(function () {
-            $(".raysDemo").hide();
-        }, 600);
-
-
-    }
 
 
     /*	$("li.question:last-child > .nextQuestion").on('click',function(){
@@ -1347,8 +1314,8 @@ ptrContent.on('ptr:refresh', function (e) {
 
                  }, 3000);*
                  myApp.hideIndicator();*/
-                mainView.router.load('#index');
-                window.location.reload();
+                mainView.router.load('#waiting');
+                //window.location.reload();
                 //$$('#welcome').removeClass('cached');
 
 

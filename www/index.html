@@ -200,7 +200,7 @@
 						<a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>
 					</div>
 				</div>
-				<div data-page="waiting" id="waitingna" class="navbar-inner cached">
+				<div data-page="waiting" id="waitingnav" class="navbar-inner cached">
 					<div class="left sliding">
 						<!--<a href="#" class="icon-only back link"><span><i class="f7-icons">left</i></span></a>-->
 					</div>
@@ -312,7 +312,7 @@
 
 
 
-
+                <script id="refresherTemplate" type="text/template7">
         <div data-page="refresher" class="page no-swipeback cached">
         			<div class="page-content">
         					<div class="content-block-title">Refresher Page</div>
@@ -337,7 +337,7 @@
                                 </div>
                               </li>
                             <li>
-                              <a href="#refresher"  id="checkforquiz"  class="button button-fill" style="color:#fff !important; background:limegreen !important; font-weight:700;">Look for Quiz</a>
+                              <a href="#"  id="checkforquiz"  class="button button-fill" style="color:#fff !important; background:limegreen !important; font-weight:700;">Look for Quiz</a>
                               </li>
                               <li class="status">
 
@@ -345,32 +345,17 @@
 
                               </li>
                             </ul>
-                          <!--<script>
 
-
-
-        										 $$( document ).ready( function () {
-        											 if (checkResults != 0) {
-        												 mainView.router.load({
-        													 template: Template7.templates.welcomeTemplate,
-        													 context: {
-        														 //name: username
-        													 }
-        												 });
-
-        										 }
-
-        										 });
-                           </script>-->
         							</div>
         						</div>
 
         					</div>
         				</div>
-
+                </script>
 
 
 				         <!-- Message Page-->
+                <script id="videosplashTemplate" type="text/template7">
 
 				  <div id="videosplash" data-page="videosplash" class="page no-swipeback cached">
 
@@ -400,7 +385,7 @@
 
 				                </div>
 
-
+</script>
 
 				<!-- About Page-->
 				<div id="about" data-page="about" class="page no-swipeback cached">
@@ -463,7 +448,7 @@
 																<div class="bottles scoring">BOTTLES</div>
 																<div id="endQuiBtn" style="padding-top: 35%;">
 																	 <br />
-																	 <a href="#index" onclick="post_score_new();" id="sendScore" class="send-score button button-big red" style="display:block;">Save</a>
+																	 <a href="#waitingnav" onclick="post_score_new();" id="sendScore" class="send-score button button-big red" style="display:block;">Save</a>
 																</div>
 														 </div>
 														 <!--</div>-->
@@ -501,18 +486,18 @@
 
 				<script id="welcomeTemplate" type="text/template7">
 					<div id="welcome" data-page="welcome" class="page no-swipeback cached">
+                        <div class="page-content">
 
 
 
 
 
+						<!--<div class="page-content pull-to-refresh-content">
 
-						<div class="page-content pull-to-refresh-content">
-              <div class="content-block-title">Welcome Page</div>
 							<div class="pull-to-refresh-layer">
 								<div class="preloader"></div>
 								<div class="pull-to-refresh-arrow"></div>
-							</div>
+							</div>-->
 						<div id='stars' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars2' class="star-anim" style="z-index: 0;"></div>
 						<div id='stars3' class="star-anim" style="z-index: 0;"></div>
@@ -550,13 +535,13 @@
 
 
 
-
+                <script id="waitingTemplate" type="text/template7">
 
 			<div data-page="waiting" class="page no-swipeback cached">
 						<div class="page-content">
 							<div class="content-block-title">
-                    <div id="getStarted3">SEE YOU ON THE NEXT ROUNDS...</div>
-              </div>
+                                <div id="getStarted3">SEE YOU ON THE NEXT ROUNDS...</div>
+                            </div>
 							<div class="content-block">
 								<ul class="icon-canada simple-list">
 
@@ -581,7 +566,7 @@
 						</div>
 					</div>
 
-
+</script>
 
 
 				<!-- Bottom Toolbar
