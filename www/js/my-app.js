@@ -501,13 +501,13 @@ function loadPages() {
 
 
   // END countdown
-
+/*
 
 
      var loc = "video-single.html";
      // document.getElementById("myFrame").setAttribute("src", loc);
      $$("#myFrame").attr("src", loc);
-
+*/
       $$("#bottomBtns, .toolbar.bottom").show();
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
@@ -1181,7 +1181,9 @@ ptrContent.on('ptr:refresh', function (e) {
 
           var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
           // document.getElementById("myFrame").setAttribute("src", loc);
-          $$("#myFrameLeaderBoard").attr("src", loc);
+        $$("#myFrameLeaderBoard").attr("src", loc);
+
+
 
            $$("#bottomBtns, .toolbar.bottom").show();
            $$(".raysDemo").removeClass('hidden');

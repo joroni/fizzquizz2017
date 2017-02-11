@@ -28,15 +28,7 @@
     <link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
     <link rel="stylesheet" href="css/rays/rays.css" type="text/css">
     <link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
-    <link href="vendor/videojs/video-js.css" rel="stylesheet">
-
-    <!-- If you'd like to support IE8 -->
-    <script src="vendor/videojs/videojs-ie8.min.js"></script>
-
-    <style type="text/css">
-    .video-js {
-      background-color:transparent !important;
-    }
+    <style>
         #defaultCountdown {
             width: auto;
             height: auto;
@@ -364,16 +356,33 @@
                 <script id="videosplashTemplate" type="text/template7">
                 <div id="videosplash" data-page="videosplash" class="page no-swipeback cached">
 
-                    <div class="page-content">
-                        <div class="content-block">
+                                              <div id='stars' class="star-anim" style="z-index: 0;"></div>
+                                              <div id='stars2' class="star-anim" style="z-index: 0;"></div>
+                                              <div id='stars3' class="star-anim" style="z-index: 0;"></div>
 
-                            <div class="wrapper" style="min-height:250px; margin-top:25%;">
-                                <div class="h_iframe">
+                    <div class="page-content" style="padding-top:0;">
+                        <div class="content-block" style="margin: auto;">
+
+                            <div class="wrapper" style="height:250px; margin-top:37.33%;">
+
+
+                                <video id="my-video" class="video-js vjs-user-inactive vjs-control-bar vjs-default-skin vjs-nofull" controls preload="yes" allowfullscreen="false"  autoplay="true" style="width:100%; height: a;"
+                                poster="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/poster.jpg" data-setup="{}">
+                                  <source src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/freeseaturtleswimming.mp4" type='video/mp4'>
+                                  <source src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/freeseaturtleswimming.webm" type='video/webm'>
+                                  <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                  </p>
+                                </video>
+
+
+                              <!--  <div class="h_iframe">-->
 
                                     <!-- a transparent image is preferable -->
                                     <!--	<img class="ratio" src="img/-text.png"/>-->
-                                    <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen="no"></iframe>
-                                </div>
+                                <!--    <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen="no"></iframe>
+                                </div>-->
                                 <!--	<p>Please scale the "result" window to notice the effect.</p>-->
                             </div>
 
@@ -390,7 +399,7 @@
                 <script id="welcomeTemplate" type="text/template7">
                     <div id="welcome" data-page="welcome" class="page no-swipeback cached">
 
-                        <div class="page-content pull-to-refresh-content">
+                        <div class="page-content">
 
                             <div id='stars' class="star-anim" style="z-index: 0;"></div>
                             <div id='stars2' class="star-anim" style="z-index: 0;"></div>
