@@ -21,6 +21,9 @@ a.editProfile.red {
 }
 
 
+ul.messageList {
+  height: auto !important;
+}
 #defaultCountdown, #time{
   position: fixed;
   z-index: 200000;
@@ -385,10 +388,10 @@ h2#redeemScore {
 
 
 .truncate {
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 200px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 #avatar, #avatar2, .profile-image {

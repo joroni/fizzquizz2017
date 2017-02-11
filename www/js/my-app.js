@@ -835,15 +835,31 @@ function myFunction() {
 }
 
 
+function loadAnim(){
+  $(".views").append("<div id='dots'>Hi</div>")
+        var dotCounter = 0;
+        (function addDot() {
+          setTimeout(function() {
+            if (dotCounter++ < 10) {
+              $('#dots').append('.');
+              addDot();
+            }
+          }, 1000);
+        })();
+        }
+
 /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
 function validateMyTurn() {
     //getInitQuizData
-
+    localStorage.removeItem("dateFrString");
+    localStorage.removeItem("dateToString");
 
     var myDivision2 = localStorage.getItem("user_division");
     $$.getJSON(base_url + "/jsonQuiz/" + myDivision2, function(result) {
         console.log("validateMyTurn | date_published", result.date_published);
         console.log("validateMyTurn | date_expire", result.date_expire);
+loadAnim();
+        localStorage.setItem("dateToString", result.date_expire);
         localStorage.setItem("dateFrString", result.date_published);
         localStorage.setItem("dateToString", result.date_expire);
         var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
@@ -1192,12 +1208,33 @@ ptrContent.on('ptr:refresh', function (e) {
             });
         }
     }*/
+    //var loc = video
+      //document.getElementById("myVideoList").setAttribute("src", loc);
+    //  $$("#myVideoList").attr("src", loc);
+    function messagesList() {
 
 
 
 
 
-  function messagesList() {
+      var loc =  base_url + "/getvideos";
+       document.getElementById("myFrameList").setAttribute("src", loc);
+       //$("#myFrameList").attr("src", loc);
+
+
+       mainView.router.load("#messages");
+      /*  mainView.router.load({
+            template: Template7.templates.videosplashTemplate,
+            context: {
+                //  name: username
+            }
+        });
+*/
+}
+
+
+
+  function messagesListSS() {
           myApp.showIndicator();
             $('ul.message-videos').empty();
 
@@ -1205,16 +1242,17 @@ ptrContent.on('ptr:refresh', function (e) {
 
               $.each(results, function(i, fields) {
                   var poser = 'poster.jpg';
-                  var videoLink = 'http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/';
+                  //var videoLink = 'http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/';
 
-                  $('ul.message-videos').append('<div class="popup popup-message-videos">'+
+                  $('ul.message-videos').append(
+                    '<div class="popup popup-message-videos">'+
                       '<div class="content-block">'+
                         '<p><a href="#" class="close-popup">Close popup</a></p>'+
                         '<div class="videopop">'+
 
 
                           '<video id="my-video" class="video-js" controls preload="auto" autoplay="true" style="width:100%; height: 100%" poster="img/poster.jpg" data-setup="{}">'+
-                          '<source src= '+ videoLink +'/'+ fields.video +'" type="video/mp4">'+
+                          '<source src= "'+ fields.video +'" type="video/mp4">'+
                             '<p class="vjs-no-js">'+
                               'To view this video please enable JavaScript, and consider upgrading to a web browser that'+
                               '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+

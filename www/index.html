@@ -38,7 +38,9 @@
             width: auto;
             height: auto;
             border: none;
-            right: 0;
+            top:15px;
+            position: fixed;
+            right: 0px !important;
         }
 
         #defaultCountdown .countdown-section:nth-child(2),
@@ -357,13 +359,13 @@
                 </div>
 
                 <!-- Message Page-->
-
+                <script id="videosplashTemplate" type="text/template7">
                 <div id="videosplash" data-page="videosplash" class="page no-swipeback cached">
 
                     <div class="page-content">
                         <div class="content-block">
 
-                            <div class="wrapper">
+                            <div class="wrapper" style="min-height:250px; margin-top:25%;">
                                 <div class="h_iframe">
 
                                     <!-- a transparent image is preferable -->
@@ -379,7 +381,7 @@
                     </div>
 
                 </div>
-
+              </script>
                 <!-- Quiz Game Page-->
                 <div id="quizgame" data-page="quizgame" class="page no-swipeback cached">
                     <div class="page-content">
@@ -404,6 +406,27 @@
                                         <!--  <div id="animated-img" class="animated fadeInUpBig options fast"> -->
                                         <div id="fizzquizz" class="page-content" style="padding: 40px 5px 0 5px !important;">
                                             <input name="questions" id="cand" type="hidden" />
+
+
+                                            <script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
+                                            <script>
+                                                mySlickQuiz();
+
+                                                $(function() {
+                                                    $('#slickQuiz').slickQuiz();
+                                                });
+
+
+                                                loadQuestionItems();
+                                                function loadQuestionItems() {
+
+                                                var Quizes = localStorage.getItem("QuizData");
+                                                document.writeln("<script>");
+                                                document.writeln(Quizes);
+                                                document.writeln("<" + "/script>");
+
+                                                }
+                                            </script>
                                             <div class="quizArea options fast">
                                                 <a href="#" id="playQuiz" onclick="showQuestions();" class="play-quiz button button-big red startQuiz" style="display:block;">Play</a>
                                                 <!-- where the quiz gets built -->
@@ -443,19 +466,7 @@
                                     </div>
                                 </div>
                                 <!-- <script src="js/master.js"></script>-->
-                                <script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
-                                <script>
-                                    mySlickQuiz();
 
-                                    $(function() {
-                                        $('#slickQuiz').slickQuiz();
-                                    });
-
-                                    var Quizes = localStorage.getItem("QuizData");
-                                    document.writeln("<script>");
-                                    document.writeln(Quizes);
-                                    document.writeln("<" + "/script>");
-                                </script>
 
                                 <!-- <script src="js/actions.js"></script>-->
                             </div>
@@ -760,7 +771,7 @@
                 <!-- Leader Board Page-->
                 <div data-page="leaderboard" class="page no-swipeback cached">
                     <div class="page-content">
-                        <div id="videoList" class="content-block">
+                        <div class="content-block">
                             <p>
                                 In order to go back to main page, you can click <strong>Back</strong> button on the left side of Top menu.
                                 <br /> Or simply use this link to <a href="#" class="back link">go back</a>.
@@ -780,21 +791,20 @@
                 <div data-page="messages" class="page cached">
                     <div class="page-content">
 
-                        <script>
-                            // var MediaLists = localStorage.getItem('MediaList');
-                            var MediaLists = localStorage.getItem('TemMediaLists');
-                        </script>
-                        <!-- Media list block has additional "media-list" class -->
 
-                        <div class="list-block virtual-list">
-                            <ul class="message-videos">
+                      <div class="wrapper" style="min-height:250px; margin-top:25%;">
+                          <div class="h_iframe">
 
-                            </ul>
-                        </div>
+                            
+                              <iframe id="myFrameList" style="min-height:200px; width:100%;" margin="0" src="" frameborder="0" allowfullscreen="no"></iframe>
+                          </div>
+                          <!--	<p>Please scale the "result" window to notice the effect.</p>-->
+                      </div>
+
+
 
                     </div>
                 </div>
-
 
 
 
