@@ -480,7 +480,7 @@ function LoggedOutButtons() {
     $$('.login-button, .register-button').show();
     $$('.logout-button').hide();
     $$('.right > a').hide();
-    $$('#welcomenav').addClass('cached');
+  //  $$('#welcomenav').addClass('cached');
 }
 
 function loadPages() {
