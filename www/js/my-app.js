@@ -1177,17 +1177,19 @@ ptrContent.on('ptr:refresh', function (e) {
     function leaderBoard() {
 
 
-          /*  $(document).ready(function(){
+         $(document).ready(function(){
 
+          var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
+          // document.getElementById("myFrame").setAttribute("src", loc);
+          $$("#myFrameLeaderBoard").attr("src", loc);
 
-                $.post( base_url + "/getvideo")
-                        .done(function( data ) {
-                            $('.page').html(data);
-                        });
+           $$("#bottomBtns, .toolbar.bottom").show();
+           $$(".raysDemo").removeClass('hidden');
+           $$(".play-quiz").css('display', 'block !important');
 
 
               })
-*/
+
 
     }
 

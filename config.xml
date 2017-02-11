@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.coca-cola.ccr.fizzquizz"
-        version="1.0.17">
+        version="1.0.19">
     <name>Fizz Quizz</name>
     <description>Quiz Game App</description>
     <author href="http://phonegap.com" email="cosay@coca-cola.com">SDC Manila Team</author>
@@ -19,7 +19,7 @@
   <preference name="Fullscreen" value="true"/>
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="10000"/>
+  <preference name="SplashScreenDelay" value="50000"/>
 
 
 
