@@ -25,7 +25,15 @@
     <link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
     <link rel="stylesheet" href="css/rays/rays.css" type="text/css">
     <link rel="stylesheet" href="vendor/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
+    <link href="vendor/videojs/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 -->
+    <script src="vendor/videojs/videojs-ie8.min.js"></script>
+    
     <style type="text/css">
+    .video-js {
+      background-color:transparent !important;
+    }
         #defaultCountdown {
             width: auto;
             height: auto;
@@ -332,21 +340,7 @@
 
                                     </li>
                                 </ul>
-                                <!--<script>
 
-        										 $$( document ).ready( function () {
-        											 if (checkResults != 0) {
-        												 mainView.router.load({
-        													 template: Template7.templates.welcomeTemplate,
-        													 context: {
-        														 //name: username
-        													 }
-        												 });
-
-        										 }
-
-        										 });
-                           </script>-->
                             </div>
                         </div>
 
@@ -776,11 +770,13 @@
 
                 <div data-page="messages" class="page cached">
                     <div class="page-content">
+
                         <script>
                             // var MediaLists = localStorage.getItem('MediaList');
                             var MediaLists = localStorage.getItem('TemMediaLists');
                         </script>
                         <!-- Media list block has additional "media-list" class -->
+
                         <div class="list-block virtual-list">
                             <ul class="message-videos">
 
@@ -799,6 +795,8 @@
         </div>
 
     </div>
+
+    <script src="vendor/videojs/video.js"></script>
     <script type="text/javascript" src="js/framework7/framework7.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>

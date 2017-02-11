@@ -1157,7 +1157,7 @@ ptrContent.on('ptr:refresh', function (e) {
     function leaderBoard() {
 
 
-            $(document).ready(function(){
+          /*  $(document).ready(function(){
 
 
                 $.post( base_url + "/getvideo")
@@ -1167,12 +1167,12 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
               })
-
+*/
 
     }
 
 
-    function playMessage() {
+    /*function playMessage() {
         function onDeviceReady() {
 
             $.ajax({
@@ -1191,7 +1191,11 @@ ptrContent.on('ptr:refresh', function (e) {
 
             });
         }
-    }
+    }*/
+
+
+
+
 
   function messagesList() {
           myApp.showIndicator();
@@ -1201,8 +1205,30 @@ ptrContent.on('ptr:refresh', function (e) {
 
               $.each(results, function(i, fields) {
                   var poser = 'poster.jpg';
-                  $('ul.message-videos').append('<li>'+
-                      '<a class="item-link item-content" href="'+ base_url +'/app/views/media/'+ fields.video +'">'+
+                  var videoLink = 'http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/';
+
+                  $('ul.message-videos').append('<div class="popup popup-message-videos">'+
+                      '<div class="content-block">'+
+                        '<p><a href="#" class="close-popup">Close popup</a></p>'+
+                        '<div class="videopop">'+
+
+
+                          '<video id="my-video" class="video-js" controls preload="auto" autoplay="true" style="width:100%; height: 100%" poster="img/poster.jpg" data-setup="{}">'+
+                          '<source src= '+ videoLink +'/'+ fields.video +'" type="video/mp4">'+
+                            '<p class="vjs-no-js">'+
+                              'To view this video please enable JavaScript, and consider upgrading to a web browser that'+
+                              '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
+                            '</p>'+
+                          '</video>'+
+
+
+
+
+                        '</div>'+
+                      '</div>'+
+                    '</div>'+
+                      '<li>'+
+                      '<a class="item-link item-content" data-popup=".popup-message-video" class="open-popup" href="#">'+
                       '<div class="item-media">'+
                       '<img width="80" src="'+base_url +'/app/views/media/'+ poser +'">'+
                       '</div>'+
@@ -1216,7 +1242,7 @@ ptrContent.on('ptr:refresh', function (e) {
                       '</div>'+
                       '</a>'+
                       '</li>');
-
+                      $("video").html("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
 
 
 
