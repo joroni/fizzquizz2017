@@ -18,6 +18,9 @@ var mainView = myApp.addView('.view-main', {
 });
 
 
+
+
+
 function initApp(){
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
@@ -135,8 +138,8 @@ function check_storage() {
         LoggedInButtons();
         console.log('logged');
     //    runScanProfile();
-      //  scanIfQuizAvailable();
-        //validateMyTurn();
+        scanIfQuizAvailable();
+        validateMyTurn();
     } else {
         console.log('err');
 
@@ -465,6 +468,9 @@ function log_out() {
     LoggedOutButtons();
 
 }
+
+
+
 
 
 function LoggedInButtons() {
@@ -833,7 +839,7 @@ function myFunction() {
     $("#capturePhoto").hide();
     // window.location.replace("main.html");
 }
-
+/*
 
 function loadAnim(){
   $(".views").append("<div id='dots'>Hi</div>")
@@ -847,7 +853,7 @@ function loadAnim(){
           }, 1000);
         })();
         }
-
+*/
 /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
 function validateMyTurn() {
     //getInitQuizData
@@ -858,7 +864,7 @@ function validateMyTurn() {
     $$.getJSON(base_url + "/jsonQuiz/" + myDivision2, function(result) {
         console.log("validateMyTurn | date_published", result.date_published);
         console.log("validateMyTurn | date_expire", result.date_expire);
-loadAnim();
+//loadAnim();
         localStorage.setItem("dateToString", result.date_expire);
         localStorage.setItem("dateFrString", result.date_published);
         localStorage.setItem("dateToString", result.date_expire);
@@ -1215,14 +1221,22 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
 
-
+ mainView.router.load("#messages");
 
       var loc =  base_url + "/getvideos";
        document.getElementById("myFrameList").setAttribute("src", loc);
        //$("#myFrameList").attr("src", loc);
 
+       setTimeout(function () {
+            myApp.showIndicator();
+       }, 100);
 
-       mainView.router.load("#messages");
+
+       setTimeout(function () {
+            myApp.hideIndicator();
+       }, 4000);
+
+        // myApp.hideIndicator();
       /*  mainView.router.load({
             template: Template7.templates.videosplashTemplate,
             context: {
@@ -1230,66 +1244,9 @@ ptrContent.on('ptr:refresh', function (e) {
             }
         });
 */
+//  myApp.hideIndicator();
 }
 
-
-
-  function messagesListSS() {
-          myApp.showIndicator();
-            $('ul.message-videos').empty();
-
-          $.getJSON(base_url + '/getvideo/list', function(results) {
-
-              $.each(results, function(i, fields) {
-                  var poser = 'poster.jpg';
-                  //var videoLink = 'http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/';
-
-                  $('ul.message-videos').append(
-                    '<div class="popup popup-message-videos">'+
-                      '<div class="content-block">'+
-                        '<p><a href="#" class="close-popup">Close popup</a></p>'+
-                        '<div class="videopop">'+
-
-
-                          '<video id="my-video" class="video-js" controls preload="auto" autoplay="true" style="width:100%; height: 100%" poster="img/poster.jpg" data-setup="{}">'+
-                          '<source src= "'+ fields.video +'" type="video/mp4">'+
-                            '<p class="vjs-no-js">'+
-                              'To view this video please enable JavaScript, and consider upgrading to a web browser that'+
-                              '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
-                            '</p>'+
-                          '</video>'+
-
-
-
-
-                        '</div>'+
-                      '</div>'+
-                    '</div>'+
-                      '<li>'+
-                      '<a class="item-link item-content" data-popup=".popup-message-video" class="open-popup" href="#">'+
-                      '<div class="item-media">'+
-                      '<img width="80" src="'+base_url +'/app/views/media/'+ poser +'">'+
-                      '</div>'+
-                      '<div class="item-inner">'+
-                      '<div class="item-title-row">'+
-                      '<div class="item-title"> '+ fields.name +' </div>'+
-                      '<div class="item-after">'+ fields.timestamp +' </div>'+
-                      '<div class="item-text">'+ fields.text + '</div>'+
-                      '</div>'+
-                      //'<div class="item-subtitle">'+ fields.id +' </div>'+
-                      '</div>'+
-                      '</a>'+
-                      '</li>');
-                      $("video").html("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
-
-
-
-  myApp.hideIndicator();
-              });
-          });
-
-
-      }
 
 
     function showQuestions() {

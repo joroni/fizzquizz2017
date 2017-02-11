@@ -20,15 +20,11 @@ a.editProfile.red {
   right: -20px;
 }
 
-
-ul.messageList {
-  height: auto !important;
-}
 #defaultCountdown, #time{
   position: fixed;
   z-index: 200000;
-  top: 50px;
-  right:23px !important;
+  top: 0;
+  right:0 !important;
   background: #000;
   color: #fff;
   padding: 0 10px !important;
@@ -118,7 +114,10 @@ i.placeholder {
 }
 
 
+#checkforquiz {
+  color:#fff !important; background:limegreen !important; font-weight:700; margin:20px 0 !important; padding:10px 5px !important;
 
+}
 
 .page-content {
   overflow-x: hidden !important;
@@ -384,14 +383,6 @@ h2#redeemScore {
   margin: 0;
   padding:0;
   line-height: 0.5em;
-}
-
-
-.truncate {
-  width: 200px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
 }
 
 #avatar, #avatar2, .profile-image {
