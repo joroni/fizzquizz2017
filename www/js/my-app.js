@@ -421,7 +421,7 @@ function hideToolbar() {
 $(function() {
 
 
-    $$("#aunit,.regaunit").change(function() {
+    $$("#reg_aunit,.reg_aunit").change(function() {
 
         var $dropdown = $(this);
 
@@ -461,10 +461,8 @@ function log_out() {
     window.localStorage.clear();
 
 
-    mainView.router.load({
-        template: Template7.templates.index
+    mainView.router.load('#index');
 
-    });
     LoggedOutButtons();
 
 }
@@ -554,8 +552,8 @@ function register() {
     var fname = $('#reg_fname').val();
     var lname = $('#reg_lastname').val();
     var email = $('#reg_email').val();
-    var division = $('#division').val();
-    var aunit = $('#aunit').val();
+    var division = $('#reg_division').val();
+    var aunit = $('#reg_aunit').val();
     var area = $('#reg_area').val();
     var lang = $('#reg_lang').val();
 
@@ -591,7 +589,7 @@ function register() {
         }
         console.log('err empty field');
         myApp.hideIndicator();
-        myApp.alert('Fields should not be empty.');
+        myApp.alert('Fields should not be empty.', alertTitle);
     } else {
 
 
@@ -624,10 +622,10 @@ function register() {
                         $('#reg_email_err').show();
                     }
                     if (division == '') {
-                        $('#division_err').show();
+                        $('#reg_division_err').show();
                     }
                     if (aunit == '') {
-                        $('#aunit_err').show();
+                        $('#reg_aunit_err').show();
                     }
                     if (area == '') {
                         $('#reg_area_err').show();
@@ -636,7 +634,7 @@ function register() {
                         $('#reg_lang_err').show();
                     }
 
-                    myApp.alert('Fields should not be empty.');
+                    myApp.alert('Fields should not be empty.', alertTitle);
                     console.log('err empty field');
                 } else if (data == 1) {
                     //  localStorage.setItem("username", username);
@@ -658,7 +656,7 @@ function register() {
 
                 } else {
                     myApp.hideIndicator();
-                    myApp.alert(data + 'User Name is already taken.');
+                    myApp.alert(data + 'User Name is already taken.', alertTitle);
                     $('#reg_username').val('');
                     console.log('err');
                     return;
@@ -1467,5 +1465,99 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
     }
+
+
+
+
+
+
+
+
+    /******** SIGN UP ***********/
+
+
+
+
+
+    $.validator.setDefaults( {
+        submitHandler: function () {
+            myApp.alert( "Registration Successful!", alertTitle );
+        }
+    } );
+
+
+        $(document).ready(function () {
+            $("#signupForm").validate({
+                rules: {
+                    reg_username: {
+                        required: true
+                    },
+                    reg_fname: {
+                        required: true
+                    },
+                    reg_lastname: {
+                        required: true
+                    },
+                    reg_email: {
+                        required: true,
+                        email: true
+                    },
+                    division: {
+                        required: true
+                    },
+                    aunit: {
+                        required: true
+                    },
+                    reg_area:  {
+                        required: true
+                    }
+                },
+                messages: {
+
+                    reg_username: {
+                        required: "Please enter your KO ID."
+                    },
+                    reg_fname: {
+                        required: "Please enter your first name."
+                    },
+                    reg_lastname: {
+                        required: "Please enter your last name."
+                    },
+                    division: {
+                        required: "Please enter your division"
+                    },
+                    aunit: {
+                        required: "Please enter your unit"
+                    },
+                    reg_area:  {
+                        required: "Please enter your area"
+                    },
+
+                    reg_email: "Please enter a valid email address"
+                    // agree: "Please accept our policy"
+                },
+                /*  errorElement: "em",
+                 errorPlacement: function ( error, element ) {
+                 // Add the `help-block` class to the error element
+                 error.addClass("help-block");
+
+                 if (element.prop("type") === "checkbox") {
+                 error.insertAfter(element.parent("label"));
+                 } else {
+                 error.insertAfter(element);
+                 }
+                 },*/
+                highlight: function ( element, errorClass, validClass ) {
+                    $(element).parents(".mdl-textfield, .mdl-textfield__input, .mdl-select").addClass("has-error").removeClass("has-success");
+                },
+                unhighlight: function ( element, errorClass, validClass ) {
+                    $(element).parents(".mdl-textfield, .mdl-textfield__input, .mdl-select").addClass("has-success").removeClass("has-error");
+                }
+            })
+        });
+
+
+
+
 
     myApp.hideIndicator();
