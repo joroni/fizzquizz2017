@@ -8,10 +8,10 @@
 
 #myFrameQuiz         {min-height:540px; width: 100%; top:0;}
 html,body        {height:100%; width: 100%;}
-.wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
-.h_iframe        {position:relative;}
-.h_iframe .ratio {display:none;width:100%;height:100%;}
-.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
+#myFrameQuiz .wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
+#myFrameQuiz .h_iframe        {position:relative;}
+#myFrameQuiz .h_iframe .ratio {display:none;width:100%;height:100%;}
+#myFrameQuiz .h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
 
 
 a.editProfile.red {
@@ -241,7 +241,7 @@ body.message {
   width: 300px;
 }
 video#player {
-  height: 100%;
+  height: auto;
   margin: auto;
   max-width: 100%;
   min-width: 100%;

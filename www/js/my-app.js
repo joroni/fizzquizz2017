@@ -91,7 +91,7 @@ $('.view').append('<div class="toolbar bottom" style="display:'+bottomBar+';">'+
 */
 var base_url = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver";
 
-
+$(function(){
 function noNet(path, success, error) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -118,6 +118,9 @@ noNet(base_url + '/json.php',
         }
     }
 );
+
+
+});
 // END connection to server
 
 
@@ -506,30 +509,40 @@ function LoggedOutButtons() {
 }
 
 function loadPages() {
-  //  playMessage();
 
-     var loc = + base_url +'/app/views/media/teaser.html';
+  mainView.router.load({
+      template: Template7.templates.videosplashTemplate,
+      context: {
+          //  name: username
+      }
+  });
 
-  // START countdown
+                      $.ajax({
+                        url: "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/getvideo/single",
+                        dataType: "json",
+                    	}).success(function (data) {
+                    		for (i = 0; i < data.length; i++) {
+                    		var videoFile = data[i]["video"];
+                    		var nameFile = (data[i]["name"]);
 
-  // END countdown
+                    		$("video").append("<source src= '"+ base_url +'/app/views/media/' + videoFile + "'><meta property='og:video:secure_url' content='"+ videoFile + "' > <meta property='og:video:type' content='video/mp4'>" );
+                    		console.log(nameFile);
+                    		console.log(videoFile);
+                    		}
 
+                    });
 
+  document.getElementById('player').play();
     // var loc = "video-single.html";
      // document.getElementById("myFrame").setAttribute("src", loc);
-     $$("#myFrameVideoSplash").attr("src", loc);
+     //$$("#myFrameVideoSplash").attr("src", loc);
 
       $$("#bottomBtns, .toolbar.bottom").show();
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
 
 
-      mainView.router.load({
-          template: Template7.templates.videosplashTemplate,
-          context: {
-              //  name: username
-          }
-      });
+
       pullFreshQuizItems();
 
   /*   $.getJSON( base_url + "/getvideo/single", function(data) {
@@ -1402,7 +1415,7 @@ ptrContent.on('ptr:refresh', function (e) {
                 console.log("score recorded");
                 //$(".toolbar.bottom").show();
                 //bottomBarShow();
-                myApp.hideIndicator();
+
                 myApp.alert("Score Recorded!", alertTitle);
                 /*  goToStart();
 
@@ -1419,8 +1432,8 @@ ptrContent.on('ptr:refresh', function (e) {
                      template: Template7.templates.welcomeTemplate
 
                  });
-
-                window.location.reload();
+                 myApp.hideIndicator();
+                //window.location.reload();
                 //$$('#welcome').removeClass('cached');
 
 
