@@ -21,6 +21,9 @@ var mainView = myApp.addView('.view-main', {
 
 
 
+
+
+
 function initApp(){
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
@@ -273,11 +276,13 @@ function update_user() {
     // var privilege = $('#user_privilege').val();
 
     $.post(base_url + '/update/user', {
-            username: username,
-            password: password,
+            //username: username,
             fname: fname,
             lname: lname,
-            user_email: user_email
+            password: password
+
+            /*,
+            user_email: user_email*/
         })
 
         // $.post(base_url + '/update/user', {username: username, password: password})
@@ -286,10 +291,10 @@ function update_user() {
                 myApp.hideIndicator();
                 myApp.alert('Please try again.', alertTitle);
                // $('#update_0').show();
-
+               return false;
             } else if (data == 1) {
-                myApp.hideIndicator();
-                myApp.alert('Successfully Updated.', alertTitle);
+
+
                 //$('#update_1').show();
 
                 $('.profile-content').show();
@@ -302,8 +307,42 @@ function update_user() {
                 $('#user_lastname').text(lname);
                 $('#user_division').text(user_division);
                 $('#user_email').text(user_email);
+                myApp.hideIndicator();
+                myApp.alert('Successfully Updated.', alertTitle);
+                mainView.router.load({
+                    template: Template7.templates.welcomeTemplate
 
-                window.location.reload();
+                });
+
+
+
+if ($("li.status").children().length == 0)
+{
+     // no child
+     console.log('Validating Status...');
+     validateMyTurn();
+     mainView.router.load({
+         template: Template7.templates.welcomeTemplate
+
+     });
+}
+
+
+
+if ($("ol.status").children().length == 0)
+{
+     // no child
+     console.log('Validating Status...');
+     validateMyTurn();
+     mainView.router.load({
+         template: Template7.templates.welcomeTemplate
+
+     });
+}
+
+
+
+                //window.location.reload();
             }
         });
 
@@ -488,26 +527,19 @@ function LoggedOutButtons() {
 }
 
 function loadPages() {
+  //  playMessage();
 
-    pullFreshQuizItems();
-  //   var loc = base_url+"/app/views/media/teaser.html?callback=onDeviceReady();";
+     var loc = + base_url +'/app/views/media/teaser.html';
 
   // START countdown
 
-
-
-  $$('.view').append('<div id="defaultCountdown" class="timer"></div>');
-  messageTimer();
-
-
   // END countdown
-/*
 
 
-     var loc = "video-single.html";
+    // var loc = "video-single.html";
      // document.getElementById("myFrame").setAttribute("src", loc);
-     $$("#myFrame").attr("src", loc);
-*/
+     $$("#myFrameVideoSplash").attr("src", loc);
+
       $$("#bottomBtns, .toolbar.bottom").show();
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
@@ -520,12 +552,49 @@ function loadPages() {
           }
       });
 
+  /*   $.getJSON( base_url + "/getvideo/single", function(data) {
+         console.log( "success" );
+
+             for (i = 0; i < data.length; i++) {
+                 var videoFile = data[i]["video"];
+                 var nameFile = data[i]["name"];
+
+                 console.log(nameFile);
+                 console.log(videoFile);
+                 $('#my-video').append('<video id="my-video" class="video-js vjs-user-inactive vjs-control-bar vjs-default-skin vjs-nofull" controls preload="yes" allowfullscreen="false"'+
+                                          'autoplay="true" style="width:100%; height: auto;" '+
+                                          'poster="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/poster.jpg" data-setup="{}">'+
+                                                '<source src="'+ base_url +'/'+ videoFile +'" type="video/mp4">'+
+
+                                          '<p class="vjs-no-js">'+
+                                               'To view this video please enable JavaScript, and consider upgrading to a web browser that'+
+                                               '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
+                                           '</p>'+
+                                    '</video>')
+
+            .done(function() {
+
+
+                 console.log( "second success" );
+              }).done(function(){
+              pullFreshQuizItems();
+
+              })
+      .fail(function() {
+        console.log( "error" );
+      })
+      .always(function() {
+         console.log( "complete" );
+      });
 
     /*  $('#toolbarHold').appendChild('<div class="toolbar bottom" style="display:block !important;">'+
                                       '<div class="toolbar-inner">'+
                                         '<a href="#welcome" class="link">Welcome y</a>'+
                                         '<a href="#about" class="link">Skip</a>'+
                                     '</div>');*/
+
+                                    $$('.view').append('<div id="defaultCountdown" class="timer"></div>');
+                                    messageTimer();
 }
 
 
@@ -1114,7 +1183,8 @@ ptrContent.on('ptr:refresh', function (e) {
                 //name: username
             }
         });
-        //validateMyTurn();
+        pullFreshQuizItems();
+        validateMyTurn();
         scanIfQuizAvailable();
 
 
@@ -1196,8 +1266,8 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
 
-    /*function playMessage() {
-        function onDeviceReady() {
+  function playMessage() {
+
 
             $.ajax({
                 url: base_url + "/getvideo/single",
@@ -1208,14 +1278,14 @@ ptrContent.on('ptr:refresh', function (e) {
                     var nameFile = (data[i]["name"]);
 
 
-                    $("video").html("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
+                    $("#my-video").html("<source src= '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
                     console.log(nameFile);
                     console.log(videoFile);
                 }
 
             });
-        }
-    }*/
+
+    }
     //var loc = video
       //document.getElementById("myVideoList").setAttribute("src", loc);
     //  $$("#myVideoList").attr("src", loc);
@@ -1250,7 +1320,7 @@ ptrContent.on('ptr:refresh', function (e) {
 }
 
 
-
+/*
     function showQuestions() {
         $(".raysDemo").removeClass('fadeInUpBig');
         $(".raysDemo").addClass('fadeOut animated');
@@ -1283,7 +1353,7 @@ ptrContent.on('ptr:refresh', function (e) {
         }, 600);
 
 
-    }
+    }*/
 
 
     function showQuestions() {
@@ -1291,26 +1361,6 @@ ptrContent.on('ptr:refresh', function (e) {
         $(".raysDemo").addClass('fadeOut animated');
         $(".raysDemo").css('top', '-9999px');
 
-        function onDeviceReady() {
-
-            $.ajax({
-                url: base_url + "/getvideo/single",
-                dataType: "json",
-            }).success(function ( data ) {
-                for (i = 0; i < data.length; i++) {
-                    var videoFile = data[i]["video"];
-                    var nameFile = (data[i]["name"]);
-
-
-                    $(".popup-overlay").append("<video><source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'></video>");
-
-                    $("video").append("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
-                    console.log(nameFile);
-                    console.log(videoFile);
-                }
-
-            });
-        }
 
 
         setTimeout(function () {
@@ -1374,7 +1424,11 @@ ptrContent.on('ptr:refresh', function (e) {
 
                  }, 3000);*
                  myApp.hideIndicator();*/
-                mainView.router.load('#index');
+                 mainView.router.load({
+                     template: Template7.templates.welcomeTemplate
+
+                 });
+
                 window.location.reload();
                 //$$('#welcome').removeClass('cached');
 
@@ -1453,7 +1507,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
     function pullFreshQuizItems() {
 
-
+localStorage.removeItem('QuizData');
         var myDivision2 = localStorage.getItem('user_division');
         var endDate = localStorage.getItem('dateToString');
 
