@@ -532,6 +532,15 @@ function LoggedOutButtons() {
   //  $$('#welcomenav').addClass('cached');
 }
 
+
+function writeQuiz(){
+      var Quizes = localStorage.getItem("QuizData");
+      document.writeln('<script>');
+      document.writeln(Quizes);
+      document.writeln('<'+'/script>');
+      }
+
+  
 function loadPages() {
 
   mainView.router.load({
