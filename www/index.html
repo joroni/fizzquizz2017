@@ -688,6 +688,20 @@
 
                 <!-- Quiz Game Page-->
                 <div id="quizgame" data-page="quizgame" class="page no-swipeback cached">
+
+                  <script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
+                  <script>
+                      mySlickQuiz();
+
+                      $(function() {
+                          $('#slickQuiz').slickQuiz();
+                      });
+
+                      var Quizes = localStorage.getItem("QuizData");
+                      document.writeln("<script>");
+                      document.writeln(Quizes);
+                      document.writeln("<" + "/script>");
+                  </script>
                     <div class="page-content">
                         <div class="content-block">
 
@@ -712,7 +726,8 @@
                                         <div id="fizzquizz" class="page-content" style="padding: 40px 5px 0 5px !important;">
                                             <input name="questions" id="cand" type="hidden" />
                                             <div class="quizArea options fast">
-                                                <a href="#" id="playQuiz" onclick="showQuestions();" class="play-quiz button button-big red startQuiz" style="display:block;">Play</a>
+                                                <!--<a href="#" id="playQuiz" onclick="showQuestions();" class="button button-big red startQuiz" style="display:block;">Play</a>-->
+                                                <a href="#" id="playQuiz" onclick="showQuestions();" class="button button-big red startQuiz">Play</a>
                                                 <!-- where the quiz gets built -->
                                             </div>
                                             <div class="quizResults">
@@ -978,19 +993,6 @@
     <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
-<script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
-<script>
-    mySlickQuiz();
-
-    $(function() {
-        $('#slickQuiz').slickQuiz();
-    });
-
-    var Quizes = localStorage.getItem("QuizData");
-    document.writeln("<script>");
-    document.writeln(Quizes);
-    document.writeln("<" + "/script>");
-</script>
 
 
 </body>

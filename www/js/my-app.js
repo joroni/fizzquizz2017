@@ -35,7 +35,7 @@ function initApp(){
         validateMyTurn();
         //scanIfQuizAvailable();
       	myProfile();
-        pullFreshQuizItems();
+    //    pullFreshQuizItems();
         LoggedInButtons();
 
           mainView.router.load("#welcome");
@@ -208,7 +208,7 @@ function signin() {
 
 
             validateMyTurn();
-            pullFreshQuizItems();
+            //pullFreshQuizItems();
           //  get_Quiz_History();
 
             //myProfile();
@@ -316,29 +316,8 @@ function update_user() {
 
 
 
-if ($("li.status").children().length == 0)
-{
-     // no child
-     console.log('Validating Status...');
-     validateMyTurn();
-     mainView.router.load({
-         template: Template7.templates.welcomeTemplate
-
-     });
-}
 
 
-
-if ($("ol.status").children().length == 0)
-{
-     // no child
-     console.log('Validating Status...');
-     validateMyTurn();
-     mainView.router.load({
-         template: Template7.templates.welcomeTemplate
-
-     });
-}
 
 
 
@@ -424,7 +403,7 @@ function imageProfile() {
 function messageTimer(){
 var startQuiz = new Date();
 startQuiz=new Date(startQuiz.getTime());
-var timeOut = +20;
+var timeOut = +10;
 $("#defaultCountdown.timer").countdown({
   until: timeOut,
   onExpiry: liftOff});
@@ -551,6 +530,7 @@ function loadPages() {
               //  name: username
           }
       });
+      pullFreshQuizItems();
 
   /*   $.getJSON( base_url + "/getvideo/single", function(data) {
          console.log( "success" );
@@ -1106,6 +1086,17 @@ ptrContent.on('ptr:refresh', function (e) {
             }
         }
 
+                      if ($("li.status").children().length == 0)
+                      {
+                           // no child
+                           console.log('Validating Status...');
+                           validateMyTurn();
+                           mainView.router.load({
+                               template: Template7.templates.welcomeTemplate
+
+                           });
+                      }
+
     }
 
 //scanIfQuizAvailable();
@@ -1507,14 +1498,14 @@ ptrContent.on('ptr:refresh', function (e) {
 
     function pullFreshQuizItems() {
 
-localStorage.removeItem('QuizData');
+        localStorage.removeItem('QuizData');
         var myDivision2 = localStorage.getItem('user_division');
         var endDate = localStorage.getItem('dateToString');
 
 
         $.get(base_url + "/jsonQuiz/" + myDivision2 + "/" + endDate, function ( data ) {
             // $( ".result" ).html( data );
-            console.log('pullFreshQuizItems |', data);
+          //  console.log('pullFreshQuizItems |', data);
             // alert( "Load was performed." );
             localStorage.setItem('QuizData', data);
 
