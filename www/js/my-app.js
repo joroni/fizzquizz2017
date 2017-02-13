@@ -21,9 +21,6 @@ var mainView = myApp.addView('.view-main', {
 
 
 
-
-
-
 function initApp(){
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
@@ -35,10 +32,10 @@ function initApp(){
         validateMyTurn();
         //scanIfQuizAvailable();
       	myProfile();
-    //    pullFreshQuizItems();
+        pullFreshQuizItems();
         LoggedInButtons();
 
-          mainView.router.loadPage("#welcome");
+          mainView.router.load("#welcome");
 
        }else{
          LoggedOutButtons();
@@ -118,9 +115,6 @@ noNet(base_url + '/json.php',
         }
     }
 );
-
-
-
 // END connection to server
 
 
@@ -211,7 +205,7 @@ function signin() {
 
 
             validateMyTurn();
-            //pullFreshQuizItems();
+            pullFreshQuizItems();
           //  get_Quiz_History();
 
             //myProfile();
@@ -279,13 +273,11 @@ function update_user() {
     // var privilege = $('#user_privilege').val();
 
     $.post(base_url + '/update/user', {
-            //username: username,
+            username: username,
+            password: password,
             fname: fname,
             lname: lname,
-            password: password
-
-            /*,
-            user_email: user_email*/
+            user_email: user_email
         })
 
         // $.post(base_url + '/update/user', {username: username, password: password})
@@ -294,10 +286,10 @@ function update_user() {
                 myApp.hideIndicator();
                 myApp.alert('Please try again.', alertTitle);
                // $('#update_0').show();
-               return false;
+
             } else if (data == 1) {
-
-
+                myApp.hideIndicator();
+                myApp.alert('Successfully Updated.', alertTitle);
                 //$('#update_1').show();
 
                 $('.profile-content').show();
@@ -310,21 +302,8 @@ function update_user() {
                 $('#user_lastname').text(lname);
                 $('#user_division').text(user_division);
                 $('#user_email').text(user_email);
-                myApp.hideIndicator();
-                myApp.alert('Successfully Updated.', alertTitle);
-                mainView.router.load({
-                    template: Template7.templates.welcomeTemplate
 
-                });
-
-
-
-
-
-
-
-
-                //window.location.reload();
+                window.location.reload();
             }
         });
 
@@ -404,46 +383,22 @@ function imageProfile() {
 
 
 function messageTimer(){
-    var startQuiz = new Date();
-    startQuiz=new Date(startQuiz.getTime());
-    var timeOut = +10;
-    $("#defaultCountdown.timer").countdown({
-      until: timeOut,
-      onExpiry: liftOff
+var startQuiz = new Date();
+startQuiz=new Date(startQuiz.getTime());
+var timeOut = +20;
+$("#defaultCountdown.timer").countdown({
+  until: timeOut,
+  onExpiry: liftOff});
 
-    });
-
-    function liftOff() {
-    $$("#defaultCountdown.timer").hide();
-    /*  $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
-                                      '<div class="toolbar-inner">'+
-                                        '<a href="#index" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
-                                        '<a href="#slickquiz" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
-                                    '</div>');*/
-
-                                    var buttons = [
-                                     {
-                                         text: 'Take Quiz',
-                                         bold: true,
-                                         onClick: function () {
-                                               //myApp.alert('Cancel clicked');
-                                               mainView.router.loadPage('#slickquiz');
-
-                                           }
-                                     },
-
-                                     {
-                                         text: 'Cancel',
-                                         color: 'red',
-                                         onClick: function () {
-                                               //myApp.alert('Cancel clicked');
-                                               mainView.router.loadPage('#index');
-                                           }
-                                     },
-                                   ];
-                                 myApp.actions(buttons);
-      // myApp.alert('We have lift off!');
-      }
+function liftOff() {
+$$("#defaultCountdown.timer").hide();
+  $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
+                                  '<div class="toolbar-inner">'+
+                                    '<a href="#index" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
+                                    '<a href="#quizgame" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                '</div>');
+  // myApp.alert('We have lift off!');
+  }
 
 }
 
@@ -457,7 +412,7 @@ $$('a.close-popup').on('click', function () {
 
 
 function hideToolbar() {
-    $$("#bottomBtns, .toolbar.bottom", this).hide();
+    $$("#bottomBtns, .toolbar.bottom").hide();
     $$("#videosplash").addClass('cached');
 
 }
@@ -466,7 +421,7 @@ function hideToolbar() {
 $(function() {
 
 
-    $$("#reg_aunit.reg_aunit_input").on("change", function() {
+    $$("#aunit,.regaunit").change(function() {
 
         var $dropdown = $(this);
 
@@ -506,8 +461,10 @@ function log_out() {
     window.localStorage.clear();
 
 
-    mainView.router.loadPage('#index');
+    mainView.router.load({
+        template: Template7.templates.index
 
+    });
     LoggedOutButtons();
 
 }
@@ -532,90 +489,45 @@ function LoggedOutButtons() {
   //  $$('#welcomenav').addClass('cached');
 }
 
-
 function loadPages() {
 
-  mainView.router.load({
-      template: Template7.templates.videosplashTemplate,
-      context: {
-          //  name: username
-      }
-  });
+    pullFreshQuizItems();
+  //   var loc = base_url+"/app/views/media/teaser.html?callback=onDeviceReady();";
+
+  // START countdown
 
 
 
-                      $.ajax({
-                        url: "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/getvideo/single",
-                        dataType: "json",
-                    	}).success(function (data) {
-                    		for (i = 0; i < data.length; i++) {
-                    		var videoFile = data[i]["video"];
-                    		var nameFile = (data[i]["name"]);
+  $$('.view').append('<div id="defaultCountdown" class="timer"></div>');
+  messageTimer();
 
-                    		$("video").append("<source src= '"+ base_url +'/app/views/media/' + videoFile + "'><meta property='og:video:secure_url' content='"+ videoFile + "' > <meta property='og:video:type' content='video/mp4'>" );
-                    		console.log(nameFile);
-                    		console.log(videoFile);
-                    		}
 
-                    });
+  // END countdown
 
-  document.getElementById('player').play();
-    // var loc = "video-single.html";
+
+
+     var loc = "video-single.html";
      // document.getElementById("myFrame").setAttribute("src", loc);
-     //$$("#myFrameVideoSplash").attr("src", loc);
+     $$("#myFrame").attr("src", loc);
 
-    //  $$("#bottomBtns, .toolbar.bottom").show();
+      $$("#bottomBtns, .toolbar.bottom").show();
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
 
-      //writeQuiz();
-          mySlickQuiz();
 
-      pullFreshQuizItems();
-
-  /*   $.getJSON( base_url + "/getvideo/single", function(data) {
-         console.log( "success" );
-
-             for (i = 0; i < data.length; i++) {
-                 var videoFile = data[i]["video"];
-                 var nameFile = data[i]["name"];
-
-                 console.log(nameFile);
-                 console.log(videoFile);
-                 $('#my-video').append('<video id="my-video" class="video-js vjs-user-inactive vjs-control-bar vjs-default-skin vjs-nofull" controls preload="yes" allowfullscreen="false"'+
-                                          'autoplay="true" style="width:100%; height: auto;" '+
-                                          'poster="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/poster.jpg" data-setup="{}">'+
-                                                '<source src="'+ base_url +'/'+ videoFile +'" type="video/mp4">'+
-
-                                          '<p class="vjs-no-js">'+
-                                               'To view this video please enable JavaScript, and consider upgrading to a web browser that'+
-                                               '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'+
-                                           '</p>'+
-                                    '</video>')
-
-            .done(function() {
-
-
-                 console.log( "second success" );
-              }).done(function(){
-              pullFreshQuizItems();
-
-              })
-      .fail(function() {
-        console.log( "error" );
-      })
-      .always(function() {
-         console.log( "complete" );
+      mainView.router.load({
+          template: Template7.templates.videosplashTemplate,
+          context: {
+              //  name: username
+          }
       });
+
 
     /*  $('#toolbarHold').appendChild('<div class="toolbar bottom" style="display:block !important;">'+
                                       '<div class="toolbar-inner">'+
                                         '<a href="#welcome" class="link">Welcome y</a>'+
                                         '<a href="#about" class="link">Skip</a>'+
                                     '</div>');*/
-
-                                    $$('.view').append('<div id="defaultCountdown" class="timer"></div>');
-                                    messageTimer();
 }
 
 
@@ -642,8 +554,8 @@ function register() {
     var fname = $('#reg_fname').val();
     var lname = $('#reg_lastname').val();
     var email = $('#reg_email').val();
-    var division = $('#reg_division').val();
-    var aunit = $('#reg_aunit').val();
+    var division = $('#division').val();
+    var aunit = $('#aunit').val();
     var area = $('#reg_area').val();
     var lang = $('#reg_lang').val();
 
@@ -679,7 +591,7 @@ function register() {
         }
         console.log('err empty field');
         myApp.hideIndicator();
-        myApp.alert('Fields should not be empty.', alertTitle);
+        myApp.alert('Fields should not be empty.');
     } else {
 
 
@@ -712,10 +624,10 @@ function register() {
                         $('#reg_email_err').show();
                     }
                     if (division == '') {
-                        $('#reg_division_err').show();
+                        $('#division_err').show();
                     }
                     if (aunit == '') {
-                        $('#reg_aunit_err').show();
+                        $('#aunit_err').show();
                     }
                     if (area == '') {
                         $('#reg_area_err').show();
@@ -724,7 +636,7 @@ function register() {
                         $('#reg_lang_err').show();
                     }
 
-                    myApp.alert('Fields should not be empty.', alertTitle);
+                    myApp.alert('Fields should not be empty.');
                     console.log('err empty field');
                 } else if (data == 1) {
                     //  localStorage.setItem("username", username);
@@ -746,7 +658,7 @@ function register() {
 
                 } else {
                     myApp.hideIndicator();
-                    myApp.alert(data + 'User Name is already taken.', alertTitle);
+                    myApp.alert(data + 'User Name is already taken.');
                     $('#reg_username').val('');
                     console.log('err');
                     return;
@@ -770,16 +682,16 @@ if (bottomShow === 'show') {
   $('.toolbar.bottom').hide();
 }*/
 function get_Quiz_History() {
-    $('.output-list').empty();
+    $('#output').empty();
     var user_id = localStorage.getItem('user_id');
-    $('output-list')
+    $('#output')
         .html('<th colspan="4" style="padding: 10px; background: silver; color:#fff; text-align: center;">Stat</th>');
     $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
 
         //$.each(result, function ( i, field ) {
         $.each(results, function(i, fields) {
 
-            $(".output-list")
+            $("#output")
                 .append('<tr><td><label>Set</label></td><td> ' + fields.datefrom + ' </td>'+
                 '<td><label>Score</label></td><td>' + fields.score_bottle + '</td></tr>');
 
@@ -1127,17 +1039,6 @@ ptrContent.on('ptr:refresh', function (e) {
             }
         }
 
-                      if ($("li.status").children().length == 0)
-                      {
-                           // no child
-                           console.log('Validating Status...');
-                           validateMyTurn();
-                           mainView.router.load({
-                               template: Template7.templates.welcomeTemplate
-
-                           });
-                      }
-
     }
 
 //scanIfQuizAvailable();
@@ -1215,8 +1116,7 @@ ptrContent.on('ptr:refresh', function (e) {
                 //name: username
             }
         });
-        pullFreshQuizItems();
-        validateMyTurn();
+        //validateMyTurn();
         scanIfQuizAvailable();
 
 
@@ -1226,33 +1126,76 @@ ptrContent.on('ptr:refresh', function (e) {
     /**************************** QUIZ SCRIPTS ********************************************/
 
 
+    // Put all your page JS here
+    /*
+     $(function () {
+     $('#slickQuiz').slickQuiz();
+     });
+     */
+    /*
+     var saveBtn = $('#score_bottle').value();
+     if (saveBtn != ''){
+     $('.send-score').show();
+     }
+     else {
+     $('.send-score').show();
+     }*/
 
+    var media_id = "102516";
+    var attempts = localStorage.getItem("attempts");
+
+    $(".startQuiz").on("click", function () {
+        //var set = "S1121016";
+
+        attempts++;
+        //attempts = localStorage.getItem("attempts");
+        localStorage.setItem("attempts", attempts);
+
+
+        var datefrom = localStorage.getItem("dateFrString");
+        var user = localStorage.getItem("userlogin");
+        var user_id = localStorage.getItem("user_id");
+
+        var area = localStorage.getItem("user_area");
+        var division = localStorage.getItem("user_division");
+        var divisions = division;
+        var aunit = localStorage.getItem("user_aunit");
+
+        $("#area").val(area);
+        $("#aunit").val(aunit);
+        $("#datefrom").val(datefrom);
+        $("#divisions").val(divisions);
+        $("#user_id").val(user_id);
+
+        $("#attempts").val(attempts);
+        localStorage.setItem("bottomBar", 'block');
+        //alert(bottomBar);
+
+
+        console.log("scored");
+    });
 
 
     function leaderBoard() {
 
 
-         $(document).ready(function(){
-
-          var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
-          // document.getElementById("myFrame").setAttribute("src", loc);
-        $$("#myFrameLeaderBoard").attr("src", loc);
+          /*  $(document).ready(function(){
 
 
-
-           $$("#bottomBtns, .toolbar.bottom").show();
-           $$(".raysDemo").removeClass('hidden');
-           $$(".play-quiz").css('display', 'block !important');
+                $.post( base_url + "/getvideo")
+                        .done(function( data ) {
+                            $('.page').html(data);
+                        });
 
 
               })
-
+*/
 
     }
 
 
-  function playMessage() {
-
+    /*function playMessage() {
+        function onDeviceReady() {
 
             $.ajax({
                 url: base_url + "/getvideo/single",
@@ -1263,14 +1206,14 @@ ptrContent.on('ptr:refresh', function (e) {
                     var nameFile = (data[i]["name"]);
 
 
-                    $("#my-video").html("<source src= '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
+                    $("video").html("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
                     console.log(nameFile);
                     console.log(videoFile);
                 }
 
             });
-
-    }
+        }
+    }*/
     //var loc = video
       //document.getElementById("myVideoList").setAttribute("src", loc);
     //  $$("#myVideoList").attr("src", loc);
@@ -1278,7 +1221,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
 
- mainView.router.loadPage("#messages");
+ mainView.router.load("#messages");
 
       var loc =  base_url + "/getvideos";
        document.getElementById("myFrameList").setAttribute("src", loc);
@@ -1309,8 +1252,7 @@ ptrContent.on('ptr:refresh', function (e) {
     function showQuestions() {
         $(".raysDemo").removeClass('fadeInUpBig');
         $(".raysDemo").addClass('fadeOut animated');
-        $(".raysDemo").css('display', 'none');
-          $("div#fizzquizz").css('top','40px');
+        $(".raysDemo").css('top', '-9999px');
 
         function onDeviceReady() {
 
@@ -1333,27 +1275,40 @@ ptrContent.on('ptr:refresh', function (e) {
             });
         }
 
-        /*$("li.question:last-child > .nextQuestion").on('click',function(){
-
-
-         $('.send-score').show();
-
-       });
-
 
         setTimeout(function () {
             $(".raysDemo").hide();
-        }, 600);*/
+        }, 600);
 
 
     }
 
-/*
+
     function showQuestions() {
         $(".raysDemo").removeClass('fadeInUpBig');
         $(".raysDemo").addClass('fadeOut animated');
         $(".raysDemo").css('top', '-9999px');
 
+        function onDeviceReady() {
+
+            $.ajax({
+                url: base_url + "/getvideo/single",
+                dataType: "json",
+            }).success(function ( data ) {
+                for (i = 0; i < data.length; i++) {
+                    var videoFile = data[i]["video"];
+                    var nameFile = (data[i]["name"]);
+
+
+                    $(".popup-overlay").append("<video><source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'></video>");
+
+                    $("video").append("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
+                    console.log(nameFile);
+                    console.log(videoFile);
+                }
+
+            });
+        }
 
 
         setTimeout(function () {
@@ -1362,7 +1317,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
     }
-*/
+
 
     /*	$("li.question:last-child > .nextQuestion").on('click',function(){
 
@@ -1404,7 +1359,7 @@ ptrContent.on('ptr:refresh', function (e) {
                 console.log("score recorded");
                 //$(".toolbar.bottom").show();
                 //bottomBarShow();
-
+                myApp.hideIndicator();
                 myApp.alert("Score Recorded!", alertTitle);
                 /*  goToStart();
 
@@ -1417,12 +1372,8 @@ ptrContent.on('ptr:refresh', function (e) {
 
                  }, 3000);*
                  myApp.hideIndicator();*/
-                 mainView.router.load({
-                     template: Template7.templates.welcomeTemplate
-
-                 });
-                 myApp.hideIndicator();
-                //window.location.reload();
+                mainView.router.load('#index');
+                window.location.reload();
                 //$$('#welcome').removeClass('cached');
 
 
@@ -1500,14 +1451,14 @@ ptrContent.on('ptr:refresh', function (e) {
 
     function pullFreshQuizItems() {
 
-        localStorage.removeItem('QuizData');
+
         var myDivision2 = localStorage.getItem('user_division');
         var endDate = localStorage.getItem('dateToString');
 
 
         $.get(base_url + "/jsonQuiz/" + myDivision2 + "/" + endDate, function ( data ) {
             // $( ".result" ).html( data );
-          //  console.log('pullFreshQuizItems |', data);
+            console.log('pullFreshQuizItems |', data);
             // alert( "Load was performed." );
             localStorage.setItem('QuizData', data);
 
@@ -1516,99 +1467,5 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
     }
-
-
-
-
-
-
-
-
-    /******** SIGN UP ***********/
-
-
-
-
-
-    $.validator.setDefaults( {
-        submitHandler: function () {
-            myApp.alert( "Registration Successful!", alertTitle );
-        }
-    } );
-
-
-        $(document).ready(function () {
-            $("#signupForm").validate({
-                rules: {
-                    reg_username: {
-                        required: true
-                    },
-                    reg_fname: {
-                        required: true
-                    },
-                    reg_lastname: {
-                        required: true
-                    },
-                    reg_email: {
-                        required: true,
-                        email: true
-                    },
-                    division: {
-                        required: true
-                    },
-                    aunit: {
-                        required: true
-                    },
-                    reg_area:  {
-                        required: true
-                    }
-                },
-                messages: {
-
-                    reg_username: {
-                        required: "Please enter your KO ID."
-                    },
-                    reg_fname: {
-                        required: "Please enter your first name."
-                    },
-                    reg_lastname: {
-                        required: "Please enter your last name."
-                    },
-                    division: {
-                        required: "Please enter your division"
-                    },
-                    aunit: {
-                        required: "Please enter your unit"
-                    },
-                    reg_area:  {
-                        required: "Please enter your area"
-                    },
-
-                    reg_email: "Please enter a valid email address"
-                    // agree: "Please accept our policy"
-                },
-                /*  errorElement: "em",
-                 errorPlacement: function ( error, element ) {
-                 // Add the `help-block` class to the error element
-                 error.addClass("help-block");
-
-                 if (element.prop("type") === "checkbox") {
-                 error.insertAfter(element.parent("label"));
-                 } else {
-                 error.insertAfter(element);
-                 }
-                 },*/
-                highlight: function ( element, errorClass, validClass ) {
-                    $(element).parents(".mdl-textfield, .mdl-textfield__input, .mdl-select").addClass("has-error").removeClass("has-success");
-                },
-                unhighlight: function ( element, errorClass, validClass ) {
-                    $(element).parents(".mdl-textfield, .mdl-textfield__input, .mdl-select").addClass("has-success").removeClass("has-error");
-                }
-            })
-        });
-
-
-
-
 
     myApp.hideIndicator();
