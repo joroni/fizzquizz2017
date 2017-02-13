@@ -178,7 +178,7 @@ function signin() {
             LoggedOutButtons();
             myApp.hideIndicator();
             //  if (!username || !password){
-            myApp.alert('Username and Password incorrect');
+            myApp.alert('Username and Password incorrect', alertTitle);
             //return;
             //}
 
@@ -370,7 +370,7 @@ function imageProfile() {
             } else {
                 console.log('Upload success!');
                 //   navigator.notification.alert('Process complete');
-                myApp.alert('Process complete');
+                myApp.alert('Process complete', alertTitle);
                 //$('#capturePhoto').hide();
                 window.location.reload();
 
@@ -666,8 +666,10 @@ function register() {
                     localStorage.setItem("area", area);
                     localStorage.setItem("user_area", area);
                     localStorage.setItem("lang", lang);
+                    localStorage.setItem("checkLQuiz", '2017-01-01');
                     myApp.hideIndicator();
-
+                    myApp.alert(data + 'Registration Successful.', alertTitle);
+                    initApp();
 
                 } else {
                     myApp.hideIndicator();
@@ -1195,7 +1197,7 @@ validateMyTurn();
 
         function leaderBoard() {
 
-          
+
              $(document).ready(function(){
 
               var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
@@ -1357,7 +1359,9 @@ validateMyTurn();
                 //bottomBarShow();
                 myApp.hideIndicator();
                 myApp.alert("Score Recorded!", alertTitle);
+                initApp();
                 /*  goToStart();
+
 
                  function goToStart() {
 
@@ -1372,7 +1376,7 @@ validateMyTurn();
                 setTimeout(function(){
 
                   window.location.reload();
-              }, 5000);
+              }, 3000);
 
                 //$$('#welcome').removeClass('cached');
 
