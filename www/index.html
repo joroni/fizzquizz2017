@@ -216,7 +216,7 @@
                         <a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>
                     </div>
                 </div>
-                <div data-page="quizgame"  class="navbar-inner cached">
+                <div data-page="quizgame" class="navbar-inner cached">
 
                     <div class="center sliding"><img src="img/logo-horizontal2x.png" style="max-height:34px;"></div>
                     <div class="right">
@@ -372,7 +372,7 @@
 
                                     <!-- a transparent image is preferable -->
                                     <!--	<img class="ratio" src="img/-text.png"/>-->
-                                    <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="video-single.html" frameborder="0" allowfullscreen="no"></iframe>
+                                    <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/teaser.html" frameborder="0" allowfullscreen="no"></iframe>
                                 </div>
                                 <!--	<p>Please scale the "result" window to notice the effect.</p>-->
                             </div>
@@ -724,73 +724,23 @@
 
                 <!-- Quiz Game Page-->
                 <div id="quizgame" data-page="quizgame" class="page no-swipeback cached">
-                    <div class="page-content">
-                        <div class="content-block">
+                  <!--  <div class="page-content">
+                      <div class="content-block">-->
 
-                            <div id="slickQuiz">
-                                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                    <div class="" id="fizzquizzA">
-                                        <!-- <script>
+                          <div class="wrapper" style="min-height:250px; margin-top:-0;">
+                              <div class="h_iframe">
 
-                                            if ($$('#score_bottle').value() != ''){
-                                              $('.send-score').show();
-                                            }
-                                            else {
-                                                $('.send-score').hide();
-                                            }
-                                         </script>-->
-                                        <div id="raysDemoHolder" class="raysDemo animated fadeInUpBig quiz hidden" style="width: 250px; height: 250px; margin: 20% auto;">
-                                            <img id="raysLogo" class="icon animated fadeInUpBig options fast" style="height:250px;" src="img/coke-bottle-real3.png">
-                                            <div id="rays"></div>
-                                        </div>
+                                  <!-- a transparent image is preferable -->
+                                  <!--	<img class="ratio" src="img/-text.png"/>-->
+                                  <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="game.html" frameborder="0" allowfullscreen="no"></iframe>
+                              </div>
+                              <!--	<p>Please scale the "result" window to notice the effect.</p>-->
+                          </div>
 
-                                        <!--  <div id="animated-img" class="animated fadeInUpBig options fast"> -->
-                                        <div id="fizzquizz" class="page-content" style="padding: 40px 5px 0 5px !important;">
-                                            <input name="questions" id="cand" type="hidden" />
-                                            <div class="quizArea options fast">
-                                                <a href="#" id="playQuiz" onclick="showQuestions();" class="play-quiz button button-big red startQuiz" style="display:block;">Play</a>
-                                                <!-- where the quiz gets built -->
-                                            </div>
-                                            <div class="quizResults">
-                                                <div class="quizScore scoring">
-                                                    SCORE:
-                                                    <span>
-                                      <!-- where the quiz score goes -->
-                                                    </span>
-                                                </div>
-                                                <div class="earned scoring"><strong>YOU'VE EARNED</strong></div>
-                                                <div class="quizLevel scoring">
-                                                    <h2 id="redeemScore">
-                                      <!-- where the quiz ranking level goes -->
-                                                     </h2>
-                                                    <span></span>
-                                                    <input type="hidden" id="divisions" name="divisions" value="" />
-                                                    <input type="hidden" id="area" name="area" value="" />
-                                                    <input type="hidden" id="aunit" name="aunit" value="" />
-                                                    <input type="hidden" id="user_id" name="user_id" value="" />
-                                                    <!--<input type="hidden" id="setnames" name="setnames" value=""/>-->
-                                                    <input type="hidden" id="datefrom" name="datefrom" value="" />
-                                                    <input type="hidden" id="attempts" name="attempts" value="" />
-                                                    <input type="hidden" id="score_bottle" name="score_bottle" value="" />
-
-                                                </div>
-                                                <div class="bottles scoring">BOTTLES</div>
-                                                <div id="endQuiBtn" style="padding-top: 35%;">
-                                                    <br />
-                                                    <a href="#index" onclick="post_score_new();" id="sendScore" class="send-score button button-big red" style="display:block;">Save</a>
-                                                </div>
-                                            </div>
-                                            <!--</div>-->
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <script src="js/master.js"></script>-->
-
-                                <!-- <script src="js/actions.js"></script>-->
-                            </div>
-                        </div>
-                    </div>
+                          <!--     <iframe src=""  style="height:540px; width:100%;" margin="0" align="middle" scrolling="auto"></iframe>-->
+                          <!--  <iframe src="fizzquizzData.html" style="height:100%; width:100%;"></iframe>-->
+                    <!--  </div>
+                    </div>-->
                 </div>
 
                 <div data-page="register" class="page cached">
@@ -990,6 +940,10 @@
                    </div>
                 </div>
 
+
+
+
+
                 <!--<div class="toolbar bottom" style="display:none;">
 					  <div class="toolbar-inner">
 							<a href="#welcome" class="link">Welcome y</a>
@@ -1009,19 +963,6 @@
     <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
-<script src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz"></script>
-<script>
-    mySlickQuiz();
-
-    $(function() {
-        $('#slickQuiz').slickQuiz();
-    });
-
-    var Quizes = localStorage.getItem("QuizData");
-    document.writeln("<script>");
-    document.writeln(Quizes);
-    document.writeln("<" + "/script>");
-</script>
 
 
 </body>

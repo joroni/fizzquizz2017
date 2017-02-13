@@ -385,7 +385,7 @@ function imageProfile() {
 function messageTimer(){
 var startQuiz = new Date();
 startQuiz=new Date(startQuiz.getTime());
-var timeOut = +20;
+var timeOut = +10;
 $("#defaultCountdown.timer").countdown({
   until: timeOut,
   onExpiry: liftOff});
@@ -395,7 +395,8 @@ $$("#defaultCountdown.timer").hide();
   $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
                                   '<div class="toolbar-inner">'+
                                     '<a href="#index" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
-                                    '<a href="#quizgame" onclick="hideToolbar();" class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                    '<a href="#quizgame"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                  //  '<a href="game.html"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
                                 '</div>');
   // myApp.alert('We have lift off!');
   }
@@ -506,16 +507,16 @@ function loadPages() {
 
 
 
-     var loc = "video-single.html";
+//     var loc =  base_url+"/app/views/media/teaser.html";
      // document.getElementById("myFrame").setAttribute("src", loc);
-     $$("#myFrame").attr("src", loc);
+  //   $$("#myFrame").attr("src", loc);
 
       $$("#bottomBtns, .toolbar.bottom").show();
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
 
 
-      mainView.router.load({
+     mainView.router.load({
           template: Template7.templates.videosplashTemplate,
           context: {
               //  name: username
@@ -529,6 +530,7 @@ function loadPages() {
                                         '<a href="#about" class="link">Skip</a>'+
                                     '</div>');*/
 }
+
 
 
 
@@ -1284,39 +1286,6 @@ ptrContent.on('ptr:refresh', function (e) {
     }
 
 
-    function showQuestions() {
-        $(".raysDemo").removeClass('fadeInUpBig');
-        $(".raysDemo").addClass('fadeOut animated');
-        $(".raysDemo").css('top', '-9999px');
-
-        function onDeviceReady() {
-
-            $.ajax({
-                url: base_url + "/getvideo/single",
-                dataType: "json",
-            }).success(function ( data ) {
-                for (i = 0; i < data.length; i++) {
-                    var videoFile = data[i]["video"];
-                    var nameFile = (data[i]["name"]);
-
-
-                    $(".popup-overlay").append("<video><source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'></video>");
-
-                    $("video").append("<source src=  '+ videoFile + '><meta property='og:video:secure_url' content='+ videoFile + ' > <meta property='og:video:type' content='video/mp4'>");
-                    console.log(nameFile);
-                    console.log(videoFile);
-                }
-
-            });
-        }
-
-
-        setTimeout(function () {
-            $(".raysDemo").hide();
-        }, 600);
-
-
-    }
 
 
     /*	$("li.question:last-child > .nextQuestion").on('click',function(){
