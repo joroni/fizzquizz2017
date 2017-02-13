@@ -708,24 +708,26 @@
                                             }
                                          </script>-->
 
-                                          <!--   <script>
+                                         <script>
 
-                                       //      pullFreshQuizItems();
-                                   function writeQuiz(){
+                                       //     pullFreshQuizItems();
+
                                              var Quizes = localStorage.getItem("QuizData");
                                              document.writeln('<script>');
                                              document.writeln(Quizes);
                                              document.writeln('<'+'/script>');
-                                             }
+
                                          </script>
 
-                                         <script src='http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz'></script>
--->
-                                      <!--   <script>
-                                         writeQuiz();
-                                             mySlickQuiz();
 
-                                         </script>-->
+
+                                         <script src='http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz'></script>
+                                         <script>
+
+                                              mySlickQuiz();
+
+                                          </script>
+
                                         <div id="raysDemoHolder" class="raysDemo animated fadeInUpBig quiz hidden" style="width: 250px; height: 250px; margin: 20% auto;">
                                             <img id="raysLogo" class="icon animated fadeInUpBig options fast" style="height:250px;" src="img/coke-bottle-real3.png">
                                             <div id="rays"></div>
@@ -1013,7 +1015,7 @@
         </div>
 
     </div>
-    <script src='http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/json/slickquiz2.js?callback=mySlickQuiz'></script>
+
     <script src="vendor/videojs/video.js"></script>
     <script type="text/javascript" src="js/framework7/framework7.min.js"></script>
     <!-- Path to your app js-->

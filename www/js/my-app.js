@@ -533,14 +533,6 @@ function LoggedOutButtons() {
 }
 
 
-function writeQuiz(){
-      var Quizes = localStorage.getItem("QuizData");
-      document.writeln('<script>');
-      document.writeln(Quizes);
-      document.writeln('<'+'/script>');
-      }
-
-  
 function loadPages() {
 
   mainView.router.load({
@@ -1234,54 +1226,7 @@ ptrContent.on('ptr:refresh', function (e) {
     /**************************** QUIZ SCRIPTS ********************************************/
 
 
-    // Put all your page JS here
-
-     $(function () {
-     $('#slickQuiz').slickQuiz();
-     });
-
-    /*
-     var saveBtn = $('#score_bottle').value();
-     if (saveBtn != ''){
-     $('.send-score').show();
-     }
-     else {
-     $('.send-score').show();
-     }*/
-
-    var media_id = "102516";
-    var attempts = localStorage.getItem("attempts");
-
-    $(".startQuiz").on("click", function () {
-        //var set = "S1121016";
-
-        attempts++;
-        //attempts = localStorage.getItem("attempts");
-        localStorage.setItem("attempts", attempts);
-
-
-        var datefrom = localStorage.getItem("dateFrString");
-        var user = localStorage.getItem("userlogin");
-        var user_id = localStorage.getItem("user_id");
-
-        var area = localStorage.getItem("user_area");
-        var division = localStorage.getItem("user_division");
-        var divisions = division;
-        var aunit = localStorage.getItem("user_aunit");
-
-        $("#area").val(area);
-        $("#aunit").val(aunit);
-        $("#datefrom").val(datefrom);
-        $("#divisions").val(divisions);
-        $("#user_id").val(user_id);
-
-        $("#attempts").val(attempts);
-        localStorage.setItem("bottomBar", 'block');
-        //alert(bottomBar);
-
-
-        console.log("scored");
-    });
+  
 
 
     function leaderBoard() {
