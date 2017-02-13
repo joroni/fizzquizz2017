@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="com.example.helloworld" version="1.0.21">
+<widget xmlns="http://www.w3.org/ns/widgets" id="com.example.helloworld" version="1.0.22">
   <name>FizzQuizz</name>
   <description>Made with Monaca (http://monaca.mobi), Framwork7</description>
   <author/>
@@ -11,13 +11,13 @@
   <preference name="loglevel" value="DEBUG"/>
   <preference name="AndroidLaunchMode" value="singleTop"/>
   <preference name="ErrorUrl" value=""/>
-  <preference name="Fullscreen" value="false"/>
+  <preference name="Fullscreen" value="true"/>
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="5000"/>
   <preference name="AllowInlineMediaPlayback" value="false"/>
   <preference name="BackupWebStorage" value="cloud"/>
-  <preference name="FadeSplashScreenDuration" value="250"/>
+  <preference name="FadeSplashScreenDuration" value="1000"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="true"/>
   <preference name="MediaPlaybackRequiresUserAction" value="false"/>
   <preference name="SuppressesIncrementalRendering" value="false"/>

@@ -22,6 +22,7 @@ var mainView = myApp.addView('.view-main', {
 
 
 function initApp(){
+
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
 
@@ -420,6 +421,10 @@ function hideToolbar() {
 
 
 function hidemyToolbar() {
+
+  var loc =  "game.html";
+       // document.getElementById("myFrame").setAttribute("src", loc);
+       $$("#myFrame").attr("src", loc);
     $$("#bottomBtns, .toolbar.bottom").hide();
     $$("#videosplash").addClass('cached');
 
@@ -868,6 +873,7 @@ function validateMyTurn() {
     localStorage.removeItem("dateFrString");
     localStorage.removeItem("dateToString");
 
+
     var myDivision2 = localStorage.getItem("user_division");
     $$.getJSON(base_url + "/jsonQuiz/" + myDivision2, function(result) {
         console.log("validateMyTurn | date_published", result.date_published);
@@ -875,18 +881,18 @@ function validateMyTurn() {
 //loadAnim();
         localStorage.setItem("dateToString", result.date_expire);
         localStorage.setItem("dateFrString", result.date_published);
-        localStorage.setItem("dateToString", result.date_expire);
+
         var dateFrStringVerify = localStorage.getItem("dateFrString").replace(/-/g,'');
+
         var checkLastQuiz = localStorage.getItem("checkLQuiz").replace(/-/g,'');
         var resultCheck = checkLastQuiz - dateFrStringVerify;
-        console.log("validateMyTurn "+ dateFrStringVerify+" | "+checkLastQuiz);
+        console.log("validateMyTurn "+ dateFrStringVerify+" - "+checkLastQuiz+" = "+ resultCheck);
 
         if (resultCheck == 0) {
 
           console.log("NO UPDATES YET.");
 	         $$('.simple-list li.status').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
-
-        } else {
+         } else {
 
               console.log("HAS NEW UPDATES!");
               $$('.simple-list li.status').html('<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:block; font-weight:700;"></a>');
@@ -1127,8 +1133,8 @@ ptrContent.on('ptr:refresh', function (e) {
         });
 
           pullFreshQuizItems();
-        //validateMyTurn();
-        scanIfQuizAvailable();
+validateMyTurn();
+      scanIfQuizAvailable();
 
 
     });
@@ -1189,13 +1195,21 @@ ptrContent.on('ptr:refresh', function (e) {
 
         function leaderBoard() {
 
-
+          
              $(document).ready(function(){
 
               var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
               // document.getElementById("myFrame").setAttribute("src", loc);
             $$("#myFrameLeaderBoard").attr("src", loc);
 
+            setTimeout(function () {
+                 myApp.showIndicator();
+            }, 100);
+
+
+            setTimeout(function () {
+                 myApp.hideIndicator();
+            }, 4000);
 
 
                $$("#bottomBtns, .toolbar.bottom").show();
