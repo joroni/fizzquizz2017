@@ -568,7 +568,7 @@ function loadPages() {
       $$(".raysDemo").removeClass('hidden');
       $$(".play-quiz").css('display', 'block !important');
 
-      writeQuiz();
+      //writeQuiz();
           mySlickQuiz();
 
       pullFreshQuizItems();
@@ -1226,7 +1226,7 @@ ptrContent.on('ptr:refresh', function (e) {
     /**************************** QUIZ SCRIPTS ********************************************/
 
 
-  
+
 
 
     function leaderBoard() {
