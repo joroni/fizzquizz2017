@@ -395,7 +395,7 @@ $$("#defaultCountdown.timer").hide();
   $$('.view').append('<div id="bottomBtns" class="toolbar bottom" style="display: block;">'+
                                   '<div class="toolbar-inner">'+
                                     '<a href="#index" onclick="hideToolbar();" class="link hide-toolbar" style="color:gray;"">CANCEL</a>'+
-                                    '<a href="#quizgame"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
+                                    '<a href="#quizgame"  onclick="hidemyToolbar();"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
                                   //  '<a href="game.html"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
                                 '</div>');
   // myApp.alert('We have lift off!');
@@ -418,6 +418,12 @@ function hideToolbar() {
 
 }
 
+
+function hidemyToolbar() {
+    $$("#bottomBtns, .toolbar.bottom").hide();
+    $$("#videosplash").addClass('cached');
+
+}
 
 $(function() {
 
@@ -1107,8 +1113,9 @@ ptrContent.on('ptr:refresh', function (e) {
      */
 
 
-    $$('#homeButton').on('click', function () {
+    $$('.homeButtonLink').on('click', function () {
 
+      localStorage.removeItem('QuizData');
 
         $(".raysDemo").show();
         $("#getStarted2").show();
@@ -1118,6 +1125,8 @@ ptrContent.on('ptr:refresh', function (e) {
                 //name: username
             }
         });
+
+          pullFreshQuizItems();
         //validateMyTurn();
         scanIfQuizAvailable();
 
@@ -1178,22 +1187,26 @@ ptrContent.on('ptr:refresh', function (e) {
     });
 
 
-    function leaderBoard() {
+        function leaderBoard() {
 
 
-          /*  $(document).ready(function(){
+             $(document).ready(function(){
+
+              var loc = "http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/adminer/mobile_controllers/user_result.php";
+              // document.getElementById("myFrame").setAttribute("src", loc);
+            $$("#myFrameLeaderBoard").attr("src", loc);
 
 
-                $.post( base_url + "/getvideo")
-                        .done(function( data ) {
-                            $('.page').html(data);
-                        });
+
+               $$("#bottomBtns, .toolbar.bottom").show();
+               $$(".raysDemo").removeClass('hidden');
+               $$(".play-quiz").css('display', 'block !important');
 
 
-              })
-*/
+                  })
 
-    }
+
+        }
 
 
     /*function playMessage() {
@@ -1341,8 +1354,12 @@ ptrContent.on('ptr:refresh', function (e) {
 
                  }, 3000);*
                  myApp.hideIndicator();*/
-                mainView.router.load('#index');
-                window.location.reload();
+                mainView.router.loadPage('index.html');
+                setTimeout(function(){
+
+                  window.location.reload();
+              }, 10000);
+
                 //$$('#welcome').removeClass('cached');
 
 
