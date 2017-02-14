@@ -1221,7 +1221,7 @@ ptrContent.on('ptr:refresh', function (e) {
             }, 4000);
 
 
-               $$("#bottomBtns, .toolbar.bottom").show();
+               $$("#bottomBtns, .toolbar.bottom").hide();
                $$(".raysDemo").removeClass('hidden');
                $$(".play-quiz").css('display', 'block !important');
 
