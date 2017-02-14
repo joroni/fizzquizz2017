@@ -714,12 +714,12 @@ if (bottomShow === 'show') {
   $('.toolbar.bottom').hide();
 }*/
 function get_Quiz_History() {
-    $('#output').empty();
+
     var user_id = localStorage.getItem('user_id');
     $('#output')
         .html('<th colspan="4" style="padding: 10px; background: silver; color:#fff; text-align: center;">Stat</th>');
     $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
-
+  $('#output').empty();
         //$.each(result, function ( i, field ) {
         $.each(results, function(i, fields) {
 
