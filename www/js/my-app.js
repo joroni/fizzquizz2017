@@ -23,6 +23,12 @@ var mainView = myApp.addView('.view-main', {
 
 function initApp(){
 
+      localStorage.removeItem('checkLQuiz');
+      localStorage.removeItem('recent_quiz');
+      localStorage.removeItem('fname');
+      localStorage.removeItem('lname');
+      localStorage.removeItem('password');
+
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
 
@@ -264,9 +270,9 @@ function update_user() {
     myApp.showIndicator();
    var id = $('#user_id').val();
     var username = $('#username').val();
-    var password = $('#password').val();
-    var fname = $('#firstname').val();
-    var lname = $('#lastname').val();
+    var password = $('#update_password').val();
+    var fname = $('#update_firstname').val();
+    var lname = $('#update_lastname').val();
     var user_email = $('#email').val();
    // var division = $('#division').val();
     var user_division = $('#division').val();
@@ -275,11 +281,11 @@ function update_user() {
     // var privilege = $('#user_privilege').val();
 
     $.post(base_url + '/update/user', {
-            username: username,
-            password: password,
-            fname: fname,
-            lname: lname,
-            user_email: user_email
+        username: username,
+        password: password,
+        fname: fname,
+        lname: lname,
+        email: user_email
         })
 
         // $.post(base_url + '/update/user', {username: username, password: password})
@@ -746,24 +752,15 @@ function myProfile() {
         $.each(result, function(i, field) {
             // $("#output").append("<tr><td>Username:  "+ field.username + " </td></tr><tr><td>Password: "+ field.password + "</td></tr>");
             //  $('#userid').val(field.id);
-            $('#username')
-                .val(field.username);
-            $('#password')
-                .val(field.password);
-            $('#firstname')
-                .val(field.fname);
-            $('#lastname')
-                .val(field.lname);
-            $('#email')
-                .val(field.email);
-            $('#division')
-                .val(field.division);
-            $('#unit')
-                .val(field.aunit);
-            $('#area')
-                .val(field.area);
-            $('#avatar')
-                .val(field.avatar);
+            $('#username').val(field.username);
+            $('#password, #update_password').val(field.password);
+            $('#firstname, #update_firstname').val(field.fname);
+            $('#lastname, #update_lastname').val(field.lname);
+            $('#email').val(field.email);
+            $('#division').val(field.division);
+            $('#unit').val(field.aunit);
+            $('#area').val(field.area);
+            $('#avatar').val(field.avatar);
 
             if ($('#avatar').val() == "" || $('#avatar').val() == null) {
                 var profile_photo = base_url + '/upload/files/' + 'daenerys.png';
@@ -1139,10 +1136,10 @@ ptrContent.on('ptr:refresh', function (e) {
                 //name: username
             }
         });
-
+        initApp();
           pullFreshQuizItems();
-validateMyTurn();
-      scanIfQuizAvailable();
+          validateMyTurn();
+          scanIfQuizAvailable();
 
 
     });
@@ -1379,10 +1376,10 @@ validateMyTurn();
                  }, 3000);*
                  myApp.hideIndicator();*/
               //  mainView.router.loadPage('index.html');
-                setTimeout(function(){
+            /*    setTimeout(function(){
 
                   window.location.reload();
-              }, 3000);
+              }, 3000);*/
 
                 //$$('#welcome').removeClass('cached');
 
