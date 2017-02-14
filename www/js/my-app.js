@@ -254,14 +254,15 @@ function signin() {
 // END login
 
 
-function update_cancel() {
+/*function update_cancel() {
     $('#profileContent').show();
     $('#editmyProfile').hide();
 }
+*/
 
 function update_user() {
     myApp.showIndicator();
-    // var id = $('#user_id').val();
+   var id = $('#user_id').val();
     var username = $('#username').val();
     var password = $('#password').val();
     var fname = $('#firstname').val();
@@ -286,15 +287,15 @@ function update_user() {
             if (data == 0) {
                 myApp.hideIndicator();
                 myApp.alert('Please try again.', alertTitle);
+                return false;
                // $('#update_0').show();
 
             } else if (data == 1) {
-                myApp.hideIndicator();
-                myApp.alert('Successfully Updated.', alertTitle);
+
                 //$('#update_1').show();
 
-                $('.profile-content').show();
-                $('#editmyProfile').hide();
+              //  $('.profile-content').show();
+                //$('#editmyProfile').hide();
                 //$('#user_id').text(id);
 
                 /*$('#user_name').text(username);*/
@@ -303,8 +304,13 @@ function update_user() {
                 $('#user_lastname').text(lname);
                 $('#user_division').text(user_division);
                 $('#user_email').text(user_email);
+                myApp.hideIndicator();
+                myApp.alert('Successfully Updated.', alertTitle);
+                return;
 
-                window.location.reload();
+                mainView.router.loadPage('#index');
+                initApp();
+              //  window.location.reload();
             }
         });
 

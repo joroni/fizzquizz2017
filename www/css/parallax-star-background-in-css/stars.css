@@ -17,7 +17,7 @@ opacity: .2;
 #stars:after {
 content: " ";
 position: absolute;
-top: 2000px;
+top: 9000px;
 width: 80px;
 height: 80px;
 background: transparent;
@@ -40,7 +40,7 @@ content: " ";
 position: absolute;
 border-radius: 50%;
 opacity: .1;
-top: 2000px;
+top: 200px;
 width: 100px;
 height: 100px;
 background: transparent;
@@ -59,7 +59,7 @@ opacity: .1;
 #stars3:after {
 content: " ";
 position: absolute;
-top: 2000px;
+top: 800px;
 width: 17px;
 height: 17px;
 background: transparent;
