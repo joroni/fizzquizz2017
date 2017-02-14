@@ -27,6 +27,7 @@ function initApp(){
       localStorage.removeItem('recent_quiz');
       localStorage.removeItem('fname');
       localStorage.removeItem('lname');
+      localStorage.removeItem('user_division');
       localStorage.removeItem('password');
 
       var userDataCheck = localStorage.getItem('userData');
@@ -35,11 +36,12 @@ function initApp(){
       $$("#bottomBtns, .toolbar.bottom").hide();
 
       if (userDataCheck != 0) {
+        myProfile();
+        pullFreshQuizItems();
         check_storage();
         validateMyTurn();
         //scanIfQuizAvailable();
-      	myProfile();
-        pullFreshQuizItems();
+
         LoggedInButtons();
 
           mainView.router.load("#welcome");
@@ -412,6 +414,7 @@ $$("#defaultCountdown.timer").hide();
                                   //  '<a href="game.html"  class="link hide-toolbar" style="color:green;">PROCEED</a>'+
                                 '</div>');
   // myApp.alert('We have lift off!');
+  $$(".homeButtonLink").hide();
   }
 
 }
@@ -709,17 +712,16 @@ if (bottomShow === 'show') {
   $('.toolbar.bottom').hide();
 }*/
 function get_Quiz_History() {
-    $('#output').empty();
-    var user_id = localStorage.getItem('user_id');
-    $('#output')
-        .html('<th colspan="4" style="padding: 10px; background: silver; color:#fff; text-align: center;">Stat</th>');
-    $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
 
+    var user_id = localStorage.getItem('user_id');
+
+    $('#output').html('<th colspan="4" style="padding: 10px; background: silver; color:#fff; text-align: center;">Stat</th>');
+    $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
+$('#output').empty();
         //$.each(result, function ( i, field ) {
         $.each(results, function(i, fields) {
 
-            $("#output")
-                .append('<tr><td><label>Set</label></td><td> ' + fields.datefrom + ' </td>'+
+            $("#output").append('<tr><td><label>Set</label></td><td> ' + fields.datefrom + ' </td>'+
                 '<td><label>Score</label></td><td>' + fields.score_bottle + '</td></tr>');
 
             /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
@@ -875,8 +877,10 @@ function loadAnim(){
 /*********** RUN ONLY ONCE JUST TO GET THE DATE FROM LAST ROW ON THE TABLE ****************/
 function validateMyTurn() {
     //getInitQuizData
-    localStorage.removeItem("dateFrString");
-    localStorage.removeItem("dateToString");
+    //  localStorage.removeItem("checkLQuiz");
+    //localStorage.removeItem("dateFrString");
+    //localStorage.removeItem("dateToString");
+
 
 
     var myDivision2 = localStorage.getItem("user_division");
@@ -899,7 +903,7 @@ function validateMyTurn() {
 	         $$('.simple-list li.status').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
          } else {
 
-              console.log("HAS NEW UPDATES!");
+            console.log("HAS NEW UPDATES!");
               $$('.simple-list li.status').html('<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:block; font-weight:700;"></a>');
 
 
@@ -1329,7 +1333,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
     function post_score_new() {
-
+        $('.homeButtonLink').css('display', 'none');
         myApp.showIndicator();
         var user_id = $("#user_id").val();
         var datefromDynamic = $("#datefrom").val();
@@ -1406,30 +1410,13 @@ ptrContent.on('ptr:refresh', function (e) {
     $$('#checkforquiz').on('click', function () {
 
         mainView.router.load({
-            template: Template7.templates.refresherTemplate,
-            context: {
-                //name: username
-            }
+            template: Template7.templates.refresherTemplate
+
         });
 
-        $('.page-on-left').addClass('cached');
-
-        // myApp.showIndicator();
-        // mainView.router.refreshPage();
-        // mainView.router.reloadPreviousPage('#welcome');
-        // myApp.hideIndicator();
 
 
-        setTimeout(function () {
-            mainView.router.load({
-                template: Template7.templates.welcomeTemplate,
-                context: {
-                    //name: username
-                }
 
-            });
-            initApp();
-        }, 3000);
 
 
     });
