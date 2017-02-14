@@ -438,10 +438,12 @@ function hideToolbar() {
 function hidemyToolbar() {
 
   var loc =  "game.html";
+
        // document.getElementById("myFrame").setAttribute("src", loc);
        $$("#myFrame").attr("src", loc);
     $$("#bottomBtns, .toolbar.bottom").hide();
     $$("#videosplash").addClass('cached');
+    $$(".homeButtonLink").hide();
 
 }
 
@@ -903,7 +905,7 @@ function validateMyTurn() {
           console.log("NO UPDATES YET.");
 	         $$('.simple-list li.status').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
          }
-        
+
          else {
 
             console.log("HAS NEW UPDATES!");
