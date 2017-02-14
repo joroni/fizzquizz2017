@@ -23,8 +23,8 @@ var mainView = myApp.addView('.view-main', {
 
 function initApp(){
 
-      localStorage.removeItem('checkLQuiz');
-      localStorage.removeItem('recent_quiz');
+    //  localStorage.removeItem('checkLQuiz');
+    //  localStorage.removeItem('recent_quiz');
       localStorage.removeItem('fname');
       localStorage.removeItem('lname');
       localStorage.removeItem('user_division');
@@ -59,6 +59,7 @@ initApp();
 $$('.hide-toolbar').on('click', function () {
   //  mainView.hideToolbar();
       $$("#bottomBtns, .toolbar.bottom").hide();
+        $$('.homeButtonLink').hide();
 
 });
 
@@ -901,7 +902,9 @@ function validateMyTurn() {
 
           console.log("NO UPDATES YET.");
 	         $$('.simple-list li.status').html('	<div id="getStarted3" style="display:block; color:#d10000 !important; font-weight:700; width: 100%; text-align:center;">SEE YOU ON THE NEXT ROUNDS...</div>');
-         } else {
+         }
+        
+         else {
 
             console.log("HAS NEW UPDATES!");
               $$('.simple-list li.status').html('<a href="#" id="getStarted2" onclick="loadPages();"  class="button show-toolbar" style="color:#d10000; display:block; font-weight:700;"></a>');
@@ -1288,6 +1291,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
     function showQuestions() {
+
         $(".raysDemo").removeClass('fadeInUpBig');
         $(".raysDemo").addClass('fadeOut animated');
         $(".raysDemo").css('top', '-9999px');
@@ -1337,6 +1341,7 @@ ptrContent.on('ptr:refresh', function (e) {
         myApp.showIndicator();
         var user_id = $("#user_id").val();
         var datefromDynamic = $("#datefrom").val();
+      //  var datefromNewQuiz = $(".quiz_datefrom").val();
         var score_bottle = $("#score_bottle").val();
         var attempts = $("#attempts").val();
 
@@ -1357,7 +1362,8 @@ ptrContent.on('ptr:refresh', function (e) {
 
             } else if (data == 1) {
                 attempts = 1;
-
+              //  localStorage.setItem("checkLQuiz", datefromNewQuiz);
+                localStorage.setItem("recent_quiz", datefromDynamic);
                 localStorage.setItem("attempts", attempts);
 
                 //localStorage.setItem("bottomBar", 'show');
@@ -1401,7 +1407,7 @@ ptrContent.on('ptr:refresh', function (e) {
 
         });
 
-        localStorage.setItem("recent_quiz", datefromDynamic);
+
 
 
     }
