@@ -6,6 +6,18 @@
 @import "../quizgame/css/master.css";
 */
 
+
+small {
+  font-size: 12px !important;
+  text-transform: uppercase;
+}
+
+
+
+a.register-button.red.link {
+  color: #d10000;
+}
+
 #myFrameQuiz         {min-height:540px; width: 100%; top:0;}
 html,body        {height:100%; width: 100%;}
 .wrapper         {width:100%;height:540px;margin:0 auto;background:transparent;}
@@ -13,9 +25,26 @@ html,body        {height:100%; width: 100%;}
 .h_iframe .ratio {display:none;width:100%;height:100%;}
 .h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:540px;}
 
-a.login-button:hover {
+a.register-button {
+  color: #fff;
+  text-transform: uppercase;
 
+}
+
+a.login-button {
+  color: #fff;
   background: #d10000;
+
+}
+
+
+
+a.register-button {
+  color: #d10000;
+}
+a.login-button:hover {
+color: #d10000 !important;
+  background: #fff;
 
 }
 a.editProfile.red {
@@ -208,7 +237,15 @@ body#main {
   position: absolute;
   width: 100%;
 }
-button, .button, a.button {
+
+.button:not(.button-fill){
+  color: #fff;
+}
+
+.button:not(.button-fill):hover{
+  color: #d10000;
+}
+button, .button, a.button.red {
 float: left !important;
 font-weight:500;
 font-size:1.2em !important;
@@ -216,7 +253,7 @@ font-size:1.2em !important;
   border: 0px solid rgba(0, 0, 0, 0.1); !important;
   border-width:0 !important;
 /*  border-radius: 2px;*/
-  color: red !important;
+  color: red ;
 /*  height: 30px;*/
   padding:20px !important;
   height: auto !important;
