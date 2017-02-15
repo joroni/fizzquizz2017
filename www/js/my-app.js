@@ -463,10 +463,30 @@ function hidemyToolbar() {
 
 }
 
+function log_out() {
+    localStorage.removeItem('userlogin');
+    //  window.location.replace("index.html");
+    window.localStorage.clear();
+
+
+    mainView.router.load({
+        template: Template7.templates.index
+
+    });
+    LoggedOutButtons();
+
+}
+
+
+
+
+
+
+
 $(function() {
 
 
-    $$("#reg_aunit.reg_aunit_input").change(function() {
+    $$("select.reg_aunit_input").change(function() {
 
         var $dropdown = $(this);
 
@@ -500,19 +520,7 @@ $(function() {
 
 });
 
-function log_out() {
-    localStorage.removeItem('userlogin');
-    //  window.location.replace("index.html");
-    window.localStorage.clear();
 
-
-    mainView.router.load({
-        template: Template7.templates.index
-
-    });
-    LoggedOutButtons();
-
-}
 
 
 
