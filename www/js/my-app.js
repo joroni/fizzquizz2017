@@ -21,6 +21,9 @@ var mainView = myApp.addView('.view-main', {
 
 
 
+
+
+
 function initApp(){
 
     //  localStorage.removeItem('checkLQuiz');
@@ -44,10 +47,23 @@ function initApp(){
 
         LoggedInButtons();
 
-          mainView.router.load("#welcome");
+          mainView.router.loadPage("#welcome");
 
        }else{
          LoggedOutButtons();
+        // mainView.router.loadPage("auth.html");
+
+         myApp.onPageInit('login-screen', function (page) {
+           var pageContainer = $$(page.container);
+           pageContainer.find('.list-button').on('click', function () {
+             var username = pageContainer.find('input[name="username"]').val();
+             var password = pageContainer.find('input[name="password"]').val();
+             // Handle username and password
+             myApp.alert('Username: ' + username + ', Password: ' + password, function () {
+               mainView.goBack();
+             });
+           });
+         });
 
        }
 }
