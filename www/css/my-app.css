@@ -267,7 +267,7 @@ body#main {
 
 .button:not(.button-fill):hover{
   color: #d10000;
-  background: rgba(255,255, 255,0.4);
+  background: rgba(255,255, 255, 0.4);
 }
 button, .button, a.button.red {
 float: left !important;
