@@ -36,7 +36,7 @@ function initApp(){
       var userDataCheck = localStorage.getItem('userData');
       //localStorage.setItem("bottomBar", 'none');
 
-      $$("#bottomBtns, .toolbar.bottom").hide();
+      $$(".toolbar.bottom").hide();
 
       if (userDataCheck != 0) {
         myProfile();
@@ -74,7 +74,8 @@ initApp();
 
 $$('.hide-toolbar').on('click', function () {
   //  mainView.hideToolbar();
-      $$("#bottomBtns, .toolbar.bottom").hide();
+    //  $$("#bottomBtns, .toolbar.bottom").hide();
+      $$(".toolbar.bottom").hide();
         $$('.homeButtonLink').hide();
 
 });
@@ -456,8 +457,9 @@ function hidemyToolbar() {
   var loc =  "game.html";
 
        // document.getElementById("myFrame").setAttribute("src", loc);
-       $$("#myFrame").attr("src", loc);
-    $$("#bottomBtns, .toolbar.bottom").hide();
+    $$("#myFrame").attr("src", loc);
+      $$(".toolbar.bottom").hide();
+  //  $$("#bottomBtns, .toolbar.bottom").hide();
     $$("#videosplash").addClass('cached');
     $$(".homeButtonLink").hide();
 
@@ -1513,6 +1515,6 @@ ptrContent.on('ptr:refresh', function (e) {
 
 
 
-
+  $$(".toolbar.bottom").hide();
 
     myApp.hideIndicator();

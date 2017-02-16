@@ -82,7 +82,7 @@ ul.messageList {
 }
 
 div#fizzquizz {
-  min-height: 420px !important;
+/* min-height: 420px !important; */
   padding-top: 40px !important;
 }
 

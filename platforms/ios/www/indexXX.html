@@ -351,17 +351,19 @@
 
 
                 <div data-page="index" id="index" class="page navbar-fixed swipeback">
-                  <div class="navbar">
+                  <!--<div class="navbar">
                     <div class="navbar-inner">
                       <div class="left"></div>
                       <div class="center">Embedded Login Screen</div>
                       <div class="right"></div>
                     </div>
-                  </div>
+                  </div>-->
+
+                  <div id='stars' class="star-anim" style="z-index: 0;"></div>
+                  <div id='stars2' class="star-anim" style="z-index: 0;"></div>
+                  <div id='stars3' class="star-anim" style="z-index: 0;"></div>
                   <div class="page-content">
-                    <div id='stars' class="star-anim" style="z-index: 0;"></div>
-                    <div id='stars2' class="star-anim" style="z-index: 0;"></div>
-                    <div id='stars3' class="star-anim" style="z-index: 0;"></div>
+
                     <div class="content-block" style="text-align: center; color: #ddd; padding: 0px; z-index: 5;">
                       <a href="login-screen-page.html" id="intro" class="open-login-screen button">
                       <div style="padding:0 70px;"><img src="img/3-bottles.png" style="width:100%;"></div>
@@ -371,60 +373,9 @@
                 </div>
 
 
-              <!--     <div data-page="indexS" class="page no-swipeback">
-
-                    <div class="page-content" style="padding-top:40%; overflow:hidden;  background: radial-gradient(circle at bottom, #f40000 30%, #a80000 100%) !important;">
-                      <div id='stars' class="star-anim" style="z-index: 0;"></div>
-                      <div id='stars2' class="star-anim" style="z-index: 0;"></div>
-                      <div id='stars3' class="star-anim" style="z-index: 0;"></div>
-                     <div class="content-block-title">Example Application</div>
-                        <div class="content-block">
-                            <div class="content-block-inner">
-                              <p><a href="#register">Register</a>
-                                <a href="#form">Load login page</a>.
-                                .</p>
-                                <p>With the help of Framework7.
-                                    <br /> Framework7 has bunch of pre built generic UI elements
-                                </p>
-                            </div>
-                        </div>
-                        <div class="content-block-title">Example Menu</div>
-                       <div class="list-block">
-                            <ul>
-
-                              <li>
-                                  <a href="#form" class="login-button item-link" style="color: #fff !important;">
-                                      <div class="item-content">
-                                          <div class="item-inner">
-                                              <div class="button item-title">Login</div>
-                                          </div>
-                                      </div>
-                                  </a>
-                              </li>
 
 
-
-                            </ul>
-
-                        </div>
-
-                        <div class="content-block" style="text-align: center; color: #ddd; position: absolute; bottom: 60px; width:100%; padding: 0;">
-                        <p><small>Not yet a member?</small></p>
-                        <a href="#register" class="register-button link" style="text-align: center; color: #fff;">
-
-
-                                Register
-
-
-                          </a>
-                        </div>
-                    </div>
-                </div>
-
--->
-
-
-<div data-page="register" class="page no-navbar no-toolbar cached no-swipeback">
+<div data-page="register" class="page no-navbar cached no-toolbar no-swipeback">
   <div class="page-content register-screen-content" style="background:#fff;">
 
     <form id="signupForm" method="post" class="form-horizontal" action="">
@@ -559,16 +510,23 @@
              </li>
              <li>
           </ul>
-          <br /><br />
-          <div class="content-block">
-             <div class="row">
-                <div class="col-50">
-                   <a href="#" class="item-link list-button back link">Cancel</a>
-                </div>
-                <div class="col-50">
-                   <a id="submmit-register" onclick="register();" href="#register" class="register-button item-link link list-button">Register</a>
-                </div>
-             </div>
+
+
+            <div style="text-align:center;">
+
+                <p><a id="submmit-register" onclick="register();" href="#register" class="register-button item-link list-button">Register</a></p>
+
+
+            </div>
+
+            <div style="text-align:center;">
+              <p>
+                <a href="#" class="back link item-link list-button" style="color: #ddd"><i class="f7-icons">close_round</i></a>
+              </p>
+
+
+              </div>
+
           </div>
        </div>
     </form>
@@ -611,25 +569,30 @@
                 </div>
 
                 <!-- Message Page-->
-                <script id="videosplashTemplate" type="text/template7">
-                <div id="videosplash" data-page="videosplash" class="page no-swipeback cached">
 
-                    <div class="page-content">
+
+<script id="videosplashTemplate" type="text/template7">
+
+                <div id="videosplash" data-page="videosplash" class="page no-navbar no-toolbar no-swipeback;">
+                  <div class="page-content register-screen-content" style="background:#000;">
+
+
+
                         <div class="content-block">
 
-                            <div class="wrapper" style="min-height:250px; height: auto; margin-top:45%;">
-                                <div class="h_iframe" style="height: auto;">
+
+
+                            <div class="wrapper" style="min-height:250px; height:auto; margin-top:50%;">
+                                <div class="h_iframe">
 
                                     <!-- a transparent image is preferable -->
                                     <!--	<img class="ratio" src="img/-text.png"/>-->
-                                    <iframe id="myFrame" style="height:auto; width:100%;" margin="0" src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/teaser.html" frameborder="0" allowfullscreen="no"></iframe>
+                                    <iframe style="min-height:200px; width:100%; height:auto;" margin="0" src="http://ec2-54-191-42-126.us-west-2.compute.amazonaws.com/fizzquizzserver/app/views/media/teaser.html" frameborder="0" allowfullscreen="no"></iframe>
                                 </div>
                                 <!--	<p>Please scale the "result" window to notice the effect.</p>-->
                             </div>
+</div>
 
-                            <!--     <iframe src=""  style="height:540px; width:100%;" margin="0" align="middle" scrolling="auto"></iframe>-->
-                            <!--  <iframe src="fizzquizzData.html" style="height:100%; width:100%;"></iframe>-->
-                        </div>
                     </div>
 
                 </div>
@@ -967,23 +930,21 @@
 
                 <!-- Quiz Game Page-->
                 <div id="quizgame" data-page="quizgame" class="page no-swipeback cached">
-                  <!--  <div class="page-content">
-                      <div class="content-block">-->
+                    <div class="page-content">
+                      <div class="content-block">
 
                           <div class="wrapper" style="min-height:250px; margin-top:-0;">
                               <div class="h_iframe">
 
                                   <!-- a transparent image is preferable -->
                                   <!--	<img class="ratio" src="img/-text.png"/>-->
-                                  <iframe id="myFrame" style="min-height:200px; width:100%;" margin="0" src="" frameborder="0" allowfullscreen="no"></iframe>
+                                  <iframe id="myFrameQuiz" style="min-height:200px; width:100%;" margin="0" src="" frameborder="0" allowfullscreen="no"></iframe>
                               </div>
                               <!--	<p>Please scale the "result" window to notice the effect.</p>-->
                           </div>
 
-                          <!--     <iframe src=""  style="height:540px; width:100%;" margin="0" align="middle" scrolling="auto"></iframe>-->
-                          <!--  <iframe src="fizzquizzData.html" style="height:100%; width:100%;"></iframe>-->
-                    <!--  </div>
-                    </div>-->
+                  </div>
+                    </div>
                 </div>
 
 
