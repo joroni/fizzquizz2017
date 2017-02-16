@@ -358,10 +358,12 @@
                       <div class="right"></div>
                     </div>
                   </div>
+
+                  <div id='stars' class="star-anim" style="z-index: 0;"></div>
+                  <div id='stars2' class="star-anim" style="z-index: 0;"></div>
+                  <div id='stars3' class="star-anim" style="z-index: 0;"></div>
                   <div class="page-content">
-                    <div id='stars' class="star-anim" style="z-index: 0;"></div>
-                    <div id='stars2' class="star-anim" style="z-index: 0;"></div>
-                    <div id='stars3' class="star-anim" style="z-index: 0;"></div>
+
                     <div class="content-block" style="text-align: center; color: #ddd; padding: 0px; z-index: 5;">
                       <a href="login-screen-page.html" id="intro" class="open-login-screen button">
                       <div style="padding:0 70px;"><img src="img/3-bottles.png" style="width:100%;"></div>
@@ -560,16 +562,40 @@
              <li>
           </ul>
           <br /><br />
-          <div class="content-block">
-             <div class="row">
-                <div class="col-50">
-                   <a href="#" class="item-link list-button back link">Cancel</a>
-                </div>
-                <div class="col-50">
-                   <a id="submmit-register" onclick="register();" href="#register" class="register-button item-link link list-button">Register</a>
+          <li>
+             <div class="item-content">
+                <div class="item-media"><i class="f7-icons">chat</i></div>
+                <div class="item-inner">
+                   <!-- <div class="item-title label">Language</div> -->
+                   <div class="item-input">
+                      <select id="reg_lang" name="lang">
+                         <option value=""> -- Language -- </option>
+                         <option value="English">English</option>
+                         <!--   <option value="f">French</option>-->
+                      </select>
+                      <span id="reg_lang_err" style="color:red; display:none;">Required</span>
+                   </div>
                 </div>
              </div>
-          </div>
+          </li>
+          <li>
+       </ul>
+
+
+         <div style="text-align:center;">
+
+             <p><a id="submmit-register" onclick="register();" href="#register" class="register-button item-link list-button">Register</a></p>
+
+
+         </div>
+
+         <div style="text-align:center;">
+           <p>
+             <a href="#" class="back link item-link list-button" style="color: #ddd"><i class="f7-icons">close_round</i></a>
+           </p>
+
+
+           </div>
        </div>
     </form>
   </div>
